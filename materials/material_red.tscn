@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsu8nkpmcdkky"]
+
+[ext_resource type="PackedScene" uid="uid://dwq5fpf7mss76" path="res://materials/material_base.tscn" id="1_n1wr8"]
+
+[node name="RedGeometry" instance=ExtResource("1_n1wr8")]
+material_id = 1
+material_name = "Red Geometry"
+weight = 10
+extraction_time = 30.0
+energy_produced = "1"

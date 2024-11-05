@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqty24xl8iq07"]
+
+[ext_resource type="Script" path="res://materials/global_materials.gd" id="1_381yy"]
+[ext_resource type="PackedScene" uid="uid://bsu8nkpmcdkky" path="res://materials/material_red.tscn" id="1_q78gv"]
+
+[node name="GlobalMaterials" type="Node"]
+script = ExtResource("1_381yy")
+
+[node name="RedGeometry" parent="." instance=ExtResource("1_q78gv")]
