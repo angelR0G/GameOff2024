@@ -8,3 +8,10 @@ var can_be_placed_on_world :bool = true
 
 func is_powered() -> bool:
 	return true
+
+
+func on_install(mine:Mine) -> void:
+	return
+
+func on_destroy() -> void:
+	return

@@ -17,14 +17,17 @@ func _init() -> void:
 	active = false
 
 
-# Binds the drill to a mine and start mining
-#func place_in_mine(mine:Mine) -> bool:
+func on_install(mine:Mine) -> void:
+	# Reset values
+	material_amount = 0
+	current_weight = 0
+	
+	# Get mine's material and update necessary parameters
 	#material_id = mine.materialID
-	#material_amount = 0
-	#current_weight = 0
-	#
-	#mining_timer.wait_time = material.time
-	#mining_timer.start()
+	update_mining_time()
+	
+	# Start mining
+	mine_materials()
 
 
 func collect_materials() -> void:
@@ -50,3 +53,8 @@ func _on_material_extracted() -> void:
 func has_capacity_for_more_materials() -> bool:
 	#return current_weight + material_id.weight <= max_weight
 	return true
+
+
+func update_mining_time() -> void:
+	#mining_timer.wait_time = material.time
+	return
