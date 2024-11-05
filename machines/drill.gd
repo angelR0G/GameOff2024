@@ -3,9 +3,10 @@ class_name Drill extends MineMachine
 var material_amount :int = 0
 var current_weight :int = 0
 var max_weight :int = 0
-var material_id : int = 0
+var material_id :int = 0
+var mining_speed :float = 1.0
 
-@onready var mining_timer = $MiningTimer
+@onready var mining_timer := $MiningTimer
 
 func _init() -> void:
 	super()
@@ -23,7 +24,7 @@ func on_install(mine:Mine) -> void:
 	current_weight = 0
 	
 	# Get mine's material and update necessary parameters
-	#material_id = mine.materialID
+	material_id = mine.material_id
 	update_mining_time()
 	
 	# Start mining
@@ -44,17 +45,19 @@ func _on_material_extracted() -> void:
 		return
 	
 	material_amount += 1
-	#current_weight += material_id.weight
+	current_weight += MATERIALS.search_by_id(material_id).weight
 	
 	# Continues mining materials if has enough capacity
 	mine_materials()
 
 
 func has_capacity_for_more_materials() -> bool:
-	#return current_weight + material_id.weight <= max_weight
-	return true
+	var material_weight := MATERIALS.search_by_id(material_id).weight
+	
+	return current_weight + material_weight <= max_weight
 
 
 func update_mining_time() -> void:
-	#mining_timer.wait_time = material.time
-	return
+	var material_mining_time := MATERIALS.search_by_id(material_id).extraction_time
+	
+	mining_timer.wait_time = material_mining_time / mining_speed
