@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b280biq3pyqki"]
+[gd_scene load_steps=7 format=3 uid="uid://b280biq3pyqki"]
 
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://scenes/Player.tscn" id="1_0ablw"]
 [ext_resource type="Texture2D" uid="uid://bd0wpcadrq5yw" path="res://icon.svg" id="2_il2m7"]
+[ext_resource type="PackedScene" uid="uid://bgdwweowv3rlk" path="res://other_objects/mine.tscn" id="3_hiqea"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rw2x3"]
 size = Vector2(100, 100)
@@ -30,3 +31,6 @@ shape = SubResource("BoxShape3D_ymgr2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.560567, 0.828109, 0, -0.828109, 0.560567, 0, 16.8721, 38.7001)
+
+[node name="Mine" parent="." instance=ExtResource("3_hiqea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6378, 0, -3.92064)
