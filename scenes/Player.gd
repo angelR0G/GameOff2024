@@ -6,7 +6,7 @@ const material_container := preload("res://materials/material_container.gd")
 @export var speed :float = 14.0
 @export var fall_acceleration = 75
 @export var movement_enabled :bool
-@export var machines : Dictionary = {}
+@export var machines :Array[Machine] = []
 @export var materials :MaterialContainer = MaterialContainer.new()
 
 @onready var camera 		:= $Camera3D
@@ -18,6 +18,8 @@ func _ready() -> void:
 	movement_enabled = true
 	if Instance == null:
 		Instance = self
+	
+	machines.append(MachineFactory.new_machine(MachineFactory.MachineType.Drill))
 
 func _process(delta):
 	var dir := Vector3()
