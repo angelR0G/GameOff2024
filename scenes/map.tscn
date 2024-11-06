@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b280biq3pyqki"]
+[gd_scene load_steps=8 format=3 uid="uid://b280biq3pyqki"]
 
-[ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://scenes/Player.tscn" id="1_0ablw"]
+[ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://scenes/player.tscn" id="1_0ablw"]
 [ext_resource type="Texture2D" uid="uid://bd0wpcadrq5yw" path="res://icon.svg" id="2_il2m7"]
 [ext_resource type="PackedScene" uid="uid://bgdwweowv3rlk" path="res://other_objects/mine.tscn" id="3_hiqea"]
+[ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="4_tmabt"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rw2x3"]
 size = Vector2(100, 100)
@@ -35,3 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 0.560567, 0.828109, 0, -0.828109, 0.560567, 
 [node name="Mine" parent="." instance=ExtResource("3_hiqea")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6378, 0, -3.92064)
 material_id = 1
+
+[node name="BaseCamp" parent="." instance=ExtResource("4_tmabt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.86171, 0, -5.65019)

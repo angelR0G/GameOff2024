@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://unhbwmithnfs"]
+
+[ext_resource type="Script" path="res://scenes/dev_console.gd" id="1_rykuc"]
+
+[node name="DevConsole" type="CanvasLayer"]
+script = ExtResource("1_rykuc")
+
+[node name="Container" type="MarginContainer" parent="."]
+visible = false
+offset_right = 1151.0
+offset_bottom = 272.0
+
+[node name="background" type="ColorRect" parent="Container"]
+layout_mode = 2
+color = Color(0.164706, 0.164706, 0.164706, 0.811765)
+
+[node name="contents" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="console" type="RichTextLabel" parent="Container/contents"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="line_input" type="LineEdit" parent="Container/contents"]
+unique_name_in_owner = true
+layout_mode = 2

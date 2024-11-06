@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody3D
 
 static var Instance :Player = null
-const material_container := preload("res://materials/material_container.gd")
+const _material_container := preload("res://materials/material_container.gd")
 
 @export var speed :float = 14.0
 @export var fall_acceleration = 75
