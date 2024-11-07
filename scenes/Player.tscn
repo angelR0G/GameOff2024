@@ -16,7 +16,7 @@ script = ExtResource("1_nq4kw")
 shape = SubResource("CapsuleShape3D_ccjio")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.739537, 0.673116, 0, -0.673116, 0.739537, 0, 5.83009, 5.02976)
+transform = Transform3D(1, 0, 0, 0, 0.739537, 0.673116, 0, -0.673116, 0.739537, 0, 9.71593, 6.89526)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="."]
 mesh = SubResource("CylinderMesh_bnq0x")

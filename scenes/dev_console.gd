@@ -14,7 +14,7 @@ func _on_text_submitted(command):
 	if error != OK:
 		print(expression.get_error_text())
 		return
-	var result = expression.execute()
+	var result = expression.execute([], self)
 	if not expression.has_execute_failed():
 		console.text = str(result)
 		
