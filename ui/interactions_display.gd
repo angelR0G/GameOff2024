@@ -16,7 +16,8 @@ func add_interaction(text:String, function:Callable, disabled:bool = false) -> v
 	
 	new_interaction.text = text
 	new_interaction.disabled = disabled
-	new_interaction.pressed.connect(function)
+	if function.is_valid():
+		new_interaction.pressed.connect(function)
 	new_interaction.pressed.connect(clear_list)
 
 
