@@ -2,10 +2,14 @@ class_name BaseCamp extends Node
 
 const material_container := preload("res://materials/material_container.gd")
 
-@export var total_energy: int
-@export var materials :MaterialContainer = MaterialContainer.new()
+var total_energy: int = 10
+var materials :MaterialContainer = MaterialContainer.new()
 
 @onready var interaction := $InteractionTrigger
+
+func _init() -> void:
+	materials.max_weight = -1
+	return
 
 func store_materials(player:Player)->void:
 	materials.transfer_materials(player.materials)

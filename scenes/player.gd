@@ -6,14 +6,17 @@ const _material_container := preload("res://materials/material_container.gd")
 @export var speed :float = 14.0
 @export var fall_acceleration = 75
 @export var movement_enabled :bool
-@export var machines :MachineContainer = MachineContainer.new()
-@export var materials :MaterialContainer = MaterialContainer.new()
+var machines :MachineContainer = MachineContainer.new()
+var materials :MaterialContainer = MaterialContainer.new()
 
 @onready var camera 		:= $Camera3D
 
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
 var input_disabled :bool = false
+
+func _init() -> void:
+	materials.max_weight = 80
 
 func _ready() -> void:
 	movement_enabled = true
