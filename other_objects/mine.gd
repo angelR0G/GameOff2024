@@ -25,7 +25,7 @@ func _interaction() -> void:
 		interactions_ui.add_interaction("Place Drill", place_drill, not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
 	else:
 		installed_machine.display_interactions()
-		interactions_ui.add_interaction("Remove Machine", destroy_machine, true)
+		interactions_ui.add_interaction("Remove Machine", destroy_machine)
 	
 	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()
@@ -61,5 +61,6 @@ func destroy_machine() -> void:
 		return
 	
 	installed_machine.on_destroy()
+	installed_machine.queue_free()
 	installed_machine = null
 	

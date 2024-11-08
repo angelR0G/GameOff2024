@@ -34,7 +34,9 @@ func on_install(mine:Mine) -> void:
 
 
 func collect_materials() -> void:
-	#material_amount -= Player.Instance.materials.add_material(material_id, material_amount)
+	material_amount -= Player.Instance.materials.add_material(material_id, material_amount)
+	current_weight = MATERIALS.search_by_id(material_id).weight * material_amount
+	
 	mine_materials()
 	return
 
