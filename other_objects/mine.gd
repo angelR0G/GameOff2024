@@ -17,12 +17,13 @@ func _interaction() -> void:
 	if not explored:
 		interactions_ui.add_interaction("Explore Mine", explore_mine)
 	elif installed_machine == null:
-		var place_drill := func() -> void:
-			var drill :Machine = Player.Instance.machines.remove_machine_by_type(Machine.Type.Drill)
-			if drill != null:
-				place_machine(drill)
+		var place_machine := func(type:Machine.Type) -> void:
+			var machine :Machine = Player.Instance.machines.remove_machine_by_type(type)
+			if machine != null:
+				place_machine(machine)
 		
-		interactions_ui.add_interaction("Place Drill", place_drill, not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
+		interactions_ui.add_interaction("Place Drill", place_machine.bind(Machine.Type.Drill), not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
+		interactions_ui.add_interaction("Place Generator", place_machine.bind(Machine.Type.Generator), not Player.Instance.machines.has_machine_of_type(Machine.Type.Generator))
 	else:
 		installed_machine.display_interactions()
 		interactions_ui.add_interaction("Remove Machine", destroy_machine)
@@ -61,6 +62,5 @@ func destroy_machine() -> void:
 		return
 	
 	installed_machine.on_destroy()
-	installed_machine.queue_free()
 	installed_machine = null
 	

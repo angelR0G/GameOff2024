@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dawtwmq3by4w7"]
+
+[ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_rm1yq"]
+[ext_resource type="Script" path="res://machines/drill.gd" id="2_m17to"]
+
+[node name="EnergyExtender" instance=ExtResource("1_rm1yq")]
+script = ExtResource("2_m17to")

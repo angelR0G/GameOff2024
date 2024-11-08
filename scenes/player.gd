@@ -24,6 +24,7 @@ func _ready() -> void:
 		Instance = self
 	
 	machines._machines.append(MachineFactory.new_machine(Machine.Type.Drill))
+	machines._machines.append(MachineFactory.new_machine(Machine.Type.Generator))
 
 func _process(delta):
 	var dir := Vector3()

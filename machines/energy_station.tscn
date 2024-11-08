@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://0cfxskcwk864"]
+
+[ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_vvoke"]
+[ext_resource type="Script" path="res://machines/energy_station.gd" id="2_nhyuo"]
+
+[node name="EnergyStation" instance=ExtResource("1_vvoke")]
+script = ExtResource("2_nhyuo")
+radius = 400.0

@@ -7,4 +7,4 @@ material_id = 1
 material_name = "Red Geometry"
 weight = 10
 extraction_time = 30.0
-energy_produced = "1"
+energy_produced = 1

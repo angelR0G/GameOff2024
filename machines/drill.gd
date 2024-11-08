@@ -32,6 +32,8 @@ func on_install(mine:Mine) -> void:
 	# Start mining
 	mine_materials()
 
+func on_destroy() -> void:
+	queue_free()
 
 func collect_materials() -> void:
 	material_amount -= Player.Instance.materials.add_material(material_id, material_amount)

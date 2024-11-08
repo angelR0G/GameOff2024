@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwhsrv7idketp"]
+[gd_scene load_steps=4 format=3 uid="uid://dwhsrv7idketp"]
 
 [ext_resource type="Script" path="res://machines/machine_base.gd" id="1_ufmo7"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ovwt0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_cinyo"]
 
 [node name="Machine" type="Node3D"]
 script = ExtResource("1_ufmo7")
@@ -10,3 +12,10 @@ script = ExtResource("1_ufmo7")
 [node name="MachineMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_ovwt0")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_cinyo")
