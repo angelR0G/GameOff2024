@@ -26,6 +26,7 @@ func _interaction() -> void:
 	else:
 		interactions_ui.add_interaction("Easter Egg", Callable(), true)
 	
+	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()
 	await interactions_ui.display_closed
 

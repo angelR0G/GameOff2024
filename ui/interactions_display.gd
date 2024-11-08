@@ -20,6 +20,8 @@ func add_interaction(text:String, function:Callable, disabled:bool = false) -> v
 		new_interaction.pressed.connect(function)
 	new_interaction.pressed.connect(clear_list)
 
+func add_close_list_button() -> void:
+	add_interaction("Close", Callable())
 
 func hide_list() -> void:
 	interactions_list.visible = false
