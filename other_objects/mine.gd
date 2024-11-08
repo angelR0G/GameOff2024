@@ -12,30 +12,30 @@ func _ready() -> void:
 	interaction.on_interact.connect(_interaction)
 
 func _interaction() -> void:
+	var interactions_ui := InteractionsDisplay.Instance
+	
 	if not explored:
-		Player.Instance.movement_enabled = false
-		await explore_mine()
-		Player.Instance.movement_enabled = true
+		interactions_ui.add_interaction("Explore Mine", explore_mine)
 	else:
-		if installed_machine == null and not Player.Instance.machines.is_empty():
-			var placed_machine :MineMachine = null
-			for m in Player.Instance.machines:
-				if m is MineMachine:
-					placed_machine = m
-					break
-				
-			place_machine(placed_machine)
-			Player.Instance.machines.erase(placed_machine)
-			return
+		var place_drill := func() -> void:
+			var drill :Machine = Player.Instance.machines.remove_machine_by_type(Machine.Type.Drill)
+			if drill != null:
+				place_machine(drill)
 		
+		interactions_ui.add_interaction("Place Drill", place_drill, not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
+	
+	interactions_ui.show_list()
 
 func explore_mine() -> void:
 	if explored:
 		return
 	
+	Player.Instance.movement_enabled = false
+		
 	await get_tree().create_timer(10).timeout
 	mesh.material_override.albedo_color = Color(255, 0, 255)
 	
+	Player.Instance.movement_enabled = true
 	explored = true
 
 

@@ -1,5 +1,10 @@
 class_name Machine extends Node3D
 
+enum Type {
+	Drill
+}
+
+var _type :Type
 var machine_name :StringName
 var description :String
 var energy_cost :int = 0

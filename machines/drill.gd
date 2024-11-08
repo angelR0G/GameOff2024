@@ -12,6 +12,7 @@ func _init() -> void:
 	super()
 	
 	# Drill parameters
+	_type = Machine.Type.Drill
 	machine_name = "Drill"
 	description = "Place in a mine to extract materials."
 	energy_cost = 1
