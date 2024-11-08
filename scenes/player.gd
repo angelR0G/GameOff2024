@@ -13,6 +13,7 @@ const _material_container := preload("res://materials/material_container.gd")
 
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
+var input_disabled :bool = false
 
 func _ready() -> void:
 	movement_enabled = true
@@ -24,7 +25,7 @@ func _ready() -> void:
 func _process(delta):
 	var dir := Vector3()
 	
-	if movement_enabled:
+	if movement_enabled and not input_disabled:
 		# Check input to get character movement direction
 		if Input.is_action_pressed("left"):
 			dir.x -= 1.0
@@ -49,6 +50,9 @@ func _process(delta):
 
 
 func _unhandled_input(input: InputEvent) -> void:
+	if input_disabled:
+		return
+	
 	if input.is_action_pressed("interact"):
 		interact()
 	
@@ -57,7 +61,11 @@ func interact() -> void:
 	if available_interactions.is_empty() or available_interactions[0] == null:
 		return
 	
-	available_interactions[0].on_interact.emit()
+	input_disabled = true
+	available_interactions[0].interact()
+	
+	await available_interactions[0].on_stop_interaction
+	input_disabled = false
 	
 
 func add_interaction_object(obj:InteractionCollider) -> void:

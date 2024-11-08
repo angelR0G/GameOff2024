@@ -9,22 +9,25 @@ var installed_machine :MineMachine = null
 @onready var mine_machine_spot := $MineMachineSpot
 
 func _ready() -> void:
-	interaction.on_interact.connect(_interaction)
+	interaction.interaction_function = _interaction
 
 func _interaction() -> void:
 	var interactions_ui := InteractionsDisplay.Instance
 	
 	if not explored:
 		interactions_ui.add_interaction("Explore Mine", explore_mine)
-	else:
+	elif installed_machine == null:
 		var place_drill := func() -> void:
 			var drill :Machine = Player.Instance.machines.remove_machine_by_type(Machine.Type.Drill)
 			if drill != null:
 				place_machine(drill)
 		
 		interactions_ui.add_interaction("Place Drill", place_drill, not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
+	else:
+		interactions_ui.add_interaction("Easter Egg", Callable(), true)
 	
 	interactions_ui.show_list()
+	await interactions_ui.display_closed
 
 func explore_mine() -> void:
 	if explored:

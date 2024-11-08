@@ -5,6 +5,8 @@ const interaction_button := preload("res://ui/interaction_button.tscn")
 
 static var Instance :InteractionsDisplay = null
 
+signal display_closed
+
 func _ready() -> void:
 	Instance = self
 
@@ -28,3 +30,9 @@ func clear_list() -> void:
 	hide_list()
 	for child in interactions_list.get_children():
 		child.queue_free()
+	
+	display_closed.emit()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if interactions_list.visible and event.is_action_pressed("back"):
+		clear_list()

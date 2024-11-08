@@ -15,7 +15,7 @@ func add_energy() -> void:
 	pass
 
 func _ready() -> void:
-	interaction.on_interact.connect(_interaction)
+	interaction.interaction_function = _interaction
 
 func _interaction() -> void:
 	store_materials(Player.Instance)
