@@ -23,6 +23,7 @@ func on_install(mine:Mine) -> void:
 	# Reset values
 	material_amount = 0
 	current_weight = 0
+	active = true
 	
 	# Get mine's material and update necessary parameters
 	material_id = mine.material_id
@@ -33,11 +34,13 @@ func on_install(mine:Mine) -> void:
 
 
 func collect_materials() -> void:
+	#material_amount -= Player.Instance.materials.add_material(material_id, material_amount)
+	mine_materials()
 	return
 
 
 func mine_materials() -> void:
-	if has_capacity_for_more_materials():
+	if has_capacity_for_more_materials() and mining_timer.is_stopped():
 		mining_timer.start()
 
 
@@ -62,3 +65,15 @@ func update_mining_time() -> void:
 	var material_mining_time := MATERIALS.search_by_id(material_id).extraction_time
 	
 	mining_timer.wait_time = material_mining_time / mining_speed
+
+
+func display_interactions() -> void:
+	super()
+	
+	InteractionsDisplay.Instance.add_interaction("Collect Materials", collect_materials, material_amount == 0)
+
+
+func set_machine_active(new_state:bool) -> void:
+	super(new_state)
+	
+	mining_timer.paused = not new_state

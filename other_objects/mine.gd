@@ -24,7 +24,8 @@ func _interaction() -> void:
 		
 		interactions_ui.add_interaction("Place Drill", place_drill, not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
 	else:
-		interactions_ui.add_interaction("Easter Egg", Callable(), true)
+		installed_machine.display_interactions()
+		interactions_ui.add_interaction("Remove Machine", destroy_machine, true)
 	
 	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()

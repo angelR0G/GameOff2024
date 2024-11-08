@@ -20,3 +20,14 @@ func on_install(mine:Mine) -> void:
 
 func on_destroy() -> void:
 	return
+
+func display_interactions() -> void:
+	var interactions_ui := InteractionsDisplay.Instance
+	
+	if active:
+		interactions_ui.add_interaction("Turn Off", set_machine_active.bind(false))
+	else:
+		interactions_ui.add_interaction("Turn On", set_machine_active.bind(true))
+
+func set_machine_active(new_state:bool) -> void:
+	active = new_state
