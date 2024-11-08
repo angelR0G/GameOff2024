@@ -1,0 +1,71 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfjsaxbypqcrh"]
+
+[ext_resource type="Script" path="res://ui/hud.gd" id="1_36fne"]
+[ext_resource type="Theme" uid="uid://do4klmwnfpkxv" path="res://resources/inventory_menu.tres" id="1_ukre5"]
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_36fne")
+
+[node name="Menu" type="AspectRatioContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 330.0
+offset_bottom = 330.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ukre5")
+ratio = 3.0719
+alignment_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
+layout_mode = 2
+
+[node name="MenuButtons" type="HBoxContainer" parent="Menu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+alignment = 1
+
+[node name="MaterialsInventoryButton" type="Button" parent="Menu/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+text = "Materials"
+
+[node name="MachineInventoryButton" type="Button" parent="Menu/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+text = "Machines"
+
+[node name="BuildButton" type="Button" parent="Menu/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+text = "Build"
+
+[node name="UpgradeButton" type="Button" parent="Menu/VBoxContainer/MenuButtons"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+toggle_mode = true
+text = "Upgrade"
+
+[node name="MenuDisplay" type="PanelContainer" parent="Menu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="show_materials_inventory"]
+[connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="set_menu_visibility"]
+[connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MachineInventoryButton" to="." method="show_machines_inventory"]
+[connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/MachineInventoryButton" to="." method="set_menu_visibility"]
+[connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/BuildButton" to="." method="show_build_menu"]
+[connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/BuildButton" to="." method="set_menu_visibility"]
+[connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/UpgradeButton" to="." method="show_upgrades_menu"]
+[connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/UpgradeButton" to="." method="set_menu_visibility"]
