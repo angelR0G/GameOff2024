@@ -7,5 +7,6 @@
 script = ExtResource("2_oyb7y")
 
 [node name="MiningTimer" type="Timer" parent="." index="1"]
+one_shot = true
 
 [connection signal="timeout" from="MiningTimer" to="." method="_on_material_extracted"]

@@ -48,8 +48,8 @@ func _process(delta):
 	move_and_slide()
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("interact"):
+func _unhandled_input(input: InputEvent) -> void:
+	if input.is_action_pressed("interact"):
 		interact()
 	
 

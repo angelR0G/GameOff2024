@@ -2,7 +2,7 @@ class_name Drill extends MineMachine
 
 var material_amount :int = 0
 var current_weight :int = 0
-var max_weight :int = 0
+var max_weight :int = 20
 var material_id :int = 0
 var mining_speed :float = 1.0
 

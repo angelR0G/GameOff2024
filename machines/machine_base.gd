@@ -9,7 +9,7 @@ var can_be_placed_on_world :bool = true
 func is_powered() -> bool:
 	return true
 
-
+@warning_ignore("unused_parameter")
 func on_install(mine:Mine) -> void:
 	return
 
