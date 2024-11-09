@@ -1,12 +1,15 @@
 class_name Hud extends CanvasLayer
 
 const MATERIAL_ICON := preload("res://ui/material_icon.tscn")
+const MACHINE_INV_ICON := preload("res://ui/machine_inventory_icon.tscn")
 
 @onready var menu_node := $Menu
 @onready var menu_buttons := $Menu/VBoxContainer/MenuButtons
+@onready var current_menu_screen :Node = $Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay
+
 @onready var materials_inv_display := $Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay
 @onready var machines_inv_display := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay
-@onready var current_menu_screen :Node = $Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay
+@onready var machines_inv_container := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay/ScrollContainer/MarginContainer/HBoxContainer
 
 
 func set_menu_visibility(new_state:bool) -> void:
@@ -84,7 +87,23 @@ func show_machines_inventory() -> void:
 
 
 func update_machines_inventory() -> void:
-	pass
+	if not machines_inv_display.visible:
+		return
+	
+	var player_machines := Player.Instance.machines.get_all_machines()
+	
+	# Remove all children
+	for machine in machines_inv_container.get_children():
+		machine.queue_free()
+	
+	# Create an icon foreach machine in player's inventory
+	for machine :Machine in player_machines:
+		var new_machine_icon :MachineInventoryIcon = MACHINE_INV_ICON.instantiate()
+		
+		machines_inv_container.add_child(new_machine_icon)
+		new_machine_icon.set_machine_name(machine.name)
+		new_machine_icon.set_machine_description(machine.description)
+		new_machine_icon.set_machine_placeable(machine.can_be_placed_on_world, "Place in a structure")
 
 
 # # #

@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfjsaxbypqcrh"]
+[gd_scene load_steps=3 format=3 uid="uid://cfjsaxbypqcrh"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_36fne"]
 [ext_resource type="Theme" uid="uid://do4klmwnfpkxv" path="res://resources/inventory_menu.tres" id="1_ukre5"]
-[ext_resource type="PackedScene" uid="uid://cw01v4g87msx7" path="res://ui/material_icon.tscn" id="3_fvkp1"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_36fne")
@@ -56,6 +55,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="MaterialsInventoryDisplay" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 240
 theme_override_constants/margin_top = 10
@@ -72,36 +72,34 @@ layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="MaterialIcon" parent="Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay/VBoxContainer/HBoxContainer" instance=ExtResource("3_fvkp1")]
-layout_mode = 2
-
-[node name="MaterialIcon2" parent="Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay/VBoxContainer/HBoxContainer" instance=ExtResource("3_fvkp1")]
-layout_mode = 2
-
 [node name="HBoxContainer2" type="HBoxContainer" parent="Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 40
 alignment = 1
 
-[node name="MaterialIcon" parent="Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay/VBoxContainer/HBoxContainer2" instance=ExtResource("3_fvkp1")]
-layout_mode = 2
-
-[node name="MaterialIcon2" parent="Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay/VBoxContainer/HBoxContainer2" instance=ExtResource("3_fvkp1")]
-layout_mode = 2
-
 [node name="MachinesInventoryDisplay" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay"]
+visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 160
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 160
+theme_override_constants/margin_right = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 10
 
-[node name="MaterialsContainer" type="HFlowContainer" parent="Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay/ScrollContainer/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/h_separation = 60
-theme_override_constants/v_separation = 30
-alignment = 1
+size_flags_vertical = 3
+theme_override_constants/separation = 20
 
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="show_materials_inventory"]
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="set_menu_visibility"]

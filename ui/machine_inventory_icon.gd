@@ -1,9 +1,9 @@
 class_name MachineInventoryIcon extends AspectRatioContainer
 
-@onready var name_label := $Background/MarginContainer/VBoxContainer/MarginContainer/MachineNameLabel
-@onready var description_label := $Background/MarginContainer/VBoxContainer/MachineDescriptionLabel
-@onready var place_button := $Background/MarginContainer/VBoxContainer/MarginContainer2/PlaceButton
-@onready var place_label := $Background/MarginContainer/VBoxContainer/MarginContainer2/PlaceInstructions
+@onready var name_label := $MachineIcon/MarginContainer/VBoxContainer/MarginContainer/MachineNameLabel
+@onready var description_label := $MachineIcon/MarginContainer/VBoxContainer/MachineDescriptionLabel
+@onready var place_button := $MachineIcon/MarginContainer/VBoxContainer/MarginContainer2/PlaceButton
+@onready var place_label := $MachineIcon/MarginContainer/VBoxContainer/MarginContainer2/PlaceInstructions
 
 func set_machine_name(text:String) -> void:
 	name_label.text = text
