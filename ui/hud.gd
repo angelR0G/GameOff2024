@@ -103,6 +103,7 @@ func update_machines_inventory() -> void:
 		machines_inv_container.add_child(new_machine_icon)
 		new_machine_icon.set_machine_name(machine.name)
 		new_machine_icon.set_machine_description(machine.description)
+		new_machine_icon.set_machine_amount(player_machines[machine])
 		new_machine_icon.set_machine_placeable(machine.can_be_placed_on_world, "Place in a structure")
 
 

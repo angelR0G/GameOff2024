@@ -100,6 +100,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
+alignment = 1
 
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="show_materials_inventory"]
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="set_menu_visibility"]

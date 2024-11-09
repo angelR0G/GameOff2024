@@ -28,15 +28,29 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MachineIcon/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_bottom = 10
+size_flags_vertical = 0
+theme_override_constants/margin_top = 8
 
-[node name="MachineNameLabel" type="Label" parent="MachineIcon/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MachineIcon/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MachineNameLabel" type="Label" parent="MachineIcon/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "Machine Name"
+horizontal_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="AmountLabel" type="Label" parent="MachineIcon/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "x2"
 horizontal_alignment = 1
 clip_text = true
 text_overrun_behavior = 1
