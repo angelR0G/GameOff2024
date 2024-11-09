@@ -37,10 +37,7 @@ func _input(event: InputEvent) -> void:
 			place_machine_at_position(event.position)
 		if event.is_action_pressed("back"):
 			exit_build_mode()
-			
-		
-		
-		
+
 #TODO: Check if can be placed
 func place_machine_at_position(position:Vector2) -> bool:
 	machine_placed = true
