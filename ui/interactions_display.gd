@@ -16,9 +16,12 @@ func add_interaction(text:String, function:Callable, disabled:bool = false) -> v
 	
 	new_interaction.text = text
 	new_interaction.disabled = disabled
-	if function.is_valid():
-		new_interaction.pressed.connect(function)
-	new_interaction.pressed.connect(clear_list)
+	new_interaction.pressed.connect(func () -> void:
+		clear_list()
+		if function.is_valid():
+			await function.call()
+		display_closed.emit()
+	)
 
 func add_close_list_button() -> void:
 	add_interaction("Close", Callable())
@@ -36,7 +39,6 @@ func clear_list() -> void:
 	for child in interactions_list.get_children():
 		child.queue_free()
 	
-	display_closed.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if interactions_list.visible and event.is_action_pressed("back"):
