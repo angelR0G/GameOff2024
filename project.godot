@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 MATERIALS="*res://materials/global_materials.tscn"
 DEVCONSOLE="*res://scenes/dev_console.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [input]
 
 left={
