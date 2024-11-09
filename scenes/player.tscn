@@ -24,6 +24,6 @@ transform = Transform3D(1, 0, 0, 0, 0.739537, 0.673116, 0, -0.673116, 0.739537, 
 mesh = SubResource("CylinderMesh_bnq0x")
 material = SubResource("StandardMaterial3D_popjp")
 
-[node name="InteractionsDisplay" parent="." instance=ExtResource("2_6mo8e")]
-
 [node name="Hud" parent="." instance=ExtResource("3_l3poo")]
+
+[node name="InteractionsDisplay" parent="." instance=ExtResource("2_6mo8e")]

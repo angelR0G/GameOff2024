@@ -10,6 +10,7 @@ var machines :MachineContainer = MachineContainer.new()
 var materials :MaterialContainer = MaterialContainer.new()
 
 @onready var camera 		:= $Camera3D
+@onready var hud := $Hud
 
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
@@ -65,10 +66,12 @@ func interact() -> void:
 		return
 	
 	input_disabled = true
+	hud.set_menu_enabled(false)
 	available_interactions[0].interact()
 	
 	await available_interactions[0].on_stop_interaction
 	input_disabled = false
+	hud.set_menu_enabled(true)
 	
 
 func add_interaction_object(obj:InteractionCollider) -> void:

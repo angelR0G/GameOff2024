@@ -12,6 +12,9 @@ const MATERIAL_ICON := preload("res://ui/material_icon.tscn")
 func set_menu_visibility(new_state:bool) -> void:
 	var tween := get_tree().create_tween()
 	tween.tween_property(menu_node, "position", Vector2(0, 0 if new_state else 330), 0.5)
+	
+	# Disable player input when interacting with the menu
+	Player.Instance.input_disabled = new_state
 
 
 func untoggle_buttons(exception:Button) -> void:
@@ -27,6 +30,11 @@ func update_menu_screens_visibility(screen_to_show:Node) -> void:
 	current_menu_screen.visible = false
 	current_menu_screen = screen_to_show
 	current_menu_screen.visible = true
+
+
+func set_menu_enabled(new_state:bool) -> void:
+	for button:Button in menu_buttons.get_children():
+		button.disabled = not new_state
 
 
 # # #
