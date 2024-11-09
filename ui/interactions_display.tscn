@@ -18,3 +18,4 @@ offset_bottom = 46.0
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+mouse_filter = 2

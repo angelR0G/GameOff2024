@@ -25,9 +25,11 @@ func add_close_list_button() -> void:
 
 func hide_list() -> void:
 	interactions_list.visible = false
+	interactions_list.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func show_list() -> void:
 	interactions_list.visible = true
+	interactions_list.mouse_filter = Control.MOUSE_FILTER_PASS
 
 func clear_list() -> void:
 	hide_list()
