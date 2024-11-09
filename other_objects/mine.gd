@@ -17,13 +17,13 @@ func _interaction() -> void:
 	if not explored:
 		interactions_ui.add_interaction("Explore Mine", explore_mine)
 	elif installed_machine == null:
-		var place_machine := func(type:Machine.Type) -> void:
+		var place_machine_by_type := func(type:Machine.Type) -> void:
 			var machine :Machine = Player.Instance.machines.remove_machine_by_type(type)
 			if machine != null:
 				place_machine(machine)
 		
-		interactions_ui.add_interaction("Place Drill", place_machine.bind(Machine.Type.Drill), not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
-		interactions_ui.add_interaction("Place Generator", place_machine.bind(Machine.Type.Generator), not Player.Instance.machines.has_machine_of_type(Machine.Type.Generator))
+		interactions_ui.add_interaction("Place Drill", place_machine_by_type.bind(Machine.Type.Drill), not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
+		interactions_ui.add_interaction("Place Generator", place_machine_by_type.bind(Machine.Type.Generator), not Player.Instance.machines.has_machine_of_type(Machine.Type.Generator))
 	else:
 		installed_machine.display_interactions()
 		interactions_ui.add_interaction("Remove Machine", destroy_machine)
@@ -39,7 +39,8 @@ func explore_mine() -> void:
 	Player.Instance.movement_enabled = false
 		
 	await get_tree().create_timer(10).timeout
-	mesh.material_override.albedo_color = Color(255, 0, 255)
+	#mesh.material_override.albedo_color = Color(255, 0, 255)
+	mesh.material_override = load("res://resources/materials/researched_mine.tres")
 	
 	Player.Instance.movement_enabled = true
 	explored = true

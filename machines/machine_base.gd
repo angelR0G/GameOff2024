@@ -2,7 +2,9 @@ class_name Machine extends Node3D
 
 enum Type {
 	Drill,
-	Generator
+	Generator,
+	EnergyStation,
+	EnergyExtender
 }
 
 var _type :Type
@@ -10,10 +12,14 @@ var machine_name :StringName
 var description :String
 var energy_cost :int = 0
 var active :bool = false
+var powered:bool = false
 var can_be_placed_on_world :bool = true
 
 func is_powered() -> bool:
-	return true
+	return powered
+
+func set_machine_powered(new_state:bool) -> void:
+	powered = new_state
 
 @warning_ignore("unused_parameter")
 func on_install(mine:Mine) -> void:

@@ -4,7 +4,7 @@ const material_container := preload("res://materials/material_container.gd")
 
 static var Instance :BaseCamp = null
 
-var total_energy: int = 10
+var total_energy: int = 3
 var materials :MaterialContainer = MaterialContainer.new()
 
 @onready var interaction := $InteractionTrigger
