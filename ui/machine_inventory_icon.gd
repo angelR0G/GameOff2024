@@ -1,5 +1,7 @@
 class_name MachineInventoryIcon extends AspectRatioContainer
 
+var machine:Machine
+
 @onready var name_label := $MachineIcon/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MachineNameLabel
 @onready var amount_label := $MachineIcon/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/AmountLabel
 @onready var description_label := $MachineIcon/MarginContainer/VBoxContainer/MachineDescriptionLabel
@@ -24,3 +26,19 @@ func set_machine_placeable(is_placeable:bool, place_instructions:String = "") ->
 
 func set_machine_amount(amount:int) -> void:
 	amount_label.text = "" if amount <= 1 else "x" + str(amount)
+
+func set_machine(new_machine:Machine) ->void:
+	machine = new_machine
+	set_machine_name(machine.machine_name)
+	set_machine_description(machine.description)
+	set_machine_placeable(machine.can_be_placed_on_world, "Place in a structure")
+	
+
+func enter_build_mode() -> void:
+	BUILDMODE.enter_build_mode(machine)
+	Player.Instance.input_disabled = true
+	Player.Instance.hud.set_menu_visibility(false)
+	await BUILDMODE.build_mode_exited
+	Player.Instance.input_disabled = false
+	Player.Instance.hud.set_menu_visibility(true)
+	

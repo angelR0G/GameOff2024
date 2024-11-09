@@ -10,7 +10,7 @@ var machines :MachineContainer = MachineContainer.new()
 var materials :MaterialContainer = MaterialContainer.new()
 
 @onready var camera 		:= $Camera3D
-@onready var hud := $Hud
+@onready var hud :Hud = $Hud
 
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []

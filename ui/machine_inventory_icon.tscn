@@ -92,3 +92,5 @@ text = "Must be placed in a mine"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[connection signal="pressed" from="MachineIcon/MarginContainer/VBoxContainer/MarginContainer2/PlaceButton" to="." method="enter_build_mode"]
