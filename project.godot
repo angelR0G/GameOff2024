@@ -11,14 +11,15 @@ config_version=5
 [application]
 
 config/name="GameOff2024"
-run/main_scene="res://scenes/map.tscn"
+run/main_scene="res://other_objects/map.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 MATERIALS="*res://materials/global_materials.tscn"
-DEVCONSOLE="*res://scenes/dev_console.tscn"
+DEVCONSOLE="*res://other_objects/dev_console.tscn"
+BUILDMODE="*res://other_objects/build_mode.tscn"
 
 [display]
 

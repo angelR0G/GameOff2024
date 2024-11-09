@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://unhbwmithnfs"]
 
-[ext_resource type="Script" path="res://scenes/dev_console.gd" id="1_rykuc"]
+[ext_resource type="Script" path="res://other_objects/dev_console.gd" id="1_rykuc"]
 
 [node name="DevConsole" type="CanvasLayer"]
 script = ExtResource("1_rykuc")

@@ -6,4 +6,3 @@ class_name GMaterial extends Node2D
 @export var extraction_time :float
 @export var energy_produced :int
 @export var sprite :Texture2D
-

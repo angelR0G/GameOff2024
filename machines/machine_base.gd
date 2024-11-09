@@ -38,3 +38,6 @@ func display_interactions() -> void:
 
 func set_machine_active(new_state:bool) -> void:
 	active = new_state
+
+func get_machine_mesh() -> Mesh:
+	return get_child(0).mesh
