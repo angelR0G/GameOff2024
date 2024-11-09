@@ -1,6 +1,9 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://do4klmwnfpkxv"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://do4klmwnfpkxv"]
 
 [ext_resource type="StyleBox" uid="uid://bulio1h4x8mh5" path="res://resources/gray_panel.tres" id="1_cmqi1"]
+[ext_resource type="StyleBox" uid="uid://gr8ksg5cdn8x" path="res://resources/orange_panel.tres" id="2_dkf4i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_li6v7"]
 
 [resource]
 Button/colors/font_color = Color(0.288519, 0.288518, 0.288518, 1)
@@ -12,14 +15,13 @@ Button/colors/font_outline_color = Color(0.288519, 0.288518, 0.288518, 1)
 Button/colors/font_pressed_color = Color(0.00184108, 0.00184107, 0.00184107, 1)
 Button/styles/disabled = ExtResource("1_cmqi1")
 Button/styles/disabled_mirrored = ExtResource("1_cmqi1")
-Button/styles/focus = ExtResource("1_cmqi1")
-Button/styles/hover = ExtResource("1_cmqi1")
-Button/styles/hover_mirrored = ExtResource("1_cmqi1")
-Button/styles/hover_pressed = ExtResource("1_cmqi1")
+Button/styles/focus = SubResource("StyleBoxEmpty_li6v7")
+Button/styles/hover = ExtResource("2_dkf4i")
+Button/styles/hover_mirrored = ExtResource("2_dkf4i")
 Button/styles/hover_pressed_mirrored = ExtResource("1_cmqi1")
 Button/styles/normal = ExtResource("1_cmqi1")
 Button/styles/normal_mirrored = ExtResource("1_cmqi1")
-Button/styles/pressed = ExtResource("1_cmqi1")
-Button/styles/pressed_mirrored = ExtResource("1_cmqi1")
+Button/styles/pressed = ExtResource("2_dkf4i")
+Button/styles/pressed_mirrored = ExtResource("2_dkf4i")
 PanelContainer/styles/normal = ExtResource("1_cmqi1")
 PanelContainer/styles/panel = ExtResource("1_cmqi1")

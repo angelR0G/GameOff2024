@@ -11,7 +11,7 @@ const MATERIAL_ICON := preload("res://ui/material_icon.tscn")
 
 func set_menu_visibility(new_state:bool) -> void:
 	var tween := get_tree().create_tween()
-	tween.tween_property(menu_node, "position", Vector2(0, 0 if new_state else 330), 0.5)
+	tween.tween_property(menu_node, "position", Vector2(0, 0 if new_state else 260), 0.5)
 	
 	# Disable player input when interacting with the menu
 	Player.Instance.input_disabled = new_state
@@ -50,19 +50,28 @@ func update_materials_inventory() -> void:
 	if not materials_inv_display.visible:
 		return
 	
-	var materials_container := materials_inv_display.get_child(0)
+	var mat_container_1 := materials_inv_display.get_child(0).get_child(0)
+	var mat_container_2 := materials_inv_display.get_child(0).get_child(1)
 	var player_materials := Player.Instance.materials
 	
 	# Remove all children
-	for mat in materials_container.get_children():
+	for mat in mat_container_1.get_children():
+		mat.queue_free()
+	for mat in mat_container_2.get_children():
 		mat.queue_free()
 	
 	# Create an icon foreach material in player's inventory
 	for mat_id in player_materials.get_all_keys():
+		var container := mat_container_1
+		if mat_container_1.get_child_count() <= 1 or mat_container_1.get_child_count() <= mat_container_2.get_child_count():
+			container = mat_container_1
 		var new_mat_icon :MaterialIcon = MATERIAL_ICON.instantiate()
-		materials_container.add_child(new_mat_icon)
+		
+		container.add_child(new_mat_icon)
 		new_mat_icon.set_sprite(MATERIALS.search_by_id(mat_id).sprite)
 		new_mat_icon.set_number(player_materials.get_value_from_id(mat_id))
+	
+	mat_container_2.visible = mat_container_2.get_child_count() > 0
 
 
 # # #

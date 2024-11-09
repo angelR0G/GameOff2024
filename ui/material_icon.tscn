@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bd0wpcadrq5yw" path="res://icon.svg" id="2_3at0q"]
 
 [node name="MaterialIcon" type="AspectRatioContainer"]
-custom_minimum_size = Vector2(80, 80)
+custom_minimum_size = Vector2(60, 60)
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_oia2n")
