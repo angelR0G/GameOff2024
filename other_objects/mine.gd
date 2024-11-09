@@ -36,13 +36,13 @@ func explore_mine() -> void:
 	if explored:
 		return
 	
-	Player.Instance.movement_enabled = false
+	Player.Instance.input_disabled = true
 		
 	await get_tree().create_timer(10).timeout
 	#mesh.material_override.albedo_color = Color(255, 0, 255)
 	mesh.material_override = load("res://resources/materials/researched_mine.tres")
 	
-	Player.Instance.movement_enabled = true
+	Player.Instance.input_disabled = false
 	explored = true
 
 
