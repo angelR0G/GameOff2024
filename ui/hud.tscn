@@ -54,12 +54,33 @@ text = "Upgrade"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay"]
+[node name="MaterialsInventoryDisplay" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 160
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
+theme_override_constants/margin_right = 160
 theme_override_constants/margin_bottom = 10
+
+[node name="MaterialsContainer" type="HFlowContainer" parent="Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 60
+theme_override_constants/v_separation = 30
+alignment = 1
+
+[node name="MachinesInventoryDisplay" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 160
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 160
+theme_override_constants/margin_bottom = 10
+
+[node name="MaterialsContainer" type="HFlowContainer" parent="Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/h_separation = 60
+theme_override_constants/v_separation = 30
+alignment = 1
 
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="show_materials_inventory"]
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="set_menu_visibility"]
