@@ -4,7 +4,8 @@ enum Type {
 	Drill,
 	Generator,
 	EnergyStation,
-	EnergyExtender
+	EnergyExtender,
+	ExplorerDroneStation
 }
 
 var _type :Type

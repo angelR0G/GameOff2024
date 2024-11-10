@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dh1rf7rdrn0v1"]
+
+[ext_resource type="Script" path="res://machines/drone.gd" id="1_pwi3w"]
+[ext_resource type="Script" path="res://other_objects/game_location_agent.gd" id="2_pew1x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ef67"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="TorusMesh" id="TorusMesh_n00dl"]
+
+[node name="Drone" type="CharacterBody3D"]
+motion_mode = 1
+script = ExtResource("1_pwi3w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1ef67")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("TorusMesh_n00dl")
+skeleton = NodePath("")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="GameLocationAgent" type="Node3D" parent="."]
+script = ExtResource("2_pew1x")
