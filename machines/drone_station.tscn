@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ad2c6jamqv7"]
+
+[ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_qvkj6"]
+[ext_resource type="Script" path="res://machines/drone_station.gd" id="2_s4dgr"]
+[ext_resource type="PackedScene" uid="uid://ck8cuksfxtppe" path="res://other_objects/game_location.tscn" id="3_pob06"]
+
+[node name="DroneStation" instance=ExtResource("1_qvkj6")]
+script = ExtResource("2_s4dgr")
+
+[node name="GameLocation" parent="." index="2" instance=ExtResource("3_pob06")]
