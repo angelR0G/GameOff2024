@@ -25,20 +25,6 @@ size = Vector3(100, 1, 100)
 [node name="Player" parent="." instance=ExtResource("1_0ablw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37359, 0)
 
-<<<<<<< HEAD
-[node name="RigidBody3D" type="StaticBody3D" parent="."]
-collision_layer = 3
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="RigidBody3D"]
-mesh = SubResource("PlaneMesh_rw2x3")
-material = SubResource("StandardMaterial3D_yxcbw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-shape = SubResource("BoxShape3D_ymgr2")
-
-=======
->>>>>>> main
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.560567, 0.828109, 0, -0.828109, 0.560567, 0, 16.8721, 38.7001)
 
