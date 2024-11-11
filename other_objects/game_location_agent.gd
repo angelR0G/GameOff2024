@@ -17,6 +17,13 @@ func get_target_position() -> Vector3:
 	return target.global_position
 
 
+func get_target_object() -> Node3D:
+	if target == null:
+		return null
+	
+	return target.get_object()
+
+
 func remove_target() -> void:
 	if target == null:
 		return

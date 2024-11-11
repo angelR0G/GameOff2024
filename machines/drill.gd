@@ -80,4 +80,5 @@ func display_interactions() -> void:
 func set_machine_active(new_state:bool) -> void:
 	super(new_state)
 	
-	mining_timer.paused = not new_state
+	if mining_timer:
+		mining_timer.paused = not new_state

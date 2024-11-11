@@ -27,4 +27,6 @@ func on_destroy() -> void:
 func set_machine_active(new_state:bool) -> void:
 	super(new_state)
 	var energy_multiplier := 1 if new_state else -1
-	BaseCamp.Instance.add_substract_energy(energy_multiplier*MATERIALS.search_by_id(material_id).energy_produced)
+	
+	if BaseCamp.Instance:
+		BaseCamp.Instance.add_substract_energy(energy_multiplier*MATERIALS.search_by_id(material_id).energy_produced)

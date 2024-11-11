@@ -32,17 +32,20 @@ func _interaction() -> void:
 	interactions_ui.show_list()
 	await interactions_ui.display_closed
 
-func explore_mine() -> void:
+func explore_mine(is_player_exploring:bool = true) -> void:
 	if explored:
 		return
 	
-	Player.Instance.input_disabled = true
-		
+	if is_player_exploring:
+		Player.Instance.input_disabled = true
+	
 	await get_tree().create_timer(10).timeout
 	#mesh.material_override.albedo_color = Color(255, 0, 255)
 	mesh.material_override = load("res://resources/materials/researched_mine.tres")
 	
-	Player.Instance.input_disabled = false
+	if is_player_exploring:
+		Player.Instance.input_disabled = false
+	
 	explored = true
 
 

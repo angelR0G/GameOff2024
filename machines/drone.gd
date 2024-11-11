@@ -7,6 +7,11 @@ var moving_to_target:bool = false
 @onready var nav_agent :NavigationAgent3D = $NavigationAgent3D
 @onready var gl_target :GameLocationAgent = $GameLocationAgent
 
+
+func _ready() -> void:
+	gl_target.game_location_reached.connect(on_target_enter)
+
+
 func update_target() -> void:
 	pass
 

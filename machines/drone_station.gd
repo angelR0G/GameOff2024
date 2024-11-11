@@ -8,3 +8,9 @@ var drone:Drone = null
 
 func _init() -> void:
 	can_be_placed_on_world = true
+
+
+func destroy_station() -> void:
+	if drone != null:
+		drone.queue_free()
+	queue_free()
