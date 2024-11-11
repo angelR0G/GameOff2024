@@ -29,6 +29,7 @@ func _ready() -> void:
 	machines._machines.append(MachineFactory.new_machine(Machine.Type.Drill))
 	machines._machines.append(MachineFactory.new_machine(Machine.Type.Generator))
 	machines._machines.append(MachineFactory.new_machine(Machine.Type.EnergyStation))
+	machines._machines.append(MachineFactory.new_machine(Machine.Type.EnergyExtender))
 
 func _process(delta):
 	var dir := Vector3()

@@ -13,9 +13,11 @@ script = ExtResource("1_ufmo7")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("BoxMesh_ovwt0")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="EnergyArea" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 8
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="EnergyCollision" type="CollisionShape3D" parent="EnergyArea"]
 shape = SubResource("SphereShape3D_cinyo")
+
+[node name="DebugMesh" type="MeshInstance3D" parent="EnergyArea"]

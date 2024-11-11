@@ -4,8 +4,9 @@ class_name EnergyStation extends Machine
 @export var radius: float
 var connected_machines: Array[Machine]
 
-@onready var energy_area:Area3D = $Area3D
-@onready var energy_collider:CollisionShape3D = $Area3D/CollisionShape3D
+@onready var energy_area:Area3D = $EnergyArea
+@onready var energy_collider:CollisionShape3D = $EnergyArea/EnergyCollision
+@onready var debug_mesh: MeshInstance3D = $EnergyArea/DebugMesh
 @onready var interaction := $InteractionTrigger
 
 func _init() -> void:
@@ -24,6 +25,9 @@ func _ready() -> void:
 	collider.set_radius(radius)
 	energy_collider.set_shape(collider)
 	connected_machines.append(self)
+	
+	## Draw energy radius for debug
+	#debug_mesh.mesh = energy_collider.shape.get_debug_mesh()
 	return
 
 func connect_machine() -> void:

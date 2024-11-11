@@ -1,8 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dawtwmq3by4w7"]
+[gd_scene load_steps=5 format=3 uid="uid://dawtwmq3by4w7"]
 
-[ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_rm1yq"]
+[ext_resource type="PackedScene" uid="uid://0cfxskcwk864" path="res://machines/energy_station.tscn" id="1_6w45h"]
 [ext_resource type="Script" path="res://machines/energy_extender.gd" id="2_ncctw"]
 
-[node name="EnergyExtender" instance=ExtResource("1_rm1yq")]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3qh7"]
+albedo_color = Color(0.376471, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cp1gc"]
+material = SubResource("StandardMaterial3D_k3qh7")
+
+[node name="EnergyExtender" instance=ExtResource("1_6w45h")]
 script = ExtResource("2_ncctw")
-radius = 0.0
+
+[node name="MachineMesh" parent="." index="0"]
+mesh = SubResource("BoxMesh_cp1gc")
+
+[editable path="InteractionTrigger"]

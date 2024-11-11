@@ -55,7 +55,6 @@ func _check_machine_new_state(is_being_activated:bool) -> void:
 		if active != powered:
 			_on_stop_working()
 
-
 # Virtual
 func _on_start_working() -> void:
 	pass

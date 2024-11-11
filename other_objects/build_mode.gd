@@ -57,7 +57,7 @@ func place_machine_at_position(position2D:Vector2) -> bool:
 			var machine :Machine= Player.Instance.machines.remove_machine_by_type(machine_to_place._type)
 			# TODO add to the nav mesh region
 			get_tree().root.add_child(machine)
-			machine_to_place.global_position = collision.position
+			machine.global_position = collision.position
 			machine_placed = true
 			exit_build_mode()
 			return true

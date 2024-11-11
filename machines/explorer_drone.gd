@@ -24,7 +24,7 @@ func on_target_enter() -> void:
 func explore_mine(mine:Mine) -> void:
 	if not mine.explored:
 		await mine.explore_mine(false)
-		explored_mines_count += 1
+		mine.explored_mines_count += 1
 
 
 func request_new_target() -> void:
