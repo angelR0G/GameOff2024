@@ -8,7 +8,7 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_hwrio"]
 
-[node name="Machine" type="RigidBody3D"]
+[node name="Machine" type="StaticBody3D"]
 script = ExtResource("1_ufmo7")
 
 [node name="MachineMesh" type="MeshInstance3D" parent="."]

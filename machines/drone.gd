@@ -31,10 +31,10 @@ func set_target(new_target:GameLocation) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if moving_to_target:
-		move_to_target()
+		_move_to_target()
 
 
-func move_to_target() -> void:
+func _move_to_target() -> void:
 	var movement_direction := (get_next_pathfinding_location() - global_position).normalized()
 	
 	velocity = movement_direction * speed

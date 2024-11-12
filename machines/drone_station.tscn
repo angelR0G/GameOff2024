@@ -1,10 +1,31 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2ad2c6jamqv7"]
+[gd_scene load_steps=7 format=3 uid="uid://d2ad2c6jamqv7"]
 
 [ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_qvkj6"]
 [ext_resource type="Script" path="res://machines/drone_station.gd" id="2_s4dgr"]
 [ext_resource type="PackedScene" uid="uid://ck8cuksfxtppe" path="res://other_objects/game_location.tscn" id="3_pob06"]
+[ext_resource type="PackedScene" uid="uid://bcsnulyrjoclq" path="res://other_objects/interaction_collider.tscn" id="4_nl80t"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qss2w"]
+size = Vector3(2, 2, 2)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wqdky"]
+radius = 2.0
 
 [node name="DroneStation" instance=ExtResource("1_qvkj6")]
+collision_mask = 3
 script = ExtResource("2_s4dgr")
 
 [node name="GameLocation" parent="." index="3" instance=ExtResource("3_pob06")]
+
+[node name="CollisionShape3D" parent="GameLocation/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_qss2w")
+
+[node name="InteractionTrigger" parent="." index="4" instance=ExtResource("4_nl80t")]
+
+[node name="CollisionShape3D" parent="InteractionTrigger" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_wqdky")
+
+[editable path="GameLocation"]
+[editable path="InteractionTrigger"]

@@ -1,4 +1,4 @@
-class_name Mine extends Node3D
+class_name Mine extends StaticBody3D
 
 @export var material_id :int = 0
 var explored :bool = false
@@ -7,6 +7,7 @@ var installed_machine :MineMachine = null
 @onready var mesh := $Mesh
 @onready var interaction := $InteractionTrigger
 @onready var mine_machine_spot := $MineMachineSpot
+@onready var game_location :GameLocation = $GameLocation
 
 func _ready() -> void:
 	interaction.interaction_function = _interaction

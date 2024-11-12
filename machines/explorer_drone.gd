@@ -11,6 +11,7 @@ func on_target_enter() -> void:
 		await explore_mine(drone_target)
 	
 	if drone_target == station:
+		# Notify the station, which will update its target if necessary
 		drone_arrived_to_station.emit()
 	else:
 		return_to_station()
@@ -21,10 +22,3 @@ func explore_mine(mine:Mine) -> void:
 	if not mine.explored:
 		await mine.explore_mine(false)
 		drone_explored_mine.emit()
-
-
-func request_new_target() -> void:
-	if (station as ExplorerDroneStation).can_continue_exploring_mines():
-		set_target(station.get_new_drone_target())
-	else:
-		station.destroy_station()
