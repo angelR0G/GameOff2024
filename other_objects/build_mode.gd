@@ -64,17 +64,21 @@ func place_machine_at_position(position2D:Vector2) -> bool:
 		return false
 	else:
 		return false
-	
-func check_if_can_be_placed(position:Vector3) -> bool:
-	PhysicsServer3D.box_shape_create()
-	area_placement.global_position = position
-	debug_mesh.mesh = collision_shape.shape.get_debug_mesh()
-	await get_tree().physics_frame
-	await get_tree().physics_frame
-	var bodies := area_placement.get_overlapping_bodies()
+
+
+func check_if_can_be_placed(pos:Vector3) -> bool:
+	var bodies := await get_bodies_in_area(pos, 5.0)
 	for body:CollisionObject3D in bodies:
 		if body.collision_layer == 0x1 && body.collision_layer != 0x2:
 			return false
 	return true
-	
-	
+
+
+# Returns all bodies inside a sphere of radius "rad" centered in "pos" 
+func get_bodies_in_area(pos:Vector3, rad:float = 5.0) -> Array[Node3D]:
+	area_placement.global_position = pos
+	(collision_shape.shape as SphereShape3D).radius = rad
+	debug_mesh.mesh = collision_shape.shape.get_debug_mesh()
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	return area_placement.get_overlapping_bodies()

@@ -7,4 +7,4 @@
 [node name="DroneStation" instance=ExtResource("1_qvkj6")]
 script = ExtResource("2_s4dgr")
 
-[node name="GameLocation" parent="." index="2" instance=ExtResource("3_pob06")]
+[node name="GameLocation" parent="." index="3" instance=ExtResource("3_pob06")]

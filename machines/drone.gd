@@ -1,5 +1,7 @@
 class_name Drone extends CharacterBody3D
 
+signal drone_arrived_to_station
+
 var speed:float = 1.0
 var station:DroneStation = null
 var moving_to_target:bool = false
@@ -7,13 +9,8 @@ var moving_to_target:bool = false
 @onready var nav_agent :NavigationAgent3D = $NavigationAgent3D
 @onready var gl_target :GameLocationAgent = $GameLocationAgent
 
-
 func _ready() -> void:
 	gl_target.game_location_reached.connect(on_target_enter)
-
-
-func update_target() -> void:
-	pass
 
 
 func return_to_station() -> void:

@@ -17,8 +17,8 @@ var powered:bool = false : set = set_machine_powered
 var can_be_placed_on_world :bool = true
 
 
-func is_powered() -> bool:
-	return powered
+func is_working() -> bool:
+	return active and powered
 
 
 func set_machine_powered(new_state:bool) -> void:
