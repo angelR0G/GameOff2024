@@ -11,6 +11,7 @@ material = SubResource("StandardMaterial3D_k3qh7")
 
 [node name="EnergyExtender" instance=ExtResource("1_6w45h")]
 script = ExtResource("2_ncctw")
+radius = 15.0
 
 [node name="MachineMesh" parent="." index="0"]
 mesh = SubResource("BoxMesh_cp1gc")

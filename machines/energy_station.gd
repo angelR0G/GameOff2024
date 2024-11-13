@@ -24,7 +24,7 @@ func _ready() -> void:
 	var collider:SphereShape3D = SphereShape3D.new()
 	collider.set_radius(radius)
 	energy_collider.set_shape(collider)
-	connected_machines.append(self)
+	#connected_machines.append(self)
 	
 	## Draw energy radius for debug
 	#debug_mesh.mesh = energy_collider.shape.get_debug_mesh()
@@ -80,19 +80,31 @@ func destroy() -> void:
 		machine.set_machine_powered(false)
 	queue_free()
 	
-func _on_area_3d_area_entered(area: Area3D) -> void:
+func _on_energy_area_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
 	var machine : Machine = area.get_parent()
-	print("Machine entered")
-	if machine_already_connected(machine) == -1:
-		connected_machines.append(machine)
-		machine.set_machine_powered(true)
-		print("Added")
-	deactivate_all_connected_machines()
+	if machine._type != Type.EnergyStation:
+		print("Machine entered")
+		if machine_already_connected(machine) == -1:
+			connected_machines.append(machine)
+			machine.set_machine_powered(true)
+			print("Added")
+		deactivate_all_connected_machines()
 
-func _on_area_3d_area_exited(area: Area3D) -> void:
-	var machine : Machine = area.get_parent()
-	print("Machine exited")
-	if machine_already_connected(machine) != -1:
-		connected_machines.erase(machine)
-		machine.set_machine_powered(false)
-		print("Removed")
+
+func _on_energy_area_area_shape_exited(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+	if area != null:
+		var machine : Machine = area.get_parent()
+		print("Machine exited")
+		if machine_already_connected(machine) != -1:
+			connected_machines.erase(machine)
+			machine.set_machine_powered(false)
+			print("Removed")
+
+func print_connected_machines(machines:Machine, spacer:int)->void:
+	for machine in machines.connected_machines:
+
+		print_rich("[color=green][b]"+ str(spacer)+". "+ machine.machine_name +"[/b][/color]")
+		if machine != self:
+			if machine._type == Type.EnergyExtender || machine._type == Type.EnergyStation:
+				spacer +=1
+				print_connected_machines(machine, spacer)

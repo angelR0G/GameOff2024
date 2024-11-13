@@ -57,11 +57,10 @@ material_id = 1
 
 [node name="EnergyStation" parent="NavigationRegion3D" instance=ExtResource("5_y2tle")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.48253, -1.90735e-06, -6.61589)
-radius = 10.0
 
 [node name="BaseCamp" parent="NavigationRegion3D" instance=ExtResource("4_tmabt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.86171, 0, -5.65019)
 
 [node name="ExplorerDroneStation" parent="NavigationRegion3D" instance=ExtResource("6_8qcia")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1278, 0, 5.958)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.128, 0, 5.958)
 collision_mask = 1

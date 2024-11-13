@@ -9,12 +9,17 @@ radius = 2.0
 
 [node name="EnergyStation" instance=ExtResource("1_vvoke")]
 script = ExtResource("2_nhyuo")
-radius = 5.0
+radius = 10.0
 
 [node name="InteractionTrigger" parent="." index="2" instance=ExtResource("3_ue7xm")]
 
 [node name="CollisionShape3D" parent="InteractionTrigger" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_avadg")
+
+[connection signal="area_entered" from="EnergyArea" to="." method="_on_energy_area_area_entered"]
+[connection signal="area_exited" from="EnergyArea" to="." method="_on_energy_area_area_exited"]
+[connection signal="area_shape_entered" from="EnergyArea" to="." method="_on_energy_area_area_shape_entered"]
+[connection signal="area_shape_exited" from="EnergyArea" to="." method="_on_energy_area_area_shape_exited"]
 
 [editable path="InteractionTrigger"]
