@@ -9,3 +9,24 @@ func _init() -> void:
 	energy_cost = 0
 	active = true
 	can_be_placed_on_world = true
+
+
+func _on_energy_area_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+	var machine : Machine = area.get_parent()
+	if machine._type != Type.EnergyStation:
+		print("Machine entered")
+		if machine_already_connected(machine) == -1:
+			connected_machines.append(machine)
+			machine.set_machine_powered(true)
+			print("Added")
+		deactivate_all_connected_machines()
+
+
+func _on_energy_area_area_shape_exited(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+	if area != null:
+		var machine : Machine = area.get_parent()
+		print("Machine exited")
+		if machine_already_connected(machine) != -1:
+			connected_machines.erase(machine)
+			machine.set_machine_powered(false)
+			print("Removed")

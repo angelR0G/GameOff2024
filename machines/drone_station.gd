@@ -44,6 +44,8 @@ func _on_start_working() -> void:
 		update_drone_target()
 
 func _on_stop_working() -> void:
+	if is_queued_for_deletion():
+		return
 	if not is_node_ready():
 		await ready
 	

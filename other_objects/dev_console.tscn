@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://other_objects/dev_console.gd" id="1_rykuc"]
 
 [node name="DevConsole" type="CanvasLayer"]
+layer = 128
 script = ExtResource("1_rykuc")
 
 [node name="Container" type="MarginContainer" parent="."]
