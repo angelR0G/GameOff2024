@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://machines/drone.gd" id="1_pwi3w"]
 [ext_resource type="Script" path="res://other_objects/game_location_agent.gd" id="2_pew1x"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_1ef67"]
-size = Vector3(2, 2, 2)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uyr52"]
+radius = 1.0
+height = 3.0
 
 [sub_resource type="TorusMesh" id="TorusMesh_n00dl"]
 
@@ -14,7 +15,7 @@ script = ExtResource("1_pwi3w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("BoxShape3D_1ef67")
+shape = SubResource("CapsuleShape3D_uyr52")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -22,6 +23,11 @@ mesh = SubResource("TorusMesh_n00dl")
 skeleton = NodePath("")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+radius = 2.0
+debug_enabled = true
 
 [node name="GameLocationAgent" type="Node3D" parent="."]
 script = ExtResource("2_pew1x")
+
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_velocity_computed"]
