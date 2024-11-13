@@ -77,8 +77,10 @@ func display_interactions() -> void:
 	InteractionsDisplay.Instance.add_interaction("Collect Materials", collect_materials, material_amount == 0)
 
 
-func set_machine_active(new_state:bool) -> void:
-	super(new_state)
-	
-	if mining_timer:
-		mining_timer.paused = not new_state
+func _on_start_working() -> void:
+	if mining_timer and has_capacity_for_more_materials():
+		mining_timer.paused = false
+
+func _on_stop_working() -> void:
+	if mining_timer and not mining_timer.paused:
+		mining_timer.paused = true

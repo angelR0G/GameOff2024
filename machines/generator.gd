@@ -17,16 +17,21 @@ func on_install(mine:Mine) -> void:
 	
 	# Get mine's material and update global energy
 	material_id = mine.material_id
-	BaseCamp.Instance.add_substract_energy(MATERIALS.search_by_id(material_id).energy_produced)
+	increase_base_energy()
 
 func on_destroy() -> void:
 	# Update global energy and destroy object
-	BaseCamp.Instance.add_substract_energy((-1)*MATERIALS.search_by_id(material_id).energy_produced)
+	decrease_base_energy()
 	queue_free()
-	
-func set_machine_active(new_state:bool) -> void:
-	super(new_state)
-	var energy_multiplier := 1 if new_state else -1
-	
-	if BaseCamp.Instance:
-		BaseCamp.Instance.add_substract_energy(energy_multiplier*MATERIALS.search_by_id(material_id).energy_produced)
+
+func increase_base_energy() -> void:
+	BaseCamp.Instance.add_substract_energy(MATERIALS.search_by_id(material_id).energy_produced)
+
+func decrease_base_energy() -> void:
+	BaseCamp.Instance.add_substract_energy(MATERIALS.search_by_id(material_id).energy_produced * -1)
+
+func _on_start_working() -> void:
+	increase_base_energy()
+
+func _on_stop_working() -> void:
+	decrease_base_energy()
