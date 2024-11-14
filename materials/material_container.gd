@@ -43,12 +43,12 @@ func remove_material(id:int, quantity:int) -> bool:
 func get_all_keys() ->Array:
 	return objects.keys()
 
-func get_value_from_id(id:int) -> int:
-	return objects.get(id)
+func get_material_quantity_from_id(id:int) -> int:
+	return objects.get(id, 0)
 
 func transfer_materials(materialsOrigin: MaterialContainer) -> void:
 	for key in materialsOrigin.get_all_keys():
-		var value :int = materialsOrigin.get_value_from_id(key)
+		var value :int = materialsOrigin.get_material_quantity_from_id(key)
 		add_material(key, value)
 	materialsOrigin.clear()
 	

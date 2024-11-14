@@ -10,6 +10,7 @@ const MACHINE_INV_ICON := preload("res://ui/machine_inventory_icon.tscn")
 @onready var materials_inv_display := $Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay
 @onready var machines_inv_display := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay
 @onready var machines_inv_container := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay/ScrollContainer/MarginContainer/HBoxContainer
+@onready var build_menu_display := $Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay
 
 
 func set_menu_visibility(new_state:bool) -> void:
@@ -72,7 +73,7 @@ func update_materials_inventory() -> void:
 		
 		container.add_child(new_mat_icon)
 		new_mat_icon.set_sprite(MATERIALS.search_by_id(mat_id).sprite)
-		new_mat_icon.set_number(player_materials.get_value_from_id(mat_id))
+		new_mat_icon.set_number(player_materials.get_material_quantity_from_id(mat_id))
 	
 	mat_container_2.visible = mat_container_2.get_child_count() > 0
 
@@ -109,6 +110,7 @@ func update_machines_inventory() -> void:
 # # #
 func show_build_menu() -> void:
 	untoggle_buttons(menu_buttons.get_child(2))
+	update_menu_screens_visibility(build_menu_display)
 
 
 func show_upgrades_menu() -> void:

@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8dpceh8gf0mo"]
+
+[ext_resource type="Script" path="res://ui/blueprint_icon.gd" id="1_imh73"]
+[ext_resource type="Theme" uid="uid://bbdvh3qc5ymts" path="res://resources/blueprint.tres" id="2_c36ln"]
+[ext_resource type="StyleBox" uid="uid://bnhcwxhd2hlsi" path="res://resources/material_icon_background.tres" id="3_1m1ig"]
+[ext_resource type="PackedScene" uid="uid://1ldpht6mberg" path="res://ui/blueprint_cost_display.tscn" id="4_f8lax"]
+
+[node name="Blueprint" type="AspectRatioContainer"]
+offset_right = 151.0
+offset_bottom = 200.0
+ratio = 0.618
+stretch_mode = 1
+script = ExtResource("1_imh73")
+
+[node name="BlueprintIcon" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(151, 200)
+layout_mode = 2
+theme = ExtResource("2_c36ln")
+theme_override_styles/panel = ExtResource("3_1m1ig")
+
+[node name="MarginContainer" type="MarginContainer" parent="BlueprintIcon"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BlueprintIcon/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="BlueprintIcon/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_top = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="BlueprintNameLabel" type="Label" parent="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Machine Name"
+horizontal_alignment = 1
+clip_text = true
+text_overrun_behavior = 1
+
+[node name="BlueprintDescriptionLabel" type="Label" parent="BlueprintIcon/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -1
+theme_override_font_sizes/font_size = 12
+text = "Here goes a longer description of what the machine does and how to use it. But not too large."
+horizontal_alignment = 1
+autowrap_mode = 2
+clip_text = true
+text_overrun_behavior = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="BlueprintIcon/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 2
+
+[node name="BlueprintCostDisplay" parent="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" instance=ExtResource("4_f8lax")]
+layout_mode = 2
+
+[node name="BuildButton" type="Button" parent="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Place"
+
+[connection signal="pressed" from="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/BuildButton" to="." method="enter_build_mode"]

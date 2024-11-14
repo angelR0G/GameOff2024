@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://1ldpht6mberg"]
+
+[ext_resource type="Script" path="res://ui/blueprint_cost_display.gd" id="1_1stn4"]
+
+[node name="BlueprintCostDisplay" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+alignment = 1
+script = ExtResource("1_1stn4")

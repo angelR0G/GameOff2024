@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfjsaxbypqcrh"]
+[gd_scene load_steps=4 format=3 uid="uid://cfjsaxbypqcrh"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_36fne"]
 [ext_resource type="Theme" uid="uid://do4klmwnfpkxv" path="res://resources/inventory_menu.tres" id="1_ukre5"]
+[ext_resource type="PackedScene" uid="uid://c8dpceh8gf0mo" path="res://ui/blueprint_icon.tscn" id="3_f3wcr"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_36fne")
@@ -101,6 +102,40 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
+
+[node name="BuildMenuDisplay" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Blueprint" parent="Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_f3wcr")]
+layout_mode = 2
+
+[node name="Blueprint3" parent="Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_f3wcr")]
+layout_mode = 2
+
+[node name="Blueprint2" parent="Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_f3wcr")]
+layout_mode = 2
 
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="show_materials_inventory"]
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="set_menu_visibility"]
