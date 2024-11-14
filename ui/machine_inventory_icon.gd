@@ -31,7 +31,7 @@ func set_machine(new_machine:Machine) ->void:
 	machine = new_machine
 	set_machine_name(machine.machine_name)
 	set_machine_description(machine.description)
-	set_machine_placeable(machine.can_be_placed_on_world, "Place in a structure")
+	set_machine_placeable(machine.can_be_placed_on_world, machine.place_instructions)
 	
 
 func enter_build_mode() -> void:

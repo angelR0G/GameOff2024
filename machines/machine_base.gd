@@ -16,6 +16,7 @@ var energy_cost :int = 0
 var active :bool = false : set = set_machine_active
 var powered:bool = false : set = set_machine_powered
 var can_be_placed_on_world :bool = true
+var place_instructions :String = ""
 
 
 func is_working() -> bool:
