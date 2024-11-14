@@ -43,3 +43,4 @@ func clear_list() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if interactions_list.visible and event.is_action_pressed("back"):
 		clear_list()
+		display_closed.emit()
