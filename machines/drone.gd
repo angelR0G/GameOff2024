@@ -1,5 +1,6 @@
 class_name Drone extends CharacterBody3D
 
+@warning_ignore("unused_signal")
 signal drone_arrived_to_station
 
 var speed:float = 2.0

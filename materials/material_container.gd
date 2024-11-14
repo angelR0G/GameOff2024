@@ -11,10 +11,11 @@ func add_material(id:int, quantity:int) -> int:
 	if material==null:
 		return 0
 		
-	var weight_left = max_weight - current_weight
-	var quantity_to_add = quantity
+	var weight_left := max_weight - current_weight
+	var quantity_to_add := quantity
 	
 	if  max_weight != -1:
+		@warning_ignore("integer_division")
 		quantity_to_add = mini(weight_left / material.weight, quantity)
 		
 	if objects.has(id):

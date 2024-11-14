@@ -80,7 +80,7 @@ func destroy() -> void:
 		machine.set_machine_powered(false)
 	queue_free()
 	
-func _on_energy_area_area_shape_entered(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+func _on_energy_area_area_shape_entered(_area_rid: RID, area: Area3D, _area_shape_index: int, _local_shape_index: int) -> void:
 	var machine : Machine = area.get_parent()
 	if machine._type != Type.EnergyStation:
 		print("Machine entered")
@@ -91,7 +91,7 @@ func _on_energy_area_area_shape_entered(area_rid: RID, area: Area3D, area_shape_
 		deactivate_all_connected_machines()
 
 
-func _on_energy_area_area_shape_exited(area_rid: RID, area: Area3D, area_shape_index: int, local_shape_index: int) -> void:
+func _on_energy_area_area_shape_exited(_area_rid: RID, area: Area3D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if area != null:
 		var machine : Machine = area.get_parent()
 		print("Machine exited")

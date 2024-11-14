@@ -8,6 +8,7 @@ enum Type {
 	ExplorerDroneStation
 }
 
+@warning_ignore("unused_private_class_variable")
 var _type :Type
 var machine_name :StringName
 var description :String
