@@ -35,10 +35,18 @@ func set_machine(new_machine:Machine) ->void:
 	
 
 func enter_build_mode() -> void:
+	var player := Player.Instance
+	var hud := player.hud
+	
 	BUILDMODE.enter_build_mode(machine)
-	Player.Instance.input_disabled = true
-	Player.Instance.hud.set_menu_visibility(false)
+	player.input_disabled = true
+	hud.set_menu_visibility(false)
+	hud.set_menu_enabled(false)
+	
 	await BUILDMODE.build_mode_exited
-	Player.Instance.input_disabled = false
-	Player.Instance.hud.set_menu_visibility(true)
+	
+	player.input_disabled = false
+	hud.show_machines_inventory()
+	hud.set_menu_visibility(true)
+	hud.set_menu_enabled(true)
 	
