@@ -1,9 +1,5 @@
 class_name Drill extends MineMachine
 
-const DRILL_BUILD_COST :Dictionary = {
-	1 : 6 # Material 1, quantity 6
-} 
-
 var material_amount :int = 0
 var current_weight :int = 0
 var max_weight :int = 20

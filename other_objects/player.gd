@@ -24,16 +24,16 @@ func _ready() -> void:
 	if Instance == null:
 		Instance = self
 	
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.Drill))
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.Drill))
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.Drill))
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.Generator))
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.EnergyStation))
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.EnergyStation))
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.EnergyStation))
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.EnergyExtender))
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.EnergyExtender))
-	machines._machines.append(MachineFactory.new_machine(Machine.Type.EnergyExtender))
+	machines.add_machine_by_type(Machine.Type.Drill)
+	machines.add_machine_by_type(Machine.Type.Drill)
+	machines.add_machine_by_type(Machine.Type.Drill)
+	machines.add_machine_by_type(Machine.Type.Generator)
+	machines.add_machine_by_type(Machine.Type.EnergyStation)
+	machines.add_machine_by_type(Machine.Type.EnergyStation)
+	machines.add_machine_by_type(Machine.Type.EnergyStation)
+	machines.add_machine_by_type(Machine.Type.EnergyExtender)
+	machines.add_machine_by_type(Machine.Type.EnergyExtender)
+	machines.add_machine_by_type(Machine.Type.EnergyExtender)
 
 func _process(delta):
 	var dir := Vector3()

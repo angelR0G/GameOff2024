@@ -79,5 +79,3 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Place"
-
-[connection signal="pressed" from="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/BuildButton" to="." method="enter_build_mode"]

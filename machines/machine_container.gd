@@ -2,6 +2,11 @@ class_name MachineContainer extends Node
 
 var _machines :Array[Machine] = []
 
+
+func add_machine_by_type(type:Machine.Type) -> Machine:
+	_machines.append(MachineFactory.new_machine(type))
+	return _machines.back()
+
 func remove_machine_by_type(type:Machine.Type) -> Machine:
 	for i in _machines.size():
 		if _machines[i]._type == type:

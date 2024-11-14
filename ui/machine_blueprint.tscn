@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://duioumqc0bxvh"]
+
+[ext_resource type="PackedScene" uid="uid://c8dpceh8gf0mo" path="res://ui/blueprint_icon.tscn" id="1_1wdfw"]
+[ext_resource type="Script" path="res://ui/machine_blueprint.gd" id="2_exbui"]
+
+[node name="MachineBlueprint" instance=ExtResource("1_1wdfw")]
+script = ExtResource("2_exbui")
+machine_scene = null
