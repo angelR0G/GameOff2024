@@ -61,11 +61,16 @@ func _process(delta):
 	target_velocity = target_velocity.rotated(Vector3.UP, camera_rot)
 
 	# Vertical Velocity
-	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
+	if is_on_floor():
+		target_velocity.y = 0
+	else:
+		# If in the air, fall towards the floor. Literally gravity
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
+
 
 	# Moving the Character
 	velocity = target_velocity
+	print(velocity)
 	move_and_slide()
 	
 	anim.play("walking" if velocity.length() > 0.1 else "idle")
