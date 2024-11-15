@@ -25,6 +25,10 @@ BUILDMODE="*res://other_objects/build_mode.tscn"
 
 window/stretch/mode="canvas_items"
 
+[filesystem]
+
+import/blender/enabled=false
+
 [input]
 
 left={

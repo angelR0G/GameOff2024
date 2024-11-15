@@ -11,6 +11,9 @@ var materials :MaterialContainer = MaterialContainer.new()
 
 @onready var camera 		:= $Camera3D
 @onready var hud :Hud = $Hud
+@onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var mesh: MeshInstance3D = $MeshInstance3D
+
 
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
@@ -48,6 +51,7 @@ func _process(delta):
 			dir.z -= 1.0
 		if Input.is_action_pressed("down"):
 			dir.z += 1.0
+		dir = dir.normalized()
 
 	# Ground Velocity
 	target_velocity.x = dir.x * speed
@@ -60,6 +64,10 @@ func _process(delta):
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
+	
+	anim.play("walking" if velocity.length() > 0.1 else "idle")
+	if dir.x != 0 or dir.z != 0:
+		mesh.look_at(position + Vector3(dir.x, 0, dir.z))
 
 
 func _unhandled_input(input: InputEvent) -> void:

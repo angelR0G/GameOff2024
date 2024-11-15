@@ -1,18 +1,73 @@
-[gd_scene load_steps=7 format=3 uid="uid://baa4tvph24mkf"]
+[gd_scene load_steps=10 format=3 uid="uid://baa4tvph24mkf"]
 
 [ext_resource type="Script" path="res://other_objects/player.gd" id="1_nq4kw"]
 [ext_resource type="PackedScene" uid="uid://bnmugypts2fc8" path="res://ui/interactions_display.tscn" id="2_6mo8e"]
+[ext_resource type="ArrayMesh" uid="uid://dtftbdyq7nf4h" path="res://assets/meshes/engineer.obj" id="2_vrfgc"]
 [ext_resource type="PackedScene" uid="uid://cfjsaxbypqcrh" path="res://ui/hud.tscn" id="3_l3poo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ccjio"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_bnq0x"]
+[sub_resource type="Animation" id="Animation_ra4dr"]
+resource_name = "walking"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(2, 0.5, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(0.9, 0.8, 0.9), Vector3(1, 1, 1)]
+}
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_popjp"]
-albedo_color = Color(1, 0.0823529, 0.160784, 1)
+[sub_resource type="Animation" id="Animation_ehaoi"]
+resource_name = "idle"
+length = 2.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.23333, 1.76667, 2.46667),
+"transitions": PackedFloat32Array(1, 1, -0.5, 1, -0.5),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 1, 1), Vector3(1, 0.9, 1), Vector3(1, 0.9, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5whyb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dgcot"]
+_data = {
+"RESET": SubResource("Animation_5whyb"),
+"idle": SubResource("Animation_ehaoi"),
+"walking": SubResource("Animation_ra4dr")
+}
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_nq4kw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_vrfgc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ccjio")
@@ -20,13 +75,14 @@ shape = SubResource("CapsuleShape3D_ccjio")
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.739537, 0.673116, 0, -0.673116, 0.739537, 0, 9.71593, 6.89526)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
-mesh = SubResource("CylinderMesh_bnq0x")
-material = SubResource("StandardMaterial3D_popjp")
-
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 
 [node name="Hud" parent="." instance=ExtResource("3_l3poo")]
 
 [node name="InteractionsDisplay" parent="." instance=ExtResource("2_6mo8e")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dgcot")
+}
