@@ -129,6 +129,7 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="UpgradeMenuDisplay" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay"]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 10

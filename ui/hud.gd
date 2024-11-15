@@ -61,8 +61,8 @@ func set_menu_enabled(new_state:bool) -> void:
 # # #
 func show_materials_inventory() -> void:
 	untoggle_buttons(menu_buttons.get_child(0))
-	update_materials_inventory()
 	update_menu_screens_visibility(materials_inv_display)
+	update_materials_inventory()
 
 
 func update_materials_inventory() -> void:
@@ -98,8 +98,8 @@ func update_materials_inventory() -> void:
 # # #
 func show_machines_inventory() -> void:
 	untoggle_buttons(menu_buttons.get_child(1))
-	update_machines_inventory()
 	update_menu_screens_visibility(machines_inv_display)
+	update_machines_inventory()
 
 
 func update_machines_inventory() -> void:
@@ -125,11 +125,14 @@ func update_machines_inventory() -> void:
 # # #
 func show_build_menu() -> void:
 	untoggle_buttons(menu_buttons.get_child(2))
-	update_build_menu()
 	update_menu_screens_visibility(build_menu_display)
+	update_build_menu()
 
 
 func update_build_menu() -> void:
+	if not build_menu_display.visible:
+		return
+	
 	for child:MachineBlueprint in machine_blueprint_container.get_children():
 		child.update_blueprint_info()
 
@@ -139,10 +142,13 @@ func update_build_menu() -> void:
 # # #
 func show_upgrades_menu() -> void:
 	untoggle_buttons(menu_buttons.get_child(3))
-	update_upgrade_menu()
 	update_menu_screens_visibility(upgrade_menu_display)
+	update_upgrade_menu()
 
 
 func update_upgrade_menu() -> void:
+	if not upgrade_menu_display.visible:
+		return
+	
 	for child:UpgradeBlueprint in upgrade_blueprint_container.get_children():
 		child.update_blueprint_info()
