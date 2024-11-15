@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cfjsaxbypqcrh" path="res://ui/hud.tscn" id="3_l3poo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ccjio"]
+radius = 0.7
+height = 1.8
 
 [sub_resource type="Animation" id="Animation_ra4dr"]
 resource_name = "walking"
@@ -70,10 +72,16 @@ script = ExtResource("1_nq4kw")
 mesh = ExtResource("2_vrfgc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_ccjio")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.739537, 0.673116, 0, -0.673116, 0.739537, 0, 9.71593, 6.89526)
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+projection = 1
+size = 20.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true

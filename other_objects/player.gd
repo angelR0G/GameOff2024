@@ -9,7 +9,7 @@ const _material_container := preload("res://materials/material_container.gd")
 var machines :MachineContainer = MachineContainer.new()
 var materials :MaterialContainer = MaterialContainer.new()
 
-@onready var camera 		:= $Camera3D
+@onready var camera :Camera3D = $CameraPivot/Camera3D
 @onready var hud :Hud = $Hud
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var mesh: MeshInstance3D = $MeshInstance3D
@@ -54,8 +54,10 @@ func _process(delta):
 		dir = dir.normalized()
 
 	# Ground Velocity
+	var camera_rot := camera.get_parent_node_3d().rotation.y
 	target_velocity.x = dir.x * speed
 	target_velocity.z = dir.z * speed
+	target_velocity = target_velocity.rotated(Vector3.UP, camera_rot)
 
 	# Vertical Velocity
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
@@ -66,8 +68,8 @@ func _process(delta):
 	move_and_slide()
 	
 	anim.play("walking" if velocity.length() > 0.1 else "idle")
-	if dir.x != 0 or dir.z != 0:
-		mesh.look_at(position + Vector3(dir.x, 0, dir.z))
+	if target_velocity.x != 0 or target_velocity.z != 0:
+		mesh.look_at(position + Vector3(target_velocity.x, 0, target_velocity.z))
 
 
 func _unhandled_input(input: InputEvent) -> void:
