@@ -2,6 +2,7 @@ class_name Player extends CharacterBody3D
 
 static var Instance :Player = null
 const _material_container := preload("res://materials/material_container.gd")
+const ROTATION_SPEED := 4.0
 
 @export var speed :float = 14.0
 @export var fall_acceleration = 75
@@ -69,7 +70,9 @@ func _process(delta):
 	
 	anim.play("walking" if velocity.length() > 0.1 else "idle")
 	if target_velocity.x != 0 or target_velocity.z != 0:
-		mesh.look_at(position + Vector3(target_velocity.x, 0, target_velocity.z))
+		var target_rot := Vector3.FORWARD.rotated(Vector3.UP, mesh.rotation.y).signed_angle_to(Vector3(target_velocity.x, 0, target_velocity.z), Vector3.UP)
+		target_rot = minf(ROTATION_SPEED * delta, abs(target_rot)) * sign(target_rot)
+		mesh.rotate_y(target_rot)
 
 
 func _unhandled_input(input: InputEvent) -> void:
