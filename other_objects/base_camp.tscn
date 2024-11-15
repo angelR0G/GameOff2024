@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5d28f4x8takd"]
+[gd_scene load_steps=8 format=3 uid="uid://c5d28f4x8takd"]
 
 [ext_resource type="Script" path="res://other_objects/base_camp.gd" id="1_ui5as"]
 [ext_resource type="PackedScene" uid="uid://bcsnulyrjoclq" path="res://other_objects/interaction_collider.tscn" id="2_puaes"]
+[ext_resource type="PackedScene" uid="uid://0cfxskcwk864" path="res://machines/energy_station.tscn" id="3_1oy7g"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_io3vw"]
 size = Vector3(8, 1, 8)
@@ -32,5 +33,8 @@ material = SubResource("StandardMaterial3D_bqs75")
 [node name="CollisionShape3D" parent="InteractionTrigger" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_4v1i5")
+
+[node name="EnergyStation" parent="." instance=ExtResource("3_1oy7g")]
+radius = 40.0
 
 [editable path="InteractionTrigger"]
