@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dthoe7vljreuy"]
+
+[ext_resource type="PackedScene" uid="uid://c8dpceh8gf0mo" path="res://ui/blueprint_icon.tscn" id="1_irh7u"]
+[ext_resource type="Script" path="res://ui/upgrade_blueprint.gd" id="2_3nv1s"]
+
+[node name="UpgradeBlueprint" instance=ExtResource("1_irh7u")]
+script = ExtResource("2_3nv1s")
+upgrade_function = Callable()
+upgrade_name = ""
+upgrade_description = ""
+upgrade_cost = Array[Dictionary]([])
+
+[node name="UpgradeLevelsContainer" type="HBoxContainer" parent="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="BuildButton" parent="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer" index="1"]
+text = "Upgrade"
+
+[connection signal="pressed" from="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/BuildButton" to="." method="buy_upgrade"]

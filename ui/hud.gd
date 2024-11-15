@@ -13,6 +13,8 @@ const MACHINE_BUILD_ICON := preload("res://ui/machine_blueprint.tscn")
 @onready var machines_inv_container := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay/ScrollContainer/MarginContainer/HBoxContainer
 @onready var build_menu_display := $Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay
 @onready var machine_blueprint_container := $Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer
+@onready var upgrade_menu_display := $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay
+@onready var upgrade_blueprint_container := $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer
 
 
 func _ready() -> void:
@@ -21,6 +23,9 @@ func _ready() -> void:
 		machine_blueprint.machine_type = machine_type
 		machine_blueprint.machine_created.connect(update_build_menu)
 		machine_blueprint_container.add_child(machine_blueprint)
+	
+	for upgrade:UpgradeBlueprint in upgrade_blueprint_container.get_children():
+		upgrade.upgrade_created.connect(update_upgrade_menu)
 
 
 func set_menu_visibility(new_state:bool) -> void:
@@ -56,8 +61,8 @@ func set_menu_enabled(new_state:bool) -> void:
 # # #
 func show_materials_inventory() -> void:
 	untoggle_buttons(menu_buttons.get_child(0))
-	update_menu_screens_visibility(materials_inv_display)
 	update_materials_inventory()
+	update_menu_screens_visibility(materials_inv_display)
 
 
 func update_materials_inventory() -> void:
@@ -93,8 +98,8 @@ func update_materials_inventory() -> void:
 # # #
 func show_machines_inventory() -> void:
 	untoggle_buttons(menu_buttons.get_child(1))
-	update_menu_screens_visibility(machines_inv_display)
 	update_machines_inventory()
+	update_menu_screens_visibility(machines_inv_display)
 
 
 func update_machines_inventory() -> void:
@@ -120,8 +125,8 @@ func update_machines_inventory() -> void:
 # # #
 func show_build_menu() -> void:
 	untoggle_buttons(menu_buttons.get_child(2))
-	update_menu_screens_visibility(build_menu_display)
 	update_build_menu()
+	update_menu_screens_visibility(build_menu_display)
 
 
 func update_build_menu() -> void:
@@ -129,5 +134,15 @@ func update_build_menu() -> void:
 		child.update_blueprint_info()
 
 
+# # #
+# Upgrade menu
+# # #
 func show_upgrades_menu() -> void:
 	untoggle_buttons(menu_buttons.get_child(3))
+	update_upgrade_menu()
+	update_menu_screens_visibility(upgrade_menu_display)
+
+
+func update_upgrade_menu() -> void:
+	for child:UpgradeBlueprint in upgrade_blueprint_container.get_children():
+		child.update_blueprint_info()

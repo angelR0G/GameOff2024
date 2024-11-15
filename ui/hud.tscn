@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfjsaxbypqcrh"]
+[gd_scene load_steps=4 format=3 uid="uid://cfjsaxbypqcrh"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_36fne"]
 [ext_resource type="Theme" uid="uid://do4klmwnfpkxv" path="res://resources/inventory_menu.tres" id="1_ukre5"]
+[ext_resource type="PackedScene" uid="uid://dthoe7vljreuy" path="res://ui/upgrade_blueprint.tscn" id="3_tecb0"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_36fne")
@@ -127,6 +128,40 @@ size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
+[node name="UpgradeMenuDisplay" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="UpgradeBlueprint" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+layout_mode = 2
+upgrade_name = "Engineer"
+upgrade_description = "Increase engineer's movement speed and maximum weight."
+upgrade_cost = Array[Dictionary]([{
+1: 2
+}, {
+1: 3
+}])
+
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="show_materials_inventory"]
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="set_menu_visibility"]
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MachineInventoryButton" to="." method="show_machines_inventory"]
@@ -135,3 +170,4 @@ alignment = 1
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/BuildButton" to="." method="set_menu_visibility"]
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/UpgradeButton" to="." method="show_upgrades_menu"]
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/UpgradeButton" to="." method="set_menu_visibility"]
+[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/UpgradeBlueprint" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/UpgradeBlueprint" method="upgrade_player"]
