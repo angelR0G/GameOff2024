@@ -5,4 +5,6 @@
 
 [node name="MachineBlueprint" instance=ExtResource("1_1wdfw")]
 script = ExtResource("2_exbui")
-machine_scene = null
+machine_type = 0
+
+[connection signal="pressed" from="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/BuildButton" to="." method="build_machine"]

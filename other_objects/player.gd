@@ -70,7 +70,6 @@ func _process(delta):
 
 	# Moving the Character
 	velocity = target_velocity
-	print(velocity)
 	move_and_slide()
 	
 	anim.play("walking" if velocity.length() > 0.1 else "idle")

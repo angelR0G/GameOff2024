@@ -15,3 +15,4 @@ func set_blueprint_description(text:String) -> void:
 
 func set_blueprint_cost(cost:Dictionary) -> void:
 	blueprint_cost_display.set_cost(cost)
+	build_button.disabled = not blueprint_cost_display.has_player_enough_materials()

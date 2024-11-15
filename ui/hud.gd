@@ -2,6 +2,7 @@ class_name Hud extends CanvasLayer
 
 const MATERIAL_ICON := preload("res://ui/material_icon.tscn")
 const MACHINE_INV_ICON := preload("res://ui/machine_inventory_icon.tscn")
+const MACHINE_BUILD_ICON := preload("res://ui/machine_blueprint.tscn")
 
 @onready var menu_node := $Menu
 @onready var menu_buttons := $Menu/VBoxContainer/MenuButtons
@@ -11,6 +12,12 @@ const MACHINE_INV_ICON := preload("res://ui/machine_inventory_icon.tscn")
 @onready var machines_inv_display := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay
 @onready var machines_inv_container := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay/ScrollContainer/MarginContainer/HBoxContainer
 @onready var build_menu_display := $Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay
+@onready var machine_blueprint_container := $Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer
+
+
+func _ready() -> void:
+	for blueprint:MachineBlueprint in machine_blueprint_container.get_children():
+		blueprint.machine_created.connect(update_build_menu)
 
 
 func set_menu_visibility(new_state:bool) -> void:
@@ -111,6 +118,12 @@ func update_machines_inventory() -> void:
 func show_build_menu() -> void:
 	untoggle_buttons(menu_buttons.get_child(2))
 	update_menu_screens_visibility(build_menu_display)
+	update_build_menu()
+
+
+func update_build_menu() -> void:
+	for child:MachineBlueprint in machine_blueprint_container.get_children():
+		child.update_blueprint_info()
 
 
 func show_upgrades_menu() -> void:
