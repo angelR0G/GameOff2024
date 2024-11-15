@@ -30,12 +30,6 @@ func _ready() -> void:
 	#debug_mesh.mesh = energy_collider.shape.get_debug_mesh()
 	return
 
-func connect_machine() -> void:
-	pass
-	
-func disconnect_machine() -> void:
-	pass
-
 func deactivate_all_connected_machines() -> void:
 	if BaseCamp.Instance.total_energy < calculate_energy_cost():
 		for machine in connected_machines:
@@ -59,9 +53,15 @@ func display_interactions() -> void:
 	var interactions_ui := InteractionsDisplay.Instance
 	
 	if active:
-		interactions_ui.add_interaction("Turn Off", set_machine_active.bind(false))
+		interactions_ui.add_interaction("Turn Off", set_machine_energy_active.bind(false))
 	else:
-		interactions_ui.add_interaction("Turn On", set_machine_active.bind(true))
+		interactions_ui.add_interaction("Turn On", set_machine_energy_active.bind(true))
+
+func set_machine_energy_active(state:bool)-> void:
+	set_machine_active(state)
+	for machine in connected_machines:
+		#machine.set_machine_active(state)
+		machine.set_machine_powered(state)
 
 func _interaction() -> void:
 	var interactions_ui := InteractionsDisplay.Instance
