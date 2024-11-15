@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d41o15k3cgpk"]
+
+[ext_resource type="PackedScene" uid="uid://dwq5fpf7mss76" path="res://materials/material_base.tscn" id="1_21g2q"]
+[ext_resource type="Texture2D" uid="uid://lbtlcgbd8y13" path="res://assets/sprites/brown_mat.png" id="2_sxsju"]
+
+[node name="BrownGeometry" instance=ExtResource("1_21g2q")]
+material_id = 9
+material_name = "Brown Geometry"
+weight = 140
+extraction_time = 210.0
+energy_produced = 20
+sprite = ExtResource("2_sxsju")

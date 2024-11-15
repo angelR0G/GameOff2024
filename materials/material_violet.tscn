@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://esmv22qnupsu"]
+
+[ext_resource type="PackedScene" uid="uid://dwq5fpf7mss76" path="res://materials/material_base.tscn" id="1_5tq1d"]
+[ext_resource type="Texture2D" uid="uid://qb5bbo8k8yra" path="res://assets/sprites/violet_mat.png" id="2_hu2qq"]
+
+[node name="VioletGeometry" instance=ExtResource("1_5tq1d")]
+material_id = 5
+material_name = "Violet Geometry"
+weight = 40
+extraction_time = 375.0
+energy_produced = 8
+sprite = ExtResource("2_hu2qq")

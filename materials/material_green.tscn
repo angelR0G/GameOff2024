@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://uiu8mu77apq0"]
+
+[ext_resource type="PackedScene" uid="uid://dwq5fpf7mss76" path="res://materials/material_base.tscn" id="1_5705j"]
+[ext_resource type="Texture2D" uid="uid://dm0py58ofusop" path="res://assets/sprites/green_mat.png" id="2_72n8p"]
+
+[node name="GreenGeometry" instance=ExtResource("1_5705j")]
+material_id = 4
+material_name = "Green Geometry"
+weight = 75
+extraction_time = 210.0
+energy_produced = 4
+sprite = ExtResource("2_72n8p")

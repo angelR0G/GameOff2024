@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8spjtj56v10a"]
+
+[ext_resource type="PackedScene" uid="uid://dwq5fpf7mss76" path="res://materials/material_base.tscn" id="1_na5o6"]
+[ext_resource type="Texture2D" uid="uid://q6ctqa4wgrix" path="res://assets/sprites/turquoise_mat.png" id="2_ceme5"]
+
+[node name="TurquoiseGeometry" instance=ExtResource("1_na5o6")]
+material_id = 10
+material_name = "Turquoise Geometry"
+weight = 130
+extraction_time = 360.0
+energy_produced = 22
+sprite = ExtResource("2_ceme5")

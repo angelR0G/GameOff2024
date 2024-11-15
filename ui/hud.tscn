@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfjsaxbypqcrh"]
+[gd_scene load_steps=3 format=3 uid="uid://cfjsaxbypqcrh"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_36fne"]
 [ext_resource type="Theme" uid="uid://do4klmwnfpkxv" path="res://resources/inventory_menu.tres" id="1_ukre5"]
-[ext_resource type="PackedScene" uid="uid://duioumqc0bxvh" path="res://ui/machine_blueprint.tscn" id="3_n088q"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_36fne")
@@ -127,9 +126,6 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
-
-[node name="MachineBlueprint" parent="Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_n088q")]
-layout_mode = 2
 
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="show_materials_inventory"]
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="set_menu_visibility"]

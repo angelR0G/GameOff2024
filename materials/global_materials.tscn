@@ -1,9 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqty24xl8iq07"]
+[gd_scene load_steps=12 format=3 uid="uid://cqty24xl8iq07"]
 
 [ext_resource type="Script" path="res://materials/global_materials.gd" id="1_381yy"]
 [ext_resource type="PackedScene" uid="uid://bsu8nkpmcdkky" path="res://materials/material_red.tscn" id="1_q78gv"]
+[ext_resource type="PackedScene" uid="uid://ceukj2aciive2" path="res://materials/material_black.tscn" id="3_groq5"]
+[ext_resource type="PackedScene" uid="uid://dr0yqtfba7vx0" path="res://materials/material_yellow.tscn" id="4_dtj7f"]
+[ext_resource type="PackedScene" uid="uid://uiu8mu77apq0" path="res://materials/material_green.tscn" id="5_7fm6g"]
+[ext_resource type="PackedScene" uid="uid://esmv22qnupsu" path="res://materials/material_violet.tscn" id="6_rifwj"]
+[ext_resource type="PackedScene" uid="uid://bqww77hxs277t" path="res://materials/material_blue.tscn" id="7_1qb1h"]
+[ext_resource type="PackedScene" uid="uid://ca2r4opj2lqq0" path="res://materials/material_orange.tscn" id="8_nmivs"]
+[ext_resource type="PackedScene" uid="uid://c5vsb8xwswk17" path="res://materials/material_pink.tscn" id="9_if2ga"]
+[ext_resource type="PackedScene" uid="uid://d41o15k3cgpk" path="res://materials/material_brown.tscn" id="10_ffsbf"]
+[ext_resource type="PackedScene" uid="uid://b8spjtj56v10a" path="res://materials/material_turquoise.tscn" id="11_4gb5p"]
 
 [node name="GlobalMaterials" type="Node"]
 script = ExtResource("1_381yy")
 
 [node name="RedGeometry" parent="." instance=ExtResource("1_q78gv")]
+
+[node name="BlackGeometry" parent="." instance=ExtResource("3_groq5")]
+
+[node name="YellowGeometry" parent="." instance=ExtResource("4_dtj7f")]
+
+[node name="GreenGeometry" parent="." instance=ExtResource("5_7fm6g")]
+
+[node name="VioletGeometry" parent="." instance=ExtResource("6_rifwj")]
+
+[node name="BlueGeometry" parent="." instance=ExtResource("7_1qb1h")]
+
+[node name="OrangeGeometry" parent="." instance=ExtResource("8_nmivs")]
+
+[node name="PinkGeometry" parent="." instance=ExtResource("9_if2ga")]
+
+[node name="BrownGeometry" parent="." instance=ExtResource("10_ffsbf")]
+
+[node name="TurquoiseGeometry" parent="." instance=ExtResource("11_4gb5p")]

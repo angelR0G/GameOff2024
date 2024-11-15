@@ -16,8 +16,11 @@ const MACHINE_BUILD_ICON := preload("res://ui/machine_blueprint.tscn")
 
 
 func _ready() -> void:
-	for blueprint:MachineBlueprint in machine_blueprint_container.get_children():
-		blueprint.machine_created.connect(update_build_menu)
+	for machine_type in Machine.Type.values():
+		var machine_blueprint :MachineBlueprint = MACHINE_BUILD_ICON.instantiate()
+		machine_blueprint.machine_type = machine_type
+		machine_blueprint.machine_created.connect(update_build_menu)
+		machine_blueprint_container.add_child(machine_blueprint)
 
 
 func set_menu_visibility(new_state:bool) -> void:

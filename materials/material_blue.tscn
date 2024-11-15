@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqww77hxs277t"]
+
+[ext_resource type="PackedScene" uid="uid://dwq5fpf7mss76" path="res://materials/material_base.tscn" id="1_wv7dc"]
+[ext_resource type="Texture2D" uid="uid://dqvldxa5kr2n1" path="res://assets/sprites/blue_mat.png" id="2_21mdn"]
+
+[node name="BlueGeometry" instance=ExtResource("1_wv7dc")]
+material_id = 6
+material_name = "Blue Geometry"
+weight = 80
+extraction_time = 240.0
+energy_produced = 8
+sprite = ExtResource("2_21mdn")

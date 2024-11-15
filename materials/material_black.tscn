@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceukj2aciive2"]
+
+[ext_resource type="PackedScene" uid="uid://dwq5fpf7mss76" path="res://materials/material_base.tscn" id="1_x261h"]
+[ext_resource type="Texture2D" uid="uid://dcbhtby5nxwig" path="res://assets/sprites/black_mat.png" id="2_dtibo"]
+
+[node name="BlackGeometry" instance=ExtResource("1_x261h")]
+material_id = 2
+material_name = "Black Geometry"
+weight = 25
+extraction_time = 50.0
+energy_produced = 1
+sprite = ExtResource("2_dtibo")
