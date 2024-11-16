@@ -6,15 +6,12 @@ var machine_type:Machine.Type
 var machine :Machine
 
 func _ready() -> void:
-	print(machine_type)
 	machine = MachineFactory.new_machine(machine_type)
 	update_blueprint_info()
 
 
 func update_blueprint_info() -> void:
 	set_blueprint_name(machine.machine_name)
-	print(machine.machine_name)
-	print(machine.description)
 	set_blueprint_description(machine.description)
 	set_blueprint_cost(MachineFactory.get_machine_build_cost(machine._type))
 

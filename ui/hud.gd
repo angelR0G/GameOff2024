@@ -13,6 +13,8 @@ const MACHINE_BUILD_ICON := preload("res://ui/machine_blueprint.tscn")
 @onready var machines_inv_container := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay/ScrollContainer/MarginContainer/HBoxContainer
 @onready var build_menu_display := $Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay
 @onready var machine_blueprint_container := $Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer
+@onready var upgrade_menu_display := $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay
+@onready var upgrade_blueprint_container := $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer
 
 
 func _ready() -> void:
@@ -21,6 +23,9 @@ func _ready() -> void:
 		machine_blueprint.machine_type = machine_type
 		machine_blueprint.machine_created.connect(update_build_menu)
 		machine_blueprint_container.add_child(machine_blueprint)
+	
+	for upgrade:UpgradeBlueprint in upgrade_blueprint_container.get_children():
+		upgrade.upgrade_created.connect(update_upgrade_menu)
 
 
 func set_menu_visibility(new_state:bool) -> void:
@@ -125,9 +130,25 @@ func show_build_menu() -> void:
 
 
 func update_build_menu() -> void:
+	if not build_menu_display.visible:
+		return
+	
 	for child:MachineBlueprint in machine_blueprint_container.get_children():
 		child.update_blueprint_info()
 
 
+# # #
+# Upgrade menu
+# # #
 func show_upgrades_menu() -> void:
 	untoggle_buttons(menu_buttons.get_child(3))
+	update_menu_screens_visibility(upgrade_menu_display)
+	update_upgrade_menu()
+
+
+func update_upgrade_menu() -> void:
+	if not upgrade_menu_display.visible:
+		return
+	
+	for child:UpgradeBlueprint in upgrade_blueprint_container.get_children():
+		child.update_blueprint_info()

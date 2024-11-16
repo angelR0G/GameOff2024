@@ -77,8 +77,6 @@ func increase_explored_mines_count() -> void:
 
 func display_interactions() -> void:
 	if station_being_destroyed:
-		# Quick solution that prevents breaking the interactions structure
-		await get_tree().create_timer(0.1).timeout
 		return
 	
 	super()

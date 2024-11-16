@@ -93,9 +93,8 @@ func interact() -> void:
 	
 	input_disabled = true
 	hud.set_menu_enabled(false)
-	available_interactions[0].interact()
+	await available_interactions[0].interact()
 	
-	await available_interactions[0].on_stop_interaction
 	input_disabled = false
 	hud.set_menu_enabled(true)
 	
