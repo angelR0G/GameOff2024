@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://5cybg80v1810"]
+
+[ext_resource type="Shader" path="res://shaders/place_object.gdshader" id="1_le72s"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_le72s")
+shader_parameter/cant_place_color = Color(0.8, 0, 0, 1)
+shader_parameter/can_place_color = Color(0, 1, 0, 1)
+shader_parameter/can_place = false

@@ -2,18 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://0cfxskcwk864" path="res://machines/energy_station.tscn" id="1_6w45h"]
 [ext_resource type="Script" path="res://machines/energy_extender.gd" id="2_ncctw"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k3qh7"]
-albedo_color = Color(0.376471, 1, 1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_cp1gc"]
-material = SubResource("StandardMaterial3D_k3qh7")
+[ext_resource type="ArrayMesh" uid="uid://do58hu47br18x" path="res://assets/meshes/energy_extender.obj" id="3_ij47e"]
+[ext_resource type="Material" uid="uid://cax18aow7hxu7" path="res://assets/meshes/energy_extender.tres" id="4_vdtr0"]
 
 [node name="EnergyExtender" instance=ExtResource("1_6w45h")]
 script = ExtResource("2_ncctw")
 radius = 15.0
 
 [node name="MachineMesh" parent="." index="0"]
-mesh = SubResource("BoxMesh_cp1gc")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("4_vdtr0")
+mesh = ExtResource("3_ij47e")
 
 [editable path="InteractionTrigger"]
