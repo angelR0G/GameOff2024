@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dsbvo77l0003x"]
+[gd_scene load_steps=9 format=3 uid="uid://dsbvo77l0003x"]
 
 [ext_resource type="Script" path="res://other_objects/build_mode.gd" id="1_063hw"]
 [ext_resource type="Material" uid="uid://5cybg80v1810" path="res://shaders/place_object_material.tres" id="2_i70d5"]
+[ext_resource type="Texture2D" uid="uid://bswddv5erhplu" path="res://assets/sprites/action_radius.png" id="3_5cctj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6bnh2"]
 radius = 5.0
@@ -13,11 +14,19 @@ colors = PackedColorArray(0.470588, 0, 0, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_1dts2")
 width = 1
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_8jwhu"]
-height = 1.0
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxcya"]
+transparency = 1
+albedo_texture = ExtResource("3_5cctj")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ljna7"]
+material = SubResource("StandardMaterial3D_xxcya")
+size = Vector2(1, 1)
 
 [node name="BuildMode" type="Node3D"]
 script = ExtResource("1_063hw")
+
+[node name="PreviewMachine" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_i70d5")
 
 [node name="CameraPivot" type="Node3D" parent="."]
 transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
@@ -26,9 +35,6 @@ transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.7071
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 projection = 1
 size = 25.0
-
-[node name="PreviewMachine" type="MeshInstance3D" parent="."]
-material_override = ExtResource("2_i70d5")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1e+06, 0)
@@ -57,5 +63,6 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="Point" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_8jwhu")
+[node name="ActionRadiusMesh" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_ljna7")

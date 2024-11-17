@@ -9,6 +9,16 @@ void vertex() {
 	// Called for every vertex the material is visible on.
 }
 
+/**
+ * Draw a circle at vec2 `pos` with radius `rad` and
+ * color `color`.
+ */
+vec4 circle(vec2 uv, vec2 pos, float rad, vec3 color) {
+	float d = length(pos - uv) - rad;
+	float t = clamp(d, 0.0, 1.0);
+	return vec4(color, 1.0 - t);
+}
+
 void fragment() {
 	vec3 view_dir = normalize(VIEW);
 	vec3 normal = normalize(NORMAL);
