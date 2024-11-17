@@ -46,11 +46,8 @@ func _process(_delta: float) -> void:
 	if machine_to_place != null && !machine_placed:
 		# Place preview machine at the mouse position
 		var mouse_position:Vector2 = get_viewport().get_mouse_position()
-		var screen_size = get_viewport().size
 		var ground_depth:Array = get_ground_position(mouse_position)
 		if ground_depth[0]:
-			#var new_pos:Vector3 = camera.project_position(mouse_position, ground_depth[1])
-			#var position_plane = Vector3(new_pos.x, ground_depth[1], new_pos.z)
 			preview_machine.global_position = ground_depth[1]
 			action_radius_mesh.global_position = Vector3(ground_depth[1].x, ground_depth[1].y+0.2, ground_depth[1].z)
 			# Check if the machine can be place at the current position
@@ -76,9 +73,7 @@ func get_ground_position(position2D:Vector2) -> Array:
 	rayQuery.collision_mask = 0x2
 	var collision := space.intersect_ray(rayQuery)
 	if collision:
-		#print(collision.position)
 		ground_depth_status[0] = true
-		#ground_depth_status[1] = collision.position.y
 		ground_depth_status[1] = collision.position
 	return ground_depth_status
 	
