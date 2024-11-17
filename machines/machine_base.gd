@@ -5,7 +5,8 @@ enum Type {
 	Generator,
 	EnergyStation,
 	EnergyExtender,
-	ExplorerDroneStation
+	ExplorerDroneStation,
+	CollectorDroneStation
 }
 
 @warning_ignore("unused_private_class_variable")

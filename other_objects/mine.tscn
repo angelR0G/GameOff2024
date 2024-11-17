@@ -9,19 +9,19 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_05rqh"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5u5ok"]
-radius = 2.0
+radius = 3.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yj40v"]
-size = Vector3(2, 2, 2)
+size = Vector3(3, 2, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_r2mh4"]
-size = Vector3(3, 2, 3)
+size = Vector3(5, 2, 5)
 
 [node name="Mine" type="StaticBody3D"]
 script = ExtResource("1_3hnem")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(3, 0, 0, 0, 1.5, 0, 0, 0, 3, 0, 1.5, 0)
 material_override = SubResource("StandardMaterial3D_qnc6c")
 mesh = SubResource("CylinderMesh_05rqh")
 
@@ -32,7 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_5u5ok")
 
 [node name="MineMachineSpot" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

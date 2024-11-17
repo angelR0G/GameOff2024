@@ -46,11 +46,19 @@ func get_all_keys() ->Array:
 func get_material_quantity_from_id(id:int) -> int:
 	return objects.get(id, 0)
 
-func transfer_materials(materialsOrigin: MaterialContainer) -> void:
-	for key in materialsOrigin.get_all_keys():
-		var value :int = materialsOrigin.get_material_quantity_from_id(key)
-		add_material(key, value)
-	materialsOrigin.clear()
+func transfer_materials(materials_origin: MaterialContainer) -> void:
+	if materials_origin == null:
+		return
 	
+	for material_id in materials_origin.get_all_keys():
+		var material_quantity :int = materials_origin.get_material_quantity_from_id(material_id)
+		var transfered_quantity := add_material(material_id, material_quantity)
+		materials_origin.remove_material(material_id, transfered_quantity)
+
+
 func clear() -> void:
 	objects.clear()
+
+
+func remaining_weight() -> int:
+	return max_weight - current_weight
