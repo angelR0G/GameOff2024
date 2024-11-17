@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpmv0m0uqo7rj"]
+
+[ext_resource type="PackedScene" uid="uid://dh1rf7rdrn0v1" path="res://machines/drone.tscn" id="1_smknh"]
+[ext_resource type="Script" path="res://machines/collector_drone.gd" id="2_tp0ml"]
+
+[node name="CollectorDrone" instance=ExtResource("1_smknh")]
+script = ExtResource("2_tp0ml")

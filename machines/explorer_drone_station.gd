@@ -15,7 +15,6 @@ func _init() -> void:
 	machine_name = "Explorer Drone Station"
 	description = "Place a drone that explore nearby mines automatically."
 	energy_cost = 0
-	active = true
 	
 	radius = 50.0
 
@@ -27,7 +26,7 @@ func _ready() -> void:
 	(drone as ExplorerDrone).drone_explored_mine.connect(increase_explored_mines_count)
 	
 	await save_mines_in_radius()
-	powered = true
+	active = true
 
 
 func save_mines_in_radius() -> void:

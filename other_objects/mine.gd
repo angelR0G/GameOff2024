@@ -69,3 +69,7 @@ func destroy_machine() -> void:
 	installed_machine.on_destroy()
 	installed_machine = null
 	
+
+
+func has_a_drill() -> bool:
+	return installed_machine != null and installed_machine is Drill

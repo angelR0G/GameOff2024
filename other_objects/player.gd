@@ -32,6 +32,7 @@ func _ready() -> void:
 	machines.add_machine_by_type(Machine.Type.Drill)
 	machines.add_machine_by_type(Machine.Type.Drill)
 	machines.add_machine_by_type(Machine.Type.Generator)
+	machines.add_machine_by_type(Machine.Type.CollectorDroneStation)
 	machines.add_machine_by_type(Machine.Type.EnergyStation)
 	machines.add_machine_by_type(Machine.Type.EnergyStation)
 	machines.add_machine_by_type(Machine.Type.EnergyStation)

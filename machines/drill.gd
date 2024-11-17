@@ -35,16 +35,17 @@ func on_install(mine:Mine) -> void:
 func on_destroy() -> void:
 	queue_free()
 
-func collect_materials() -> void:
-	material_amount -= Player.Instance.materials.add_material(material_id, material_amount)
-	current_weight = MATERIALS.search_by_id(material_id).weight * material_amount
+func collect_materials(container:MaterialContainer) -> void:
+	if container != null and material_amount > 0:
+		material_amount -= container.add_material(material_id, material_amount)
+		current_weight = MATERIALS.search_by_id(material_id).weight * material_amount
 	
 	mine_materials()
 	return
 
 
 func mine_materials() -> void:
-	if has_capacity_for_more_materials() and mining_timer.is_stopped():
+	if mining_timer.is_stopped() and has_capacity_for_more_materials():
 		mining_timer.start()
 
 
@@ -74,7 +75,7 @@ func update_mining_time() -> void:
 func display_interactions() -> void:
 	super()
 	
-	InteractionsDisplay.Instance.add_interaction("Collect Materials", collect_materials, material_amount == 0)
+	InteractionsDisplay.Instance.add_interaction("Collect Materials", collect_materials.bind(Player.Instance.materials), material_amount == 0)
 
 
 func _on_start_working() -> void:
