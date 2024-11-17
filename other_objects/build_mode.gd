@@ -10,7 +10,7 @@ var build_mode_active:bool = false
 @onready var collision_shape : CollisionShape3D = $Area3D/CollisionShape3D
 @onready var debug_mesh: MeshInstance3D = $Area3D/MeshInstance3D
 @onready var build_mode_border: AspectRatioContainer = $AspectRatioContainer
-@onready var point_debug : MeshInstance3D = $Point
+@onready var action_radius_mesh : MeshInstance3D = $ActionRadiusMesh
 
 
 signal build_mode_exited
@@ -26,6 +26,9 @@ func enter_build_mode(machine:Machine):
 	build_mode_active = true
 	Player.Instance.movement_enabled = false
 	build_mode_border.visible = true
+	action_radius_mesh.visible = true
+	var plane_mesh:PlaneMesh =  action_radius_mesh.mesh
+	plane_mesh.size = Vector2(machine.radius*2, machine.radius*2)
 
 func exit_build_mode() -> void:
 	preview_machine.mesh = null
@@ -35,6 +38,7 @@ func exit_build_mode() -> void:
 	machine_to_place = null
 	Player.Instance.movement_enabled = true
 	build_mode_border.visible = false
+	action_radius_mesh.visible = false
 	build_mode_exited.emit()
 
 
@@ -42,13 +46,10 @@ func _process(_delta: float) -> void:
 	if machine_to_place != null && !machine_placed:
 		# Place preview machine at the mouse position
 		var mouse_position:Vector2 = get_viewport().get_mouse_position()
-		var screen_size = get_viewport().size
 		var ground_depth:Array = get_ground_position(mouse_position)
 		if ground_depth[0]:
-			#var new_pos:Vector3 = camera.project_position(mouse_position, ground_depth[1])
-			#var position_plane = Vector3(new_pos.x, ground_depth[1], new_pos.z)
 			preview_machine.global_position = ground_depth[1]
-			
+			action_radius_mesh.global_position = Vector3(ground_depth[1].x, ground_depth[1].y+0.2, ground_depth[1].z)
 			# Check if the machine can be place at the current position
 			var material :ShaderMaterial = preview_machine.material_override
 			var can_place :bool = await check_if_can_be_placed(ground_depth[1])
@@ -72,11 +73,8 @@ func get_ground_position(position2D:Vector2) -> Array:
 	rayQuery.collision_mask = 0x2
 	var collision := space.intersect_ray(rayQuery)
 	if collision:
-		#print(collision.position)
-		point_debug.global_position = collision.position
 		ground_depth_status[0] = true
-		#ground_depth_status[1] = collision.position.y
-		ground_depth_status[1] = point_debug.global_position
+		ground_depth_status[1] = collision.position
 	return ground_depth_status
 	
 
