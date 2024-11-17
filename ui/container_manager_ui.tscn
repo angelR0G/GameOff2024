@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://5eveljb5rw8u"]
+
+[ext_resource type="Script" path="res://ui/container_ui.gd" id="1_veo32"]
+[ext_resource type="Theme" uid="uid://cf05anv5460cj" path="res://resources/container_storage.tres" id="2_2fiso"]
+[ext_resource type="PackedScene" uid="uid://d4nhop5ett7j5" path="res://ui/container_display.tscn" id="2_7g8kc"]
+[ext_resource type="Texture2D" uid="uid://bhnmu3oq4u2r6" path="res://assets/sprites/arrow.png" id="4_i4qcf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jt1xx"]
+
+[node name="ContainerManager" type="CanvasLayer"]
+script = ExtResource("1_veo32")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_2fiso")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ContainerDisplay" parent="CenterContainer/HBoxContainer" instance=ExtResource("2_7g8kc")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+texture = ExtResource("4_i4qcf")
+expand_mode = 3
+
+[node name="MoveAllButton" type="Button" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+text = "All"
+
+[node name="MoveHalfButton" type="Button" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+text = "1/2
+"
+
+[node name="MoveOneButton" type="Button" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 40)
+layout_mode = 2
+text = "x1"
+
+[node name="VSeparator" type="HSeparator" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_jt1xx")
+
+[node name="CloseButton" type="Button" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 2
+size_flags_vertical = 8
+text = "Close
+"
+
+[node name="ContainerDisplay2" parent="CenterContainer/HBoxContainer" instance=ExtResource("2_7g8kc")]
+layout_mode = 2
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/MoveAllButton" to="." method="transfer_all"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/MoveHalfButton" to="." method="transfer_half"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/MoveOneButton" to="." method="transfer_one"]

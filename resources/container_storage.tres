@@ -1,0 +1,21 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cf05anv5460cj"]
+
+[ext_resource type="StyleBox" uid="uid://dmpfop50gv0gi" path="res://resources/background_panel.tres" id="1_rwpsi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2mox1"]
+bg_color = Color(0.819608, 0.819608, 0.792157, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 2
+shadow_offset = Vector2(0, 2)
+
+[resource]
+Button/colors/font_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/colors/font_hover_pressed_color = Color(0.237539, 0.237539, 0.237539, 1)
+Button/colors/font_pressed_color = Color(0.239216, 0.239216, 0.239216, 1)
+Button/styles/normal = SubResource("StyleBoxFlat_2mox1")
+PanelContainer/styles/panel = ExtResource("1_rwpsi")

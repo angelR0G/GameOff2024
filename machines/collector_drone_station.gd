@@ -102,8 +102,7 @@ func display_interactions() -> void:
 		else:
 			drone.return_to_station())
 	interactions_ui.add_interaction("Open Storage", func()-> void:
-		# TODO: Abrir menu de inventario
-		pass)
+		await Player.Instance.container_manager.open_container_manager(stored_materials))
 	
 	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()
