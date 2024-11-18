@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4nhop5ett7j5"]
+
+[ext_resource type="Script" path="res://ui/container_display.gd" id="2_kljsw"]
+
+[node name="ContainerDisplay" type="PanelContainer"]
+custom_minimum_size = Vector2(420, 350)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_kljsw")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 24
+columns = 4

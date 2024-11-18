@@ -4,11 +4,15 @@ const MATERIAL_ICON := preload("res://ui/material_icon.tscn")
 const MACHINE_INV_ICON := preload("res://ui/machine_inventory_icon.tscn")
 const MACHINE_BUILD_ICON := preload("res://ui/machine_blueprint.tscn")
 
+var menu_opened:bool = false
+
 @onready var menu_node := $Menu
 @onready var menu_buttons := $Menu/VBoxContainer/MenuButtons
 @onready var current_menu_screen :Node = $Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay
 
 @onready var materials_inv_display := $Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay
+@onready var materials_containers := $Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay/VBoxContainer/MaterialsContainers
+@onready var materials_inv_info := $Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay/VBoxContainer/InventoryInfo
 @onready var machines_inv_display := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay
 @onready var machines_inv_container := $Menu/VBoxContainer/MenuDisplay/MachinesInventoryDisplay/ScrollContainer/MarginContainer/HBoxContainer
 @onready var build_menu_display := $Menu/VBoxContainer/MenuDisplay/BuildMenuDisplay
@@ -28,12 +32,19 @@ func _ready() -> void:
 		upgrade.upgrade_created.connect(update_upgrade_menu)
 
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if menu_opened and event.is_action_pressed("back"):
+		untoggle_buttons(null)
+		set_menu_visibility(false)
+
+
 func set_menu_visibility(new_state:bool) -> void:
 	var tween := get_tree().create_tween()
 	tween.tween_property(menu_node, "position", Vector2(0, 0 if new_state else 260), 0.5)
 	
 	# Disable player input when interacting with the menu
 	Player.Instance.input_disabled = new_state
+	menu_opened = new_state
 
 
 func untoggle_buttons(exception:Button) -> void:
@@ -66,22 +77,22 @@ func show_materials_inventory() -> void:
 
 
 func update_materials_inventory() -> void:
-	if not materials_inv_display.visible:
+	if not menu_opened or not materials_inv_display.visible:
 		return
 	
-	var mat_container_1 := materials_inv_display.get_child(0).get_child(0)
-	var mat_container_2 := materials_inv_display.get_child(0).get_child(1)
+	var mat_container_1 := materials_containers.get_child(0)
+	var mat_container_2 := materials_containers.get_child(1)
 	var player_materials := Player.Instance.materials
 	
 	# Remove all children
 	for mat in mat_container_1.get_children():
-		mat.queue_free()
+		mat.free()
 	for mat in mat_container_2.get_children():
-		mat.queue_free()
+		mat.free()
 	
 	# Create an icon foreach material in player's inventory
 	for mat_id in player_materials.get_all_keys():
-		var container := mat_container_1
+		var container := mat_container_2
 		if mat_container_1.get_child_count() <= 1 or mat_container_1.get_child_count() <= mat_container_2.get_child_count():
 			container = mat_container_1
 		var new_mat_icon :MaterialIcon = MATERIAL_ICON.instantiate()
@@ -91,6 +102,11 @@ func update_materials_inventory() -> void:
 		new_mat_icon.set_number(player_materials.get_material_quantity_from_id(mat_id))
 	
 	mat_container_2.visible = mat_container_2.get_child_count() > 0
+	
+	# Update iventory information
+	var weight_label :Label = materials_inv_info.get_child(0)
+	weight_label.text = str(player_materials.current_weight) + "/" + str(player_materials.max_weight)
+	weight_label.add_theme_color_override("font_color", Color.BLACK if player_materials.current_weight < player_materials.max_weight * 0.8 else Color.RED)
 
 
 # # #
@@ -103,7 +119,7 @@ func show_machines_inventory() -> void:
 
 
 func update_machines_inventory() -> void:
-	if not machines_inv_display.visible:
+	if not menu_opened or not machines_inv_display.visible:
 		return
 	
 	var player_machines := Player.Instance.machines.get_all_machines()
@@ -130,7 +146,7 @@ func show_build_menu() -> void:
 
 
 func update_build_menu() -> void:
-	if not build_menu_display.visible:
+	if not menu_opened or not build_menu_display.visible:
 		return
 	
 	for child:MachineBlueprint in machine_blueprint_container.get_children():
@@ -147,7 +163,7 @@ func show_upgrades_menu() -> void:
 
 
 func update_upgrade_menu() -> void:
-	if not upgrade_menu_display.visible:
+	if not menu_opened or not upgrade_menu_display.visible:
 		return
 	
 	for child:UpgradeBlueprint in upgrade_blueprint_container.get_children():

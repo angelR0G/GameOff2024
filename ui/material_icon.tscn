@@ -12,10 +12,12 @@ script = ExtResource("1_oia2n")
 
 [node name="Background" type="PanelContainer" parent="."]
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = ExtResource("1_emf2l")
 
 [node name="Control" type="Control" parent="Background"]
 layout_mode = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Background/Control"]
 layout_mode = 1

@@ -1,5 +1,6 @@
 class_name MaterialContainer extends Node
 
+signal materials_transfered
 
 @export var max_weight :int
 @export var objects :Dictionary = {}
@@ -24,6 +25,7 @@ func add_material(id:int, quantity:int) -> int:
 		objects[id] = quantity_to_add
 		
 	current_weight += material.weight*quantity_to_add
+	
 	return quantity_to_add
 	
 
@@ -54,6 +56,8 @@ func transfer_materials(materials_origin: MaterialContainer) -> void:
 		var material_quantity :int = materials_origin.get_material_quantity_from_id(material_id)
 		var transfered_quantity := add_material(material_id, material_quantity)
 		materials_origin.remove_material(material_id, transfered_quantity)
+	
+	materials_transfered.emit()
 
 
 func clear() -> void:

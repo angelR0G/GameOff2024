@@ -12,7 +12,6 @@ func on_target_enter() -> void:
 			(drone_target as Mine).installed_machine.collect_materials(materials)
 	
 	if drone_target == station:
-		(station as CollectorDroneStation).stored_materials.transfer_materials(materials)
 		# Notify the station, which will update its target if necessary
 		drone_arrived_to_station.emit()
 	else:

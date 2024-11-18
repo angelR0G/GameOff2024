@@ -14,6 +14,7 @@ var materials :MaterialContainer = MaterialContainer.new()
 @onready var hud :Hud = $Hud
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var mesh: MeshInstance3D = $MeshInstance3D
+@onready var container_manager: ContainerManagerUI = $ContainerManager
 
 
 var target_velocity := Vector3.ZERO
