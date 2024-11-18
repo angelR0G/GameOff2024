@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4orgig5vucs"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vjgnj"]
+size = Vector2(15, 15)
+
+[node name="MainMap" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_vjgnj")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 2, 1.61431)

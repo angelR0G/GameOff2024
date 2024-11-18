@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://other_objects/build_mode.gd" id="1_063hw"]
 [ext_resource type="Material" uid="uid://5cybg80v1810" path="res://shaders/place_object_material.tres" id="2_i70d5"]
-[ext_resource type="Texture2D" uid="uid://bswddv5erhplu" path="res://assets/sprites/action_radius.png" id="3_5cctj"]
+[ext_resource type="Shader" path="res://shaders/circle_action.gdshader" id="3_eusuk"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_6bnh2"]
 radius = 5.0
@@ -14,12 +14,17 @@ colors = PackedColorArray(0.470588, 0, 0, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_1dts2")
 width = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxcya"]
-transparency = 1
-albedo_texture = ExtResource("3_5cctj")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s8xwi"]
+render_priority = 0
+shader = ExtResource("3_eusuk")
+shader_parameter/color = Color(1, 1, 1, 0.627451)
+shader_parameter/diameter = 1.0
+shader_parameter/thickness = 0.05
+shader_parameter/frequency = 10.0
+shader_parameter/phase = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ljna7"]
-material = SubResource("StandardMaterial3D_xxcya")
+material = SubResource("ShaderMaterial_s8xwi")
 size = Vector2(1, 1)
 
 [node name="BuildMode" type="Node3D"]
@@ -64,5 +69,4 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="ActionRadiusMesh" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("PlaneMesh_ljna7")
