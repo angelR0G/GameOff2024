@@ -8,6 +8,7 @@ class_name ContainerManagerUI extends CanvasLayer
 	$CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/MoveOneButton,
 	]
 @onready var close_button: Button = $CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/CloseButton
+@onready var transfer_direction_icon: TextureRect = $CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/TransferDirectionIcon
 
 var transfer_from_player :bool = true
 var selected_material_id :int = 0
@@ -31,6 +32,8 @@ func open_container_manager(storage:MaterialContainer) -> void:
 	
 	await close_button.pressed
 	set_container_manager_visibility(false)
+	# Deactivate highlight so it is not highlighted next time container is opened
+	(player_container if transfer_from_player else storage_container).update_highlighted_icon(null)
 
 
 func set_container_manager_visibility(new_visibility:bool) -> void:
@@ -42,6 +45,8 @@ func _on_material_selected(material_id:int, from_player_container:bool) -> void:
 	disable_transfer_buttons(false)
 	selected_material_id = material_id
 	transfer_from_player = from_player_container
+	
+	transfer_direction_icon.flip_h = from_player_container
 	
 	# Deactivate highlight in oposite container, just in case a material was selected
 	(storage_container if from_player_container else player_container).update_highlighted_icon(null)
@@ -65,6 +70,7 @@ func transfer_half() -> void:
 	var end_container := storage_container if transfer_from_player else player_container
 	var material_amount := origin_container.container.get_material_quantity_from_id(selected_material_id)
 	
+	@warning_ignore("integer_division")
 	material_amount = material_amount/2 + (0 if material_amount % 2 == 0 else 1)
 	
 	transfer_materials(origin_container.container, end_container.container, material_amount)
@@ -81,11 +87,16 @@ func transfer_materials(from_container:MaterialContainer, to_container:MaterialC
 		return
 	
 	var transfered_amount := to_container.add_material(selected_material_id, material_amount)
-	from_container.remove_material(selected_material_id, material_amount)
+	from_container.remove_material(selected_material_id, transfered_amount)
 	
 	# Disable transfer buttons if there is not more material in the container
 	if from_container.get_material_quantity_from_id(selected_material_id) <= 0:
 		disable_transfer_buttons(true)
 	
-	player_container.update_display()
-	storage_container.update_display()
+	update_container_manager()
+
+
+func update_container_manager() -> void:
+	if visible:
+		player_container.update_display()
+		storage_container.update_display()

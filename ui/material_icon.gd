@@ -6,6 +6,7 @@ const HIGHLIGHT_BACKGROUND = preload("res://resources/material_icon_highlight.tr
 @onready var background := $Background
 @onready var sprite := $Background/Control/MarginContainer/MaterialSprite
 @onready var label := $Background/Control/MarginContainer2/Label
+var id :int = -1
 
 func set_sprite(texture:Texture2D) -> void:
 	sprite.texture = texture

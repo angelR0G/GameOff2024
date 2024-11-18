@@ -18,6 +18,8 @@ func update_display() -> void:
 	if container == null:
 		return
 	
+	var selected_icon_id :int = selected_icon.id if selected_icon != null else -1
+	selected_icon = null
 	for child:Node in mat_icons_container.get_children():
 		child.free()
 	
@@ -25,9 +27,12 @@ func update_display() -> void:
 		var new_icon := MATERIAL_ICON.instantiate()
 		mat_icons_container.add_child(new_icon)
 		
+		new_icon.id = material_id
 		new_icon.set_sprite(MATERIALS.search_by_id(material_id).sprite)
 		new_icon.set_number(container.get_material_quantity_from_id(material_id))
 		new_icon.gui_input.connect(_on_icon_clicked.bind(new_icon, material_id))
+		if new_icon.id == selected_icon_id:
+			update_highlighted_icon(new_icon)
 
 
 func _on_icon_clicked(event:InputEvent, icon:MaterialIcon, material_id:int) -> void:

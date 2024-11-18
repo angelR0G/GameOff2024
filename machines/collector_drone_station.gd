@@ -70,7 +70,7 @@ func can_drone_collect_materials_from_mine(mine:Mine) -> bool:
 		return false
 	
 	var material_weight :int = MATERIALS.search_by_id(mine.material_id).weight
-	return drone.materials.remaining_weight() >= material_weight and stored_materials.remaining_weight() >= material_weight
+	return drone.materials.remaining_weight() >= material_weight
 
 
 func update_drone_target() -> void:
@@ -79,6 +79,9 @@ func update_drone_target() -> void:
 	if station_being_destroyed:
 		destroy_station()
 	else:
+		# Get materials from dron before sending to a new location
+		stored_materials.transfer_materials((drone as CollectorDrone).materials)
+		
 		var drone_new_target :GameLocation = get_new_drone_target_location()
 		if drone_new_target == null:
 			update_timer.start()
@@ -102,7 +105,12 @@ func display_interactions() -> void:
 		else:
 			drone.return_to_station())
 	interactions_ui.add_interaction("Open Storage", func()-> void:
-		await Player.Instance.container_manager.open_container_manager(stored_materials))
+		var container_manager := Player.Instance.container_manager
+		
+		stored_materials.materials_transfered.connect(container_manager.update_container_manager)
+		await container_manager.open_container_manager(stored_materials)
+		stored_materials.materials_transfered.disconnect(container_manager.update_container_manager)
+		)
 	
 	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()
