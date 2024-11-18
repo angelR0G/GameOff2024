@@ -32,6 +32,12 @@ func _ready() -> void:
 		upgrade.upgrade_created.connect(update_upgrade_menu)
 
 
+func _unhandled_key_input(event: InputEvent) -> void:
+	if menu_opened and event.is_action_pressed("back"):
+		untoggle_buttons(null)
+		set_menu_visibility(false)
+
+
 func set_menu_visibility(new_state:bool) -> void:
 	var tween := get_tree().create_tween()
 	tween.tween_property(menu_node, "position", Vector2(0, 0 if new_state else 260), 0.5)
