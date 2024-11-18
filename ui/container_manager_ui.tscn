@@ -18,60 +18,86 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_2fiso")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
+[node name="Containers" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="ContainerDisplay" parent="CenterContainer/HBoxContainer" instance=ExtResource("2_7g8kc")]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Containers"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="CenterContainer/Containers/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_top = 50
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "Your inventory"
+horizontal_alignment = 1
+
+[node name="ContainerDisplay" parent="CenterContainer/Containers/VBoxContainer" instance=ExtResource("2_7g8kc")]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Containers"]
+layout_mode = 2
+theme_override_constants/margin_top = 80
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Containers/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 6
 alignment = 1
 
-[node name="TransferDirectionIcon" type="TextureRect" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="TransferDirectionIcon" type="TextureRect" parent="CenterContainer/Containers/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 texture = ExtResource("4_i4qcf")
 expand_mode = 3
 
-[node name="MoveAllButton" type="Button" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="MoveAllButton" type="Button" parent="CenterContainer/Containers/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(60, 40)
 layout_mode = 2
 text = "All"
 
-[node name="MoveHalfButton" type="Button" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="MoveHalfButton" type="Button" parent="CenterContainer/Containers/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(60, 40)
 layout_mode = 2
 text = "1/2
 "
 
-[node name="MoveOneButton" type="Button" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="MoveOneButton" type="Button" parent="CenterContainer/Containers/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(60, 40)
 layout_mode = 2
 text = "x1"
 
-[node name="VSeparator" type="HSeparator" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="HSeparator" parent="CenterContainer/Containers/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/separator = SubResource("StyleBoxEmpty_jt1xx")
 
-[node name="CloseButton" type="Button" parent="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+[node name="CloseButton" type="Button" parent="CenterContainer/Containers/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 size_flags_vertical = 8
 text = "Close
 "
 
-[node name="ContainerDisplay2" parent="CenterContainer/HBoxContainer" instance=ExtResource("2_7g8kc")]
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/Containers"]
 layout_mode = 2
 
-[connection signal="pressed" from="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/MoveAllButton" to="." method="transfer_all"]
-[connection signal="pressed" from="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/MoveHalfButton" to="." method="transfer_half"]
-[connection signal="pressed" from="CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/MoveOneButton" to="." method="transfer_one"]
+[node name="Label" type="Label" parent="CenterContainer/Containers/VBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_font_sizes/font_size = 24
+text = "Storage"
+horizontal_alignment = 1
+
+[node name="ContainerDisplay2" parent="CenterContainer/Containers/VBoxContainer2" instance=ExtResource("2_7g8kc")]
+layout_mode = 2
+
+[connection signal="pressed" from="CenterContainer/Containers/MarginContainer/VBoxContainer/MoveAllButton" to="." method="transfer_all"]
+[connection signal="pressed" from="CenterContainer/Containers/MarginContainer/VBoxContainer/MoveHalfButton" to="." method="transfer_half"]
+[connection signal="pressed" from="CenterContainer/Containers/MarginContainer/VBoxContainer/MoveOneButton" to="." method="transfer_one"]
