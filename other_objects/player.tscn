@@ -87,11 +87,12 @@ size = 20.0
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
 
+[node name="ContainerManager" parent="." instance=ExtResource("5_rnmcg")]
+layer = 2
+
 [node name="Hud" parent="." instance=ExtResource("3_l3poo")]
 
 [node name="InteractionsDisplay" parent="." instance=ExtResource("2_6mo8e")]
-
-[node name="ContainerManager" parent="." instance=ExtResource("5_rnmcg")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -14,6 +14,8 @@ var selected_material_id :int = 0
 
 func _ready() -> void:
 	set_container_manager_visibility(false)
+	player_container.material_selected.connect(_on_material_selected.bind(true))
+	storage_container.material_selected.connect(_on_material_selected.bind(false))
 
 
 func open_container_manager(storage:MaterialContainer) -> void:

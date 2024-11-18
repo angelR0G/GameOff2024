@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4nhop5ett7j5"]
+[gd_scene load_steps=3 format=3 uid="uid://d4nhop5ett7j5"]
 
 [ext_resource type="StyleBox" uid="uid://dmpfop50gv0gi" path="res://resources/background_panel.tres" id="1_egby0"]
 [ext_resource type="Script" path="res://ui/container_display.gd" id="2_kljsw"]
-[ext_resource type="PackedScene" uid="uid://cw01v4g87msx7" path="res://ui/material_icon.tscn" id="2_n7ds4"]
 
 [node name="ContainerDisplay" type="PanelContainer"]
 custom_minimum_size = Vector2(420, 350)
@@ -22,24 +21,3 @@ layout_mode = 2
 theme_override_constants/h_separation = 24
 theme_override_constants/v_separation = 24
 columns = 4
-
-[node name="MaterialIcon" parent="CenterContainer/GridContainer" instance=ExtResource("2_n7ds4")]
-layout_mode = 2
-
-[node name="MaterialIcon7" parent="CenterContainer/GridContainer" instance=ExtResource("2_n7ds4")]
-layout_mode = 2
-
-[node name="MaterialIcon8" parent="CenterContainer/GridContainer" instance=ExtResource("2_n7ds4")]
-layout_mode = 2
-
-[node name="MaterialIcon9" parent="CenterContainer/GridContainer" instance=ExtResource("2_n7ds4")]
-layout_mode = 2
-
-[node name="MaterialIcon10" parent="CenterContainer/GridContainer" instance=ExtResource("2_n7ds4")]
-layout_mode = 2
-
-[node name="MaterialIcon5" parent="CenterContainer/GridContainer" instance=ExtResource("2_n7ds4")]
-layout_mode = 2
-
-[node name="MaterialIcon6" parent="CenterContainer/GridContainer" instance=ExtResource("2_n7ds4")]
-layout_mode = 2
