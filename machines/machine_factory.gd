@@ -7,6 +7,7 @@ const machine_scenes :Dictionary = {
 	Machine.Type.EnergyExtender : preload("res://machines/energy_extender.tscn"),
 	Machine.Type.ExplorerDroneStation : preload("res://machines/explorer_drone_station.tscn"),
 	Machine.Type.CollectorDroneStation : preload("res://machines/collector_drone_station.tscn"),
+	Machine.Type.TransportDroneStation : preload("res://machines/transport_drone_station.tscn"),
 }
 
 const machine_build_cost :Dictionary = {
@@ -16,6 +17,7 @@ const machine_build_cost :Dictionary = {
 	Machine.Type.EnergyExtender : {2:3},
 	Machine.Type.ExplorerDroneStation : {1:40, 4:1},
 	Machine.Type.CollectorDroneStation : {3:50, 5:15, 6:3},
+	Machine.Type.TransportDroneStation : {7:10, 5:15, 6:3},
 }
 
 static func new_machine(type:Machine.Type) -> Machine:

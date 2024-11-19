@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bluvwo6nxsta3"]
+
+[ext_resource type="PackedScene" uid="uid://d2ad2c6jamqv7" path="res://machines/drone_station.tscn" id="1_nehbs"]
+[ext_resource type="Script" path="res://machines/transport_drone_station.gd" id="2_adyr3"]
+
+[node name="TransportDroneStation" instance=ExtResource("1_nehbs")]
+script = ExtResource("2_adyr3")
+
+[node name="MachineMesh" parent="." index="0"]
+skeleton = NodePath("..")
+
+[node name="UpdateWaitTimer" type="Timer" parent="." index="5"]
+wait_time = 30.0
+one_shot = true
+
+[connection signal="timeout" from="UpdateWaitTimer" to="." method="update_drone_target"]
+
+[editable path="GameLocation"]
+[editable path="InteractionTrigger"]

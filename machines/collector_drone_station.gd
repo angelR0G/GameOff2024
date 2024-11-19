@@ -14,10 +14,10 @@ var stored_materials : MaterialContainer = MaterialContainer.new()
 func _init() -> void:
 	super()
 	
-	# Explorer drone station parameters
+	# Collector drone station parameters
 	_type = Machine.Type.CollectorDroneStation
 	machine_name = "Collector Drone Station"
-	description = "Place a drone that collect materials from nearby mines and stores them."
+	description = "Place a drone that collects the materials from nearby mines with drills and stores them."
 	energy_cost = 1
 	
 	radius = 50.0
