@@ -36,6 +36,22 @@ func save_stations_in_radius() -> void:
 		return object is CollectorDroneStation
 	
 	nearby_stations.assign((await BUILDMODE.get_bodies_in_area(global_position, radius)).filter(is_a_valid_station))
+	for station:CollectorDroneStation in nearby_stations:
+		station.tree_exiting.connect(remove_nearby_station.bind(station))
+
+
+func remove_nearby_station(station:CollectorDroneStation) -> void:
+	var index := nearby_stations.find(station)
+	if index == -1:
+		return
+	
+	# If it is drone's current target, return to station
+	if index == last_station_index:
+		if not is_drone_in_station:
+			drone.return_to_station()
+	
+	last_station_index = -1
+	nearby_stations.remove_at(index)
 
 
 func get_new_drone_target_location() -> GameLocation:
