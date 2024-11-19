@@ -39,6 +39,7 @@ func update_drone_target() -> void:
 func _on_start_working() -> void:
 	if not is_node_ready():
 		await ready
+	super()
 	
 	if is_drone_in_station:
 		update_drone_target()
@@ -48,5 +49,6 @@ func _on_stop_working() -> void:
 		return
 	if not is_node_ready():
 		await ready
+	super()
 	
 	drone.return_to_station()

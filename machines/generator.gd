@@ -31,7 +31,11 @@ func decrease_base_energy() -> void:
 	BaseCamp.Instance.add_substract_energy(MATERIALS.search_by_id(material_id).energy_produced * -1)
 
 func _on_start_working() -> void:
+	super()
+	
 	increase_base_energy()
 
 func _on_stop_working() -> void:
+	super()
+	
 	decrease_base_energy()

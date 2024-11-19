@@ -79,9 +79,13 @@ func display_interactions() -> void:
 
 
 func _on_start_working() -> void:
+	super()
+	
 	if mining_timer and has_capacity_for_more_materials():
 		mining_timer.paused = false
 
 func _on_stop_working() -> void:
+	super()
+	
 	if mining_timer and not mining_timer.paused:
 		mining_timer.paused = true

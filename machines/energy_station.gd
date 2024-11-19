@@ -15,7 +15,7 @@ func _init() -> void:
 	machine_name = "Energy station"
 	description = "Place to take energy from the base"
 	energy_cost = 1
-	active = true
+	active = false
 	can_be_placed_on_world = true
 
 func _ready() -> void:
