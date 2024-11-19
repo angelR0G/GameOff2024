@@ -8,6 +8,7 @@ var nearby_stations :Array[CollectorDroneStation]
 var last_station_index :int = -1
 
 @onready var update_timer: Timer = $UpdateWaitTimer
+@onready var collector_drone_detector: Area3D = $CollectorDroneDetector
 
 func _init() -> void:
 	super()
@@ -28,6 +29,12 @@ func _ready() -> void:
 	(drone as TransportDrone).materials.max_weight = drone_max_weight
 	
 	await save_stations_in_radius()
+	
+	# Activates trigger to detect new stations from now on
+	collector_drone_detector.get_child(0).shape.set("radius", radius)
+	collector_drone_detector.monitorable = true
+	collector_drone_detector.monitoring = true
+	
 	active = true
 
 
@@ -35,9 +42,17 @@ func save_stations_in_radius() -> void:
 	var is_a_valid_station := func (object:Node3D) -> bool: 
 		return object is CollectorDroneStation
 	
-	nearby_stations.assign((await BUILDMODE.get_bodies_in_area(global_position, radius)).filter(is_a_valid_station))
-	for station:CollectorDroneStation in nearby_stations:
-		station.tree_exiting.connect(remove_nearby_station.bind(station))
+	var stations_in_radius :Array[Node3D] = (await BUILDMODE.get_bodies_in_area(global_position, radius)).filter(is_a_valid_station)
+	for station:Node3D in stations_in_radius:
+		add_nearby_station(station)
+
+
+func add_nearby_station(station:Node3D) -> void:
+	if station == null or not station is CollectorDroneStation or nearby_stations.has(station):
+		return
+	
+	nearby_stations.append(station)
+	station.tree_exiting.connect(remove_nearby_station.bind(station))
 
 
 func remove_nearby_station(station:CollectorDroneStation) -> void:
