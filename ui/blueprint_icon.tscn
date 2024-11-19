@@ -29,10 +29,10 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="BlueprintIcon/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_vertical = 0
-theme_override_constants/margin_top = 8
+theme_override_constants/margin_top = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2

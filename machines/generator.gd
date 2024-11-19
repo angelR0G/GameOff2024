@@ -8,7 +8,7 @@ func _init() -> void:
 	# Drill parameters
 	_type = Machine.Type.Generator
 	machine_name = "Generator"
-	description = "Place in a mine to extract energy."
+	description = "Increases energy capacity when placed in a mine."
 	energy_cost = 0
 	active = false
 

@@ -7,6 +7,7 @@ class_name Blueprint extends AspectRatioContainer
 
 func set_blueprint_name(text:String) -> void:
 	name_label.text = text
+	name_label.add_theme_font_size_override("font_size", 18 if text.length() <= 10 else 14)
 
 
 func set_blueprint_description(text:String) -> void:

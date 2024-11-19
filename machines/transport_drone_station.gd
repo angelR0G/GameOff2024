@@ -14,8 +14,8 @@ func _init() -> void:
 	
 	# Transport drone station parameters
 	_type = Machine.Type.TransportDroneStation
-	machine_name = "Transport Drone Station"
-	description = "Place a drone that collects the materials stored by the collector drones and takes them to the base."
+	machine_name = "Transport Drone"
+	description = "Collects the materials stored by collector drones and takes them to the base."
 	energy_cost = 2
 	
 	radius = 50.0

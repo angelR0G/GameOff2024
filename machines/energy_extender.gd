@@ -5,7 +5,7 @@ func _init() -> void:
 	# Energy station parameters
 	_type = Machine.Type.EnergyExtender
 	machine_name = "Energy extender"
-	description = "Place to extend the energy"
+	description = "Placed close to an energy source, it provides energy to nearby machines."
 	energy_cost = 0
 	active = true
 	can_be_placed_on_world = true

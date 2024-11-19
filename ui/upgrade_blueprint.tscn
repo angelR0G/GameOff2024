@@ -10,6 +10,9 @@ upgrade_name = ""
 upgrade_description = ""
 upgrade_cost = Array[Dictionary]([])
 
+[node name="MarginContainer" parent="BlueprintIcon/MarginContainer/VBoxContainer" index="0"]
+custom_minimum_size = Vector2(0, 50)
+
 [node name="UpgradeLevelsContainer" type="HBoxContainer" parent="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" index="1"]
 layout_mode = 2
 theme_override_constants/separation = 5

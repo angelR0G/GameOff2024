@@ -14,7 +14,7 @@ func _init() -> void:
 	# Drill parameters
 	_type = Machine.Type.Drill
 	machine_name = "Drill"
-	description = "Place in a mine to extract materials."
+	description = "Extracts materials from mines."
 	energy_cost = 1
 	active = false
 
