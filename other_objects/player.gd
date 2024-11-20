@@ -10,7 +10,6 @@ const ROTATION_SPEED := 4.0
 var machines :MachineContainer = MachineContainer.new()
 var materials :MaterialContainer = MaterialContainer.new()
 
-@onready var camera :Camera3D = $CameraPivot/Camera3D
 @onready var hud :Hud = $Hud
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var mesh: MeshInstance3D = $MeshInstance3D
@@ -61,7 +60,7 @@ func _process(delta):
 		dir = dir.normalized()
 
 	# Ground Velocity
-	var camera_rot := camera.get_parent_node_3d().rotation.y
+	var camera_rot := FollowCamera.Instance.get_camera_rotation()
 	target_velocity.x = dir.x * speed
 	target_velocity.z = dir.z * speed
 	target_velocity = target_velocity.rotated(Vector3.UP, camera_rot)
@@ -110,3 +109,8 @@ func add_interaction_object(obj:InteractionCollider) -> void:
 
 func remove_interaction_object(obj:InteractionCollider) -> void:
 	available_interactions.erase(obj)
+
+
+func enable_collision(new_state:bool) -> void:
+	set_collision_mask_value(1, new_state)
+	set_collision_layer_value(1, new_state)

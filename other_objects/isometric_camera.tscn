@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://co27ray1b76sa"]
+
+[ext_resource type="Script" path="res://other_objects/camera_controller.gd" id="1_cr12v"]
+
+[node name="CameraPivot" type="Node3D"]
+process_priority = 1
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
+script = ExtResource("1_cr12v")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+projection = 1
+size = 20.0
