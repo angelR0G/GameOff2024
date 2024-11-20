@@ -20,6 +20,7 @@ var materials :MaterialContainer = MaterialContainer.new()
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
 var input_disabled :bool = false
+var riding_on: Motorbike = null
 
 func _init() -> void:
 	materials.max_weight = 80
@@ -42,6 +43,9 @@ func _ready() -> void:
 	machines.add_machine_by_type(Machine.Type.TransportDroneStation)
 
 func _process(delta):
+	if riding_on != null:
+		return
+	
 	var dir := Vector3()
 	
 	if movement_enabled and not input_disabled:
@@ -82,7 +86,7 @@ func _process(delta):
 
 
 func _unhandled_input(input: InputEvent) -> void:
-	if input_disabled:
+	if input_disabled or riding_on != null:
 		return
 	
 	if input.is_action_pressed("interact"):
