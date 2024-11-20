@@ -10,10 +10,14 @@ const MAX_SPEED := 32.0
 var player_riding :Player = null
 var movement_vector :Vector3 = Vector3.ZERO
 var speed :float = 0
+var max_weight :int = 400
+var stored_materials := MaterialContainer.new()
 
 
 func _ready() -> void:
 	interaction.interaction_function = _interaction
+	stored_materials.max_weight = max_weight
+
 
 func _process(delta):
 	# Updates speed when velocity changes (for example, a collision)
@@ -112,6 +116,9 @@ func _interaction() -> void:
 		var player := Player.Instance
 		player_riding = player
 		update_player_riding_state(false)
+	)
+	interactions_ui.add_interaction("Open Storage", func()-> void:
+		await Player.Instance.container_manager.open_container_manager(stored_materials)
 	)
 	
 	interactions_ui.add_close_list_button()

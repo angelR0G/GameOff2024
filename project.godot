@@ -29,6 +29,10 @@ window/stretch/mode="canvas_items"
 
 import/blender/enabled=false
 
+[global_group]
+
+bike=""
+
 [input]
 
 left={
