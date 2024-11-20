@@ -48,6 +48,10 @@ func save_stations_in_radius() -> void:
 
 
 func add_nearby_station(station:Node3D) -> void:
+	# I do not know why detects drones but not drones' station
+	if station is CollectorDrone:
+		station = station.station
+	
 	if station == null or not station is CollectorDroneStation or nearby_stations.has(station):
 		return
 	
