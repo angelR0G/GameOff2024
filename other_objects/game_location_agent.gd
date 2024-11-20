@@ -8,6 +8,9 @@ func set_target(gl:GameLocation) -> void:
 	remove_target()
 	target = gl
 	target.location_reached.connect(_check_location_reached)
+	
+	if target.is_body_inside(get_parent_node_3d()):
+		game_location_reached.emit()
 
 
 func get_target_position() -> Vector3:
