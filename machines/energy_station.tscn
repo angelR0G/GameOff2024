@@ -24,7 +24,7 @@ blend_shape_mode = 0
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_avadg"]
 radius = 2.0
 
-[node name="EnergyStation" instance=ExtResource("1_vvoke")]
+[node name="EnergyStation" groups=["energy_stations"] instance=ExtResource("1_vvoke")]
 script = ExtResource("2_nhyuo")
 radius = 10.0
 

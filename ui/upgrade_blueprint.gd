@@ -84,3 +84,14 @@ func upgrade_motorbike() -> void:
 		set_blueprint_description("Increases speed and maximum weight.")
 	else:
 		motorbike._on_upgrade()
+
+
+func upgrade_energy_station() -> void:
+	get_tree().call_group("energy_stations", "_on_upgrade")
+
+
+func update_collector_drone() -> void:
+	CollectorDroneStation.storage_max_weight += 500
+	CollectorDroneStation.drone_max_weight += 40
+	
+	get_tree().call_group("collector_drones", "_on_upgrade")

@@ -33,6 +33,8 @@ import/blender/enabled=false
 
 bike=""
 drills=""
+energy_stations=""
+collector_drones=""
 
 [input]
 

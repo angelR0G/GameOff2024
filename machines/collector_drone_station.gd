@@ -91,6 +91,18 @@ func update_drone_target() -> void:
 			is_drone_in_station = false
 
 
+func _on_upgrade() -> void:
+	# Return drone to station to prevent errors
+	if not is_drone_in_station:
+		drone.return_to_station()
+	
+	stored_materials.max_weight = storage_max_weight
+	(drone as CollectorDrone).materials.max_weight = drone_max_weight
+	(drone as CollectorDrone).speed += 1.0
+	radius += 10.0
+	save_mines_in_radius()
+
+
 func display_interactions() -> void:
 	if station_being_destroyed:
 		return
