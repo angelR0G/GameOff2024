@@ -3,20 +3,20 @@ class_name Motorbike extends CharacterBody3D
 const ROTATION_SPEED := 4.0
 const ACCELERATION := 20.0
 const STOP_ACCELERATION := 50.0
-const MAX_SPEED := 32.0
 
 @onready var interaction: InteractionCollider = $InteractionTrigger
 
+var broken:bool = true
 var player_riding :Player = null
 var movement_vector :Vector3 = Vector3.ZERO
 var speed :float = 0
-var max_weight :int = 400
+var max_speed :float = 16.0
 var stored_materials := MaterialContainer.new()
 
 
 func _ready() -> void:
 	interaction.interaction_function = _interaction
-	stored_materials.max_weight = max_weight
+	stored_materials.max_weight = 200
 
 
 func _process(delta):
@@ -81,7 +81,7 @@ func update_movement_vector() -> void:
 
 
 func accelerate(delta:float) -> void:
-	speed = minf(speed + ACCELERATION * delta, MAX_SPEED)
+	speed = minf(speed + ACCELERATION * delta, max_speed)
 
 func slow_down(delta:float) -> void:
 	speed = maxf(0.0, speed - STOP_ACCELERATION * delta)
@@ -116,7 +116,7 @@ func _interaction() -> void:
 		var player := Player.Instance
 		player_riding = player
 		update_player_riding_state(false)
-	)
+	, broken)
 	interactions_ui.add_interaction("Open Storage", func()-> void:
 		await Player.Instance.container_manager.open_container_manager(stored_materials)
 	)
@@ -124,3 +124,8 @@ func _interaction() -> void:
 	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()
 	await interactions_ui.display_closed
+
+
+func _on_upgrade() -> void:
+	stored_materials.max_weight += 200
+	max_speed += 3.0

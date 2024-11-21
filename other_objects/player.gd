@@ -2,9 +2,9 @@ class_name Player extends CharacterBody3D
 
 static var Instance :Player = null
 const _material_container := preload("res://materials/material_container.gd")
-const ROTATION_SPEED := 4.0
+const ROTATION_SPEED := 6.0
 
-@export var speed :float = 14.0
+@export var speed :float = 6.0
 @export var fall_acceleration = 75
 @export var movement_enabled :bool
 var machines :MachineContainer = MachineContainer.new()
@@ -22,7 +22,7 @@ var input_disabled :bool = false
 var riding_on: Motorbike = null
 
 func _init() -> void:
-	materials.max_weight = 80
+	materials.max_weight = 40
 
 func _ready() -> void:
 	movement_enabled = true

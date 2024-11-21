@@ -85,5 +85,8 @@ func extract_special_material() -> void:
 	if not MATERIALS.is_special_material(material_id):
 		return
 	
-	Player.Instance.materials.add_material(material_id, 1)
-	material_id = 1
+	var player_mat :MaterialContainer = Player.Instance.materials
+	if (player_mat.max_weight - player_mat.current_weight) >= MATERIALS.search_by_id(material_id).weight:
+		# Player gets the material and mine starts producing basic material
+		Player.Instance.materials.add_material(material_id, 1)
+		material_id = 1
