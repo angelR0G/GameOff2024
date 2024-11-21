@@ -10,6 +10,7 @@ var machine:Machine
 
 func set_machine_name(text:String) -> void:
 	name_label.text = text
+	name_label.add_theme_font_size_override("font_size", 18 if text.length() <= 10 else 14)
 
 
 func set_machine_description(text:String) -> void:
@@ -46,7 +47,7 @@ func enter_build_mode() -> void:
 	await BUILDMODE.build_mode_exited
 	
 	player.input_disabled = false
-	hud.show_machines_inventory()
 	hud.set_menu_visibility(true)
+	hud.show_machines_inventory()
 	hud.set_menu_enabled(true)
 	

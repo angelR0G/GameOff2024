@@ -5,7 +5,8 @@ const MATERIAL_ICON = preload("res://ui/material_icon.tscn")
 var container :MaterialContainer = null
 var selected_icon :MaterialIcon = null
 
-@onready var mat_icons_container :GridContainer = $CenterContainer/GridContainer
+@onready var mat_icons_container :GridContainer = $VBoxContainer/CenterContainer/GridContainer
+@onready var weight_label: Label = $VBoxContainer/WeightLabel
 
 signal material_selected(id:int)
 
@@ -33,6 +34,9 @@ func update_display() -> void:
 		new_icon.gui_input.connect(_on_icon_clicked.bind(new_icon, material_id))
 		if new_icon.id == selected_icon_id:
 			update_highlighted_icon(new_icon)
+	
+	weight_label.text = str(container.current_weight) + "/" + str(container.max_weight)
+	weight_label.add_theme_color_override("font_color", Color.BLACK if container.current_weight < container.max_weight * 0.8 else Color.RED)
 
 
 func _on_icon_clicked(event:InputEvent, icon:MaterialIcon, material_id:int) -> void:

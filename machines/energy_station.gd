@@ -13,9 +13,9 @@ func _init() -> void:
 	# Energy station parameters
 	_type = Machine.Type.EnergyStation
 	machine_name = "Energy station"
-	description = "Place to take energy from the base"
+	description = "Provides energy to surrounding machines."
 	energy_cost = 1
-	active = true
+	active = false
 	can_be_placed_on_world = true
 
 func _ready() -> void:

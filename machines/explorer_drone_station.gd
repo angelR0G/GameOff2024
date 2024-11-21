@@ -12,8 +12,8 @@ func _init() -> void:
 	
 	# Explorer drone station parameters
 	_type = Machine.Type.ExplorerDroneStation
-	machine_name = "Explorer Drone Station"
-	description = "Place a drone that explore nearby mines automatically."
+	machine_name = "Explorer Drone"
+	description = "Explores nearby mines automatically."
 	energy_cost = 0
 	
 	radius = 50.0

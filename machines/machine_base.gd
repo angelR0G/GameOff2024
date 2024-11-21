@@ -1,12 +1,15 @@
 class_name Machine extends Node3D
 
+@onready var anim: AnimationPlayer = $AnimationPlayer
+
 enum Type {
 	Drill,
 	Generator,
 	EnergyStation,
 	EnergyExtender,
 	ExplorerDroneStation,
-	CollectorDroneStation
+	CollectorDroneStation,
+	TransportDroneStation
 }
 
 @warning_ignore("unused_private_class_variable")
@@ -59,9 +62,9 @@ func _check_machine_new_state(is_being_activated:bool) -> void:
 		if active != powered:
 			_on_stop_working()
 
-# Virtual
+# Should be overridden
 func _on_start_working() -> void:
-	pass
+	anim.play("working")
 
 func _on_stop_working() -> void:
-	pass
+	anim.stop()

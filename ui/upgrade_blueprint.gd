@@ -65,6 +65,22 @@ func has_reached_max_level() -> bool:
 # # # # # # 
 # Upgrade functions
 # # # # # #
-static func upgrade_player() -> void:
-	Player.Instance.speed += 10.0
-	Player.Instance.materials.max_weight += 20
+func upgrade_player() -> void:
+	Player.Instance.speed += 1.0
+	Player.Instance.materials.max_weight += 40
+
+
+func upgrade_drill() -> void:
+	Drill.max_weight += 20
+	Drill.mining_speed += 0.3
+	get_tree().call_group("drills", "_on_upgraded")
+
+
+func upgrade_motorbike() -> void:
+	var motorbike :Motorbike = get_tree().get_first_node_in_group("bike")
+	
+	if current_level == 0:
+		motorbike.broken = false
+		set_blueprint_description("Increases speed and maximum weight.")
+	else:
+		motorbike._on_upgrade()

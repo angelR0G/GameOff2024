@@ -1,10 +1,10 @@
 class_name Drill extends MineMachine
 
+var material_id :int = 0
 var material_amount :int = 0
 var current_weight :int = 0
-var max_weight :int = 20
-var material_id :int = 0
-var mining_speed :float = 1.0
+static var max_weight :int = 20
+static var mining_speed :float = 1.0
 
 @onready var mining_timer := $MiningTimer
 
@@ -14,7 +14,7 @@ func _init() -> void:
 	# Drill parameters
 	_type = Machine.Type.Drill
 	machine_name = "Drill"
-	description = "Place in a mine to extract materials."
+	description = "Extracts materials from mines."
 	energy_cost = 1
 	active = false
 
@@ -31,6 +31,13 @@ func on_install(mine:Mine) -> void:
 	
 	# Start mining
 	mine_materials()
+
+func _on_upgraded() -> void:
+	update_mining_time()
+	
+	if mining_timer.is_stopped():
+		mine_materials()
+
 
 func on_destroy() -> void:
 	queue_free()
@@ -79,9 +86,13 @@ func display_interactions() -> void:
 
 
 func _on_start_working() -> void:
+	super()
+	
 	if mining_timer and has_capacity_for_more_materials():
 		mining_timer.paused = false
 
 func _on_stop_working() -> void:
+	super()
+	
 	if mining_timer and not mining_timer.paused:
 		mining_timer.paused = true

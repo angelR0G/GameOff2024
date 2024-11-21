@@ -2,15 +2,14 @@ class_name Player extends CharacterBody3D
 
 static var Instance :Player = null
 const _material_container := preload("res://materials/material_container.gd")
-const ROTATION_SPEED := 4.0
+const ROTATION_SPEED := 6.0
 
-@export var speed :float = 14.0
+@export var speed :float = 6.0
 @export var fall_acceleration = 75
 @export var movement_enabled :bool
 var machines :MachineContainer = MachineContainer.new()
 var materials :MaterialContainer = MaterialContainer.new()
 
-@onready var camera :Camera3D = $CameraPivot/Camera3D
 @onready var hud :Hud = $Hud
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var mesh: MeshInstance3D = $MeshInstance3D
@@ -20,9 +19,10 @@ var materials :MaterialContainer = MaterialContainer.new()
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
 var input_disabled :bool = false
+var riding_on: Motorbike = null
 
 func _init() -> void:
-	materials.max_weight = 80
+	materials.max_weight = 40
 
 func _ready() -> void:
 	movement_enabled = true
@@ -39,9 +39,12 @@ func _ready() -> void:
 	machines.add_machine_by_type(Machine.Type.EnergyStation)
 	machines.add_machine_by_type(Machine.Type.EnergyExtender)
 	machines.add_machine_by_type(Machine.Type.EnergyExtender)
-	machines.add_machine_by_type(Machine.Type.EnergyExtender)
+	machines.add_machine_by_type(Machine.Type.TransportDroneStation)
 
 func _process(delta):
+	if riding_on != null:
+		return
+	
 	var dir := Vector3()
 	
 	if movement_enabled and not input_disabled:
@@ -57,7 +60,7 @@ func _process(delta):
 		dir = dir.normalized()
 
 	# Ground Velocity
-	var camera_rot := camera.get_parent_node_3d().rotation.y
+	var camera_rot := FollowCamera.Instance.get_camera_rotation()
 	target_velocity.x = dir.x * speed
 	target_velocity.z = dir.z * speed
 	target_velocity = target_velocity.rotated(Vector3.UP, camera_rot)
@@ -82,7 +85,7 @@ func _process(delta):
 
 
 func _unhandled_input(input: InputEvent) -> void:
-	if input_disabled:
+	if input_disabled or riding_on != null:
 		return
 	
 	if input.is_action_pressed("interact"):
@@ -106,3 +109,8 @@ func add_interaction_object(obj:InteractionCollider) -> void:
 
 func remove_interaction_object(obj:InteractionCollider) -> void:
 	available_interactions.erase(obj)
+
+
+func enable_collision(new_state:bool) -> void:
+	set_collision_mask_value(1, new_state)
+	set_collision_layer_value(1, new_state)

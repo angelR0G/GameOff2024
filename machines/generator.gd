@@ -8,7 +8,7 @@ func _init() -> void:
 	# Drill parameters
 	_type = Machine.Type.Generator
 	machine_name = "Generator"
-	description = "Place in a mine to extract energy."
+	description = "Increases energy capacity when placed in a mine."
 	energy_cost = 0
 	active = false
 
@@ -31,7 +31,11 @@ func decrease_base_energy() -> void:
 	BaseCamp.Instance.add_substract_energy(MATERIALS.search_by_id(material_id).energy_produced * -1)
 
 func _on_start_working() -> void:
+	super()
+	
 	increase_base_energy()
 
 func _on_stop_working() -> void:
+	super()
+	
 	decrease_base_energy()
