@@ -5,7 +5,7 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7avff"]
 
-[node name="TransportDroneStation" instance=ExtResource("1_nehbs")]
+[node name="TransportDroneStation" groups=["transport_drones"] instance=ExtResource("1_nehbs")]
 script = ExtResource("2_adyr3")
 
 [node name="MachineMesh" parent="." index="0"]

@@ -36,6 +36,7 @@ drills=""
 energy_stations=""
 collector_drones=""
 explorer_drones=""
+transport_drones=""
 
 [input]
 
