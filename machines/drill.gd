@@ -8,8 +8,6 @@ static var mining_speed :float = 1.0
 
 @onready var mining_timer := $MiningTimer
 
-signal drill_upgraded
-
 func _init() -> void:
 	super()
 	

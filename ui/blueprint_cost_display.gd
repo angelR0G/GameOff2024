@@ -12,8 +12,8 @@ func set_cost(materials:Dictionary) -> void:
 		var player_amount :int = 0
 		var new_icon := COST_ICON_SCENE.instantiate()
 		
-		if Player.Instance:
-			player_amount = Player.Instance.materials.get_material_quantity_from_id(material_id)
+		if BaseCamp.Instance:
+			player_amount = BaseCamp.Instance.materials.get_material_quantity_from_id(material_id)
 		
 		new_icon.get_child(0).texture = MATERIALS.search_by_id(material_id).sprite
 		
@@ -26,10 +26,10 @@ func set_cost(materials:Dictionary) -> void:
 
 
 func has_player_enough_materials() -> bool:
-	if Player.Instance == null or _cost.is_empty():
+	if BaseCamp.Instance == null or _cost.is_empty():
 		return false
 	
-	var player_materials := Player.Instance.materials
+	var player_materials := BaseCamp.Instance.materials
 	for material_id in _cost:
 		if player_materials.get_material_quantity_from_id(material_id) < _cost[material_id]:
 			return false
@@ -38,10 +38,10 @@ func has_player_enough_materials() -> bool:
 
 
 func remove_cost_from_player() -> void:
-	if Player.Instance == null:
+	if BaseCamp.Instance == null:
 		return
 	
-	var player_materials := Player.Instance.materials
+	var player_materials := BaseCamp.Instance.materials
 	for material_id in _cost:
 		player_materials.remove_material(material_id, _cost[material_id])
 	
