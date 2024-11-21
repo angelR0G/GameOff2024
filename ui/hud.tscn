@@ -167,14 +167,53 @@ size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="UpgradeBlueprint" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+[node name="EngineerUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
 layout_mode = 2
 upgrade_name = "Engineer"
-upgrade_description = "Increase engineer's movement speed and maximum weight."
+upgrade_description = "Increases movement speed and maximum weight."
 upgrade_cost = Array[Dictionary]([{
 1: 2
 }, {
 1: 3
+}])
+
+[node name="DrillUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+layout_mode = 2
+upgrade_name = "Drill"
+upgrade_description = "Increases extraction speed and maximum capacity."
+upgrade_cost = Array[Dictionary]([{
+1: 10
+}, {
+1: 20,
+2: 5
+}, {
+1: 50,
+2: 20
+}, {
+1: 100,
+2: 20
+}, {
+2: 30,
+3: 5
+}, {
+1: 300,
+3: 30,
+4: 10
+}, {
+4: 30,
+5: 5,
+6: 5
+}, {
+2: 400,
+5: 30,
+6: 30
+}, {
+3: 250,
+4: 150
+}, {
+7: 50,
+8: 10,
+9: 10
 }])
 
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="show_materials_inventory"]
@@ -185,4 +224,5 @@ upgrade_cost = Array[Dictionary]([{
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/BuildButton" to="." method="set_menu_visibility"]
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/UpgradeButton" to="." method="show_upgrades_menu"]
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/UpgradeButton" to="." method="set_menu_visibility"]
-[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/UpgradeBlueprint" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/UpgradeBlueprint" method="upgrade_player"]
+[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/EngineerUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/EngineerUpgrade" method="upgrade_player"]
+[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/DrillUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/DrillUpgrade" method="upgrade_drill"]

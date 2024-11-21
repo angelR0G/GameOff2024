@@ -1,12 +1,14 @@
 class_name Drill extends MineMachine
 
+var material_id :int = 0
 var material_amount :int = 0
 var current_weight :int = 0
-var max_weight :int = 20
-var material_id :int = 0
-var mining_speed :float = 1.0
+static var max_weight :int = 20
+static var mining_speed :float = 1.0
 
 @onready var mining_timer := $MiningTimer
+
+signal drill_upgraded
 
 func _init() -> void:
 	super()
@@ -31,6 +33,13 @@ func on_install(mine:Mine) -> void:
 	
 	# Start mining
 	mine_materials()
+
+func _on_upgraded() -> void:
+	update_mining_time()
+	
+	if mining_timer.is_stopped():
+		mine_materials()
+
 
 func on_destroy() -> void:
 	queue_free()

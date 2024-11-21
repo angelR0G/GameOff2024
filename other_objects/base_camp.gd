@@ -28,9 +28,9 @@ func add_substract_energy(energy:int) -> void:
 	return
 
 func _interaction() -> void:
-	var motorbike :Motorbike = get_tree().get_nodes_in_group("bike")[0]
+	var motorbike :Motorbike = get_tree().get_first_node_in_group("bike")
 	var can_motorbike_be_unload := func() -> bool:
-		if motorbike.stored_materials.current_weight <= 0:
+		if motorbike == null or motorbike.stored_materials.current_weight <= 0:
 			return false
 		
 		var d := global_position.distance_to(motorbike.global_position)
