@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://barii6mnljbdd"]
+
+[ext_resource type="PackedScene" uid="uid://dwq5fpf7mss76" path="res://materials/material_base.tscn" id="1_5ehw7"]
+[ext_resource type="Texture2D" uid="uid://tgm5kedkcd3l" path="res://assets/sprites/emerald_mat.png" id="2_go4s2"]
+
+[node name="EmeraldGeometry" instance=ExtResource("1_5ehw7")]
+material_id = 12
+material_name = "Emerald Geometry"
+weight = 20
+extraction_time = 60.0
+energy_produced = 1
+special = true
+sprite = ExtResource("2_go4s2")

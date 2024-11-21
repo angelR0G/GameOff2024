@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfiwgwsgshob5"]
+
+[ext_resource type="PackedScene" uid="uid://dwq5fpf7mss76" path="res://materials/material_base.tscn" id="1_v8f8r"]
+[ext_resource type="Texture2D" uid="uid://buyla2l4fnq43" path="res://assets/sprites/amethyst_mat.png" id="2_640va"]
+
+[node name="AmethystGeometry" instance=ExtResource("1_v8f8r")]
+material_id = 13
+material_name = "Amethyst Geometry"
+weight = 20
+extraction_time = 60.0
+energy_produced = 1
+special = true
+sprite = ExtResource("2_640va")

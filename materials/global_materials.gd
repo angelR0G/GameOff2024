@@ -11,3 +11,7 @@ func _ready() -> void:
 
 func search_by_id(id:int) -> GMaterial:
 	return all_materials.get(id)
+
+
+func is_special_material(id:int) -> bool:
+	return search_by_id(id).special
