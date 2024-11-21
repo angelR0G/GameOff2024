@@ -32,7 +32,7 @@ void fragment() {
 	if (!can_place){
 		final_color = cant_place_color;
 	}
-	
+
 	final_color*=effect;
 	ALBEDO = final_color.rgb;
 	ALPHA = clamp(effect*1.5, 0.0, 1.0);
