@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cxuu5oekjwac8"]
+
+[ext_resource type="Shader" path="res://shaders/ground.gdshader" id="1_1tpqk"]
+
+[sub_resource type="Gradient" id="Gradient_eapqh"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1v0uf"]
+noise_type = 3
+frequency = 0.026
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cx8yt"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 1.0
+color_ramp = SubResource("Gradient_eapqh")
+noise = SubResource("FastNoiseLite_1v0uf")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1tpqk")
+shader_parameter/base_color = Color(0.709804, 0.54902, 0.498039, 1)
+shader_parameter/detail_color = Color(0.619608, 0.466667, 0.403922, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_cx8yt")

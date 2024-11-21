@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://wwku36hvki18"]
+
+[ext_resource type="Shader" path="res://shaders/water.gdshader" id="1_372nw"]
+
+[sub_resource type="Gradient" id="Gradient_rnorx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1parc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gq540"]
+width = 16
+height = 16
+color_ramp = SubResource("Gradient_rnorx")
+noise = SubResource("FastNoiseLite_1parc")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_372nw")
+shader_parameter/wave_scale = 0.002
+shader_parameter/wave_strength = 0.01
+shader_parameter/color = Color(0.486275, 0.811765, 0.603922, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_gq540")

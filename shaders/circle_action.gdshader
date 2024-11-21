@@ -22,7 +22,7 @@ void fragment() {
 	float inner_radius = outer_radius - thickness;
 	float outer_circle = step(length(pos), outer_radius);
 	float inner_circle = step(length(pos), inner_radius);
-  
+
 
 	float angle = atan(pos.y, pos.x);
 	if (angle < 0.0) {
