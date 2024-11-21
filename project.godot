@@ -35,6 +35,7 @@ bike=""
 drills=""
 energy_stations=""
 collector_drones=""
+explorer_drones=""
 
 [input]
 

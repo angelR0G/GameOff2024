@@ -90,6 +90,11 @@ func upgrade_energy_station() -> void:
 	get_tree().call_group("energy_stations", "_on_upgrade")
 
 
+func upgrade_explorer_drone() -> void:
+	ExplorerDroneStation.max_explorable_mines += 1
+	get_tree().call_group("explorer_drones", "_on_upgrade")
+
+
 func update_collector_drone() -> void:
 	CollectorDroneStation.storage_max_weight += 500
 	CollectorDroneStation.drone_max_weight += 40
