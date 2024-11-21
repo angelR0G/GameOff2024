@@ -71,8 +71,8 @@ func upgrade_player() -> void:
 
 
 func upgrade_drill() -> void:
-	Drill.max_weight += 20
-	Drill.mining_speed += 0.3
+	Drill.max_weight += 30
+	Drill.mining_speed += 0.375
 	get_tree().call_group("drills", "_on_upgraded")
 
 
