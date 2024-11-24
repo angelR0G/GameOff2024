@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b280biq3pyqki"]
+[gd_scene load_steps=19 format=3 uid="uid://b280biq3pyqki"]
 
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_0ablw"]
 [ext_resource type="Texture2D" uid="uid://bd0wpcadrq5yw" path="res://icon.svg" id="2_il2m7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://0cfxskcwk864" path="res://machines/energy_station.tscn" id="5_y2tle"]
 [ext_resource type="PackedScene" uid="uid://cof3bpt74mx06" path="res://machines/explorer_drone_station.tscn" id="6_8qcia"]
 [ext_resource type="PackedScene" uid="uid://dawtwmq3by4w7" path="res://machines/energy_extender.tscn" id="7_8l0j6"]
+[ext_resource type="PackedScene" uid="uid://7wsq8muok7u3" path="res://other_objects/barrier.tscn" id="8_5j6gh"]
 [ext_resource type="PackedScene" uid="uid://folm8xiajm5v" path="res://machines/motorbike.tscn" id="8_mqsru"]
 [ext_resource type="PackedScene" uid="uid://co27ray1b76sa" path="res://other_objects/isometric_camera.tscn" id="9_kiutb"]
 
@@ -24,6 +25,16 @@ uv1_scale = Vector3(10, 10, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ymgr2"]
 size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5xhj"]
+size = Vector3(1, 3, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_mhrs6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f0koa"]
+size = Vector3(1, 3, 4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lt1ss"]
 
 [node name="Map" type="Node3D"]
 
@@ -72,8 +83,32 @@ collision_mask = 1
 [node name="EnergyExtender" parent="NavigationRegion3D" instance=ExtResource("7_8l0j6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.03744, 0, 28.0908)
 
+[node name="Barrier" parent="NavigationRegion3D" instance=ExtResource("8_5j6gh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.043, 0, 4.20299)
+
+[node name="Pillar2" type="CollisionShape3D" parent="NavigationRegion3D/Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 5)
+shape = SubResource("BoxShape3D_s5xhj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Barrier/Pillar2"]
+transform = Transform3D(1, 0, 0, 0, 3, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PrismMesh_mhrs6")
+skeleton = NodePath("../..")
+
+[node name="Wall2" type="CollisionShape3D" parent="NavigationRegion3D/Barrier"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 2.5)
+shape = SubResource("BoxShape3D_f0koa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Barrier/Wall2"]
+transform = Transform3D(-6.55671e-08, 1, 0, -1.5, -4.37114e-08, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("PlaneMesh_lt1ss")
+skeleton = NodePath("../..")
+
 [node name="Motorbike" parent="." instance=ExtResource("8_mqsru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95229, 0.205562, 7.30928)
 
 [node name="CameraPivot" parent="." node_paths=PackedStringArray("target") instance=ExtResource("9_kiutb")]
 target = NodePath("../Player")
+
+[editable path="NavigationRegion3D/Barrier"]
+[editable path="NavigationRegion3D/Barrier/MainPillar/InteractionTrigger"]
