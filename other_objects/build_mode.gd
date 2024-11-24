@@ -3,42 +3,57 @@ class_name BuildMode extends Node3D
 var machine_to_place:Machine
 var machine_placed:bool = false
 var build_mode_active:bool = false
+var movement_enabled:bool = false
 
-@onready var camera 		:Camera3D= $CameraPivot/Camera3D
+var navigation_reference:NavigationRegion3D = null
+
+@export var speed :float = 0.5
+@export var distance_from_player:float = 30.0
+
 @onready var preview_machine: MeshInstance3D = $PreviewMachine
 @onready var area_placement : Area3D = $Area3D
 @onready var collision_shape : CollisionShape3D = $Area3D/CollisionShape3D
 @onready var debug_mesh: MeshInstance3D = $Area3D/MeshInstance3D
 @onready var build_mode_border: AspectRatioContainer = $AspectRatioContainer
 @onready var action_radius_mesh : MeshInstance3D = $ActionRadiusMesh
+@onready var camera_target: Node3D = $CameraTarget
 
 
 signal build_mode_exited
 
 func _ready() -> void:
-	camera.current = false
+	pass
 
 func enter_build_mode(machine:Machine):
 	machine_to_place = machine
-	camera.current = true
 	preview_machine.mesh = machine.get_machine_mesh().duplicate()
 	machine_placed = false
-	build_mode_active = true
-	Player.Instance.movement_enabled = false
 	build_mode_border.visible = true
+	build_mode_active = true
+	movement_enabled = true
+	Player.Instance.movement_enabled = false
+	camera_target.transform = Player.Instance.transform
+	FollowCamera.Instance.set_target(camera_target)
+	
+	# Set action radius mesh to the correct size
 	action_radius_mesh.visible = true
 	var plane_mesh:PlaneMesh =  action_radius_mesh.mesh
 	plane_mesh.size = Vector2(machine.radius*2, machine.radius*2)
+	
+	#Pass to the shader the radius
+	var action_radius_shader :ShaderMaterial = action_radius_mesh.get_active_material(0)
+	action_radius_shader.set_shader_parameter("rad", machine.radius*2)
 
 func exit_build_mode() -> void:
 	preview_machine.mesh = null
-	camera.current = false
 	machine_placed = true
 	build_mode_active = false
+	movement_enabled = true
 	machine_to_place = null
 	Player.Instance.movement_enabled = true
 	build_mode_border.visible = false
 	action_radius_mesh.visible = false
+	FollowCamera.Instance.set_target(Player.Instance)
 	build_mode_exited.emit()
 
 
@@ -54,6 +69,33 @@ func _process(_delta: float) -> void:
 			var material :ShaderMaterial = preview_machine.material_override
 			var can_place :bool = await check_if_can_be_placed(ground_depth[1])
 			material.set_shader_parameter("can_place",can_place)
+			
+	var dir := Vector3()
+	
+	if movement_enabled:
+		if Input.is_action_pressed("left"):
+			dir.x -= 1.0
+		if Input.is_action_pressed("right"):
+			dir.x += 1.0
+		if Input.is_action_pressed("up"):
+			dir.z -= 1.0
+		if Input.is_action_pressed("down"):
+			dir.z += 1.0
+		dir = dir.normalized()
+
+
+		# Get movement direction and move camera target with the input
+		# Limit camera movement from the player
+		var target_velocity:= Vector3()
+		target_velocity.x = dir.x*speed
+		target_velocity.z = dir.z*speed
+		var camera_rot := FollowCamera.Instance.get_camera_rotation()
+		target_velocity = target_velocity.rotated(Vector3.UP, camera_rot)
+		var player_pos = Player.Instance.position
+		var new_pos:=camera_target.position + target_velocity
+		var difference := Vector3(abs(player_pos.x - new_pos.x), player_pos.y, abs(player_pos.z - new_pos.z))
+		if difference.x < distance_from_player && difference.z < distance_from_player :
+			camera_target.position+=target_velocity
 
 func _unhandled_input(event: InputEvent) -> void:
 	if build_mode_active:
@@ -64,8 +106,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func get_ground_position(position2D:Vector2) -> Array:
 	var ground_depth_status: Array = [false, preview_machine.position]
-	var from := camera.project_ray_origin(position2D)
-	var to := from + camera.project_ray_normal(position2D) * 10000
+	var from :=  FollowCamera.Instance.get_camera().project_ray_origin(position2D)
+	var to := from + FollowCamera.Instance.get_camera().project_ray_normal(position2D) * 10000
 	var space := get_world_3d().direct_space_state
 	var rayQuery := PhysicsRayQueryParameters3D.new()
 	rayQuery.from = from
@@ -79,8 +121,8 @@ func get_ground_position(position2D:Vector2) -> Array:
 	
 
 func place_machine_at_position(position2D:Vector2) -> bool:
-	var from := camera.project_ray_origin(position2D)
-	var to := from + camera.project_ray_normal(position2D) * 10000
+	var from := FollowCamera.Instance.get_camera().project_ray_origin(position2D)
+	var to := from + FollowCamera.Instance.get_camera().project_ray_normal(position2D) * 10000
 	var space := get_world_3d().direct_space_state
 	var rayQuery := PhysicsRayQueryParameters3D.new()
 	rayQuery.from = from
@@ -91,9 +133,7 @@ func place_machine_at_position(position2D:Vector2) -> bool:
 		if await check_if_can_be_placed(collision.position):
 			var machine :Machine= Player.Instance.machines.remove_machine_by_type(machine_to_place._type)
 			# TODO add to the nav mesh region
-			get_tree().root.add_child(machine)
-			machine.global_position = collision.position
-			machine_placed = true
+			place_machine(machine, collision.position)
 			exit_build_mode()
 			return true
 		return false
@@ -101,12 +141,35 @@ func place_machine_at_position(position2D:Vector2) -> bool:
 		return false
 
 
+func place_machine(machine:Machine, position:Vector3) -> void:
+	navigation_reference.add_child(machine)
+	navigation_reference.bake_navigation_mesh()
+	machine.global_position = position
+	machine_placed = true
+
 func check_if_can_be_placed(pos:Vector3) -> bool:
 	var bodies := await get_bodies_in_area(pos, 5.0)
-	for body:CollisionObject3D in bodies:
+	#if bodies[0] is GridMap:
+		#var tile_pos := Vector3(pos.x/bodies[0].cell_size.x, -2, pos.z/bodies[0].cell_size.z)
+		#print( bodies[0].get_cell_item(tile_pos))
+		#if bodies[0].get_cell_item(tile_pos) != -1:
+			#var grid_items :Array = bodies[0].get_mesh_library().get_item_shapes(bodies[0].get_cell_item(tile_pos))
+			#for item in grid_items:
+				#var body:BoxShape3D = item
+				#if body.collision_layer == 0x1 && body.collision_layer != 0x2:
+					#return false
+			#return true
+		#return false
+	var start_loop_range = 0
+	if bodies[0] is GridMap:
+		start_loop_range = 1
+	for num in range(start_loop_range, bodies.size()):
+		#var body:CollisionShape3D = bodies[num].get_node("CollisionShape3D")
+		var body = bodies[num]
 		if body.collision_layer == 0x1 && body.collision_layer != 0x2:
 			return false
 	return true
+
 
 
 # Returns all bodies inside a sphere of radius "rad" centered in "pos" 

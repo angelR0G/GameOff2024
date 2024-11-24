@@ -33,7 +33,6 @@ func _ready() -> void:
 func deactivate_all_connected_machines() -> void:
 	if BaseCamp.Instance.total_energy < calculate_energy_cost():
 		for machine in connected_machines:
-			machine.set_machine_active(false)
 			if !self:
 				machine.set_machine_powered(false)
 

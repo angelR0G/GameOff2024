@@ -25,3 +25,6 @@ func set_target(node:Node3D) -> void:
 
 func get_camera_rotation() -> float:
 	return rotation.y
+
+func get_camera() -> Camera3D:
+	return $Camera3D
