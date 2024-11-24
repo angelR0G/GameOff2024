@@ -10,3 +10,4 @@ weight = 130
 extraction_time = 360.0
 energy_produced = 22
 sprite = ExtResource("2_ceme5")
+material_color = Color(0, 0.811765, 0.654902, 1)

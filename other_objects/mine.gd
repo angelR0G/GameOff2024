@@ -4,7 +4,7 @@ class_name Mine extends StaticBody3D
 var explored :bool = false
 var installed_machine :MineMachine = null
 
-@onready var mesh := $Mesh
+@onready var mesh :MeshInstance3D= $Mesh
 @onready var interaction := $InteractionTrigger
 @onready var mine_machine_spot := $MineMachineSpot
 @onready var game_location :GameLocation = $GameLocation
@@ -47,14 +47,21 @@ func explore_mine(is_player_exploring:bool = true) -> void:
 		Player.Instance.input_disabled = true
 	
 	await get_tree().create_timer(10).timeout
-	#mesh.material_override.albedo_color = Color(255, 0, 255)
-	mesh.material_override = load("res://resources/materials/researched_mine.tres")
+	
+	change_mineral_color()
 	
 	if is_player_exploring:
 		Player.Instance.input_disabled = false
 	
 	explored = true
 
+
+func change_mineral_color() ->void:
+	# Change mineral color
+	var shader_mine:ShaderMaterial = mesh.get_active_material(0)
+	shader_mine.set_shader_parameter("special_mat", MATERIALS.is_special_material(material_id))
+	var col :Color= MATERIALS.search_by_id(material_id).material_color
+	shader_mine.set_shader_parameter("color", Vector4(col.r, col.g, col.b, 1.0))
 
 func place_machine(machine:MineMachine) -> bool:
 	if installed_machine != null:
@@ -90,3 +97,4 @@ func extract_special_material() -> void:
 		# Player gets the material and mine starts producing basic material
 		Player.Instance.materials.add_material(material_id, 1)
 		material_id = 1
+		change_mineral_color()

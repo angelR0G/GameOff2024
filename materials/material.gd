@@ -7,4 +7,5 @@ class_name GMaterial extends Node2D
 @export var energy_produced :int
 @export var special:bool = false
 @export var sprite :Texture2D
+@export var material_color :Color
 var discovered :bool = false

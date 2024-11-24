@@ -10,3 +10,4 @@ weight = 65
 extraction_time = 120.0
 energy_produced = 3
 sprite = ExtResource("2_g7wfv")
+material_color = Color(0.947918, 0.947918, 1.54018e-06, 1)

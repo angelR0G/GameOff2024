@@ -11,3 +11,4 @@ extraction_time = 60.0
 energy_produced = 1
 special = true
 sprite = ExtResource("2_640va")
+material_color = Color(0.188235, 0, 0.576471, 1)
