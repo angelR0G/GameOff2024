@@ -22,6 +22,7 @@ var menu_opened:bool = false
 @onready var upgrade_blueprint_container := $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer
 
 @onready var hud_materials_container : HBoxContainer = $MarginContainer/VBoxContainer/HUDMaterialsContainer
+@onready var hud_energy_label: Label = $MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HUDEnergyLabel
 
 
 func _ready() -> void:
@@ -37,8 +38,10 @@ func _ready() -> void:
 	
 	# Wait until BaseCamp is created to connect
 	while BaseCamp.Instance == null:
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(0.1).timeout
 	BaseCamp.Instance.materials_stored.connect(update_hud_materials)
+	BaseCamp.Instance.energy_updated.connect(update_hud_energy)
+	update_hud_energy()
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -223,3 +226,11 @@ func update_hud_materials() -> void:
 		# Display the amount stored in base
 		if BaseCamp.Instance != null:
 			new_icon.set_quantity(BaseCamp.Instance.materials.get_material_quantity_from_id(mat_id))
+
+
+func update_hud_energy() -> void:
+	var base := BaseCamp.Instance
+	if base == null:
+		return
+	
+	hud_energy_label.text = str(base.required_energy) + "/" + str(base.total_energy)

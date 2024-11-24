@@ -142,9 +142,9 @@ func place_machine_at_position(position2D:Vector2) -> bool:
 
 
 func place_machine(machine:Machine, pos:Vector3) -> void:
+	machine.global_position = pos
 	navigation_reference.add_child(machine)
 	update_navmesh()
-	machine.global_position = pos
 	machine_placed = true
 
 func update_navmesh() -> void:

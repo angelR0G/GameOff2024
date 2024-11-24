@@ -3,10 +3,12 @@ class_name BaseCamp extends Node3D
 const material_container := preload("res://materials/material_container.gd")
 
 signal materials_stored
+signal energy_updated
 
 static var Instance :BaseCamp = null
 
 var total_energy: int = 3
+var required_energy :int = 0 : set = _set_required_energy
 var materials :MaterialContainer = MaterialContainer.new()
 
 @onready var interaction := $InteractionTrigger
@@ -28,7 +30,13 @@ func store_materials(new_mat:MaterialContainer)->void:
 
 func add_substract_energy(energy:int) -> void:
 	total_energy+=energy
-	return
+	energy_updated.emit()
+
+
+func _set_required_energy(e : int) -> void:
+	required_energy = e
+	energy_updated.emit()
+
 
 func _interaction() -> void:
 	var motorbike :Motorbike = get_tree().get_first_node_in_group("bike")
