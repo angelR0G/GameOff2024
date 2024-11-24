@@ -2,6 +2,8 @@ class_name BaseCamp extends Node3D
 
 const material_container := preload("res://materials/material_container.gd")
 
+signal materials_stored
+
 static var Instance :BaseCamp = null
 
 var total_energy: int = 3
@@ -22,6 +24,7 @@ func _init() -> void:
 func store_materials(new_mat:MaterialContainer)->void:
 	materials.transfer_materials(new_mat)
 	mark_stored_materials_as_discovered()
+	materials_stored.emit()
 
 func add_substract_energy(energy:int) -> void:
 	total_energy+=energy
