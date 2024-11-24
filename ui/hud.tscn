@@ -191,6 +191,7 @@ upgrade_cost = Array[Dictionary]([{
 }])
 
 [node name="DrillUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
 layout_mode = 2
 upgrade_name = "Drill"
 upgrade_description = "Increases extraction speed and maximum capacity."
@@ -225,6 +226,7 @@ upgrade_cost = Array[Dictionary]([{
 }])
 
 [node name="EnergyStationUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
 layout_mode = 2
 upgrade_name = "Energy Station"
 upgrade_description = "Increases effective range."
@@ -240,6 +242,7 @@ upgrade_cost = Array[Dictionary]([{
 }])
 
 [node name="CollectorDroneUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
 layout_mode = 2
 upgrade_name = "Collector Drone"
 upgrade_description = "Increases maximum capacity, movement speed and effective range."
@@ -260,6 +263,7 @@ upgrade_cost = Array[Dictionary]([{
 }])
 
 [node name="ExplorerDroneUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
 layout_mode = 2
 upgrade_name = "Explorer Drone"
 upgrade_description = "Increases effective range and the maximum number of mines that can explore."
@@ -280,6 +284,7 @@ upgrade_cost = Array[Dictionary]([{
 }])
 
 [node name="TransportDroneUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
 layout_mode = 2
 upgrade_name = "Transport Drone"
 upgrade_description = "Increases drone speed."
