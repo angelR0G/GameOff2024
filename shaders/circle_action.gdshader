@@ -1,14 +1,12 @@
 shader_type spatial;
 
-//uniform float radius = 0.5;
-//uniform float inner_radius = 0.2;
-//uniform vec3 center_color:source_color = vec3(1.0, 1.0, 1.0);
-//uniform vec3 border_color:source_color = vec3(1.0, 0.66, 0.0);
 uniform vec4 color : source_color = vec4(1.0);
 uniform float diameter = 1.0; // Circle Diameter
 uniform float thickness = 0.05; // Outline thickness
 uniform float frequency = 20.0; // Controls the number of dots
 uniform float phase = 0.0; // Controls the rotation of the circle
+uniform float rad = 1.0;
+
 
 void vertex() {
 	// Called for every vertex the material is visible on.
@@ -19,7 +17,7 @@ void fragment() {
 
 	vec2 pos = UV - vec2(0.5);
 	float outer_radius = diameter / 2.0;
-	float inner_radius = outer_radius - thickness;
+	float inner_radius = outer_radius - thickness/rad;
 	float outer_circle = step(length(pos), outer_radius);
 	float inner_circle = step(length(pos), inner_radius);
 

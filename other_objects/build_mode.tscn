@@ -22,6 +22,7 @@ shader_parameter/diameter = 1.0
 shader_parameter/thickness = 0.05
 shader_parameter/frequency = 10.0
 shader_parameter/phase = 0.0
+shader_parameter/rad = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ljna7"]
 material = SubResource("ShaderMaterial_s8xwi")
@@ -32,14 +33,6 @@ script = ExtResource("1_063hw")
 
 [node name="PreviewMachine" type="MeshInstance3D" parent="."]
 material_override = ExtResource("2_i70d5")
-
-[node name="CameraPivot" type="Node3D" parent="."]
-transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 0, 0, 0)
-
-[node name="Camera3D" type="Camera3D" parent="CameraPivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
-projection = 1
-size = 25.0
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1e+06, 0)
@@ -69,4 +62,7 @@ patch_margin_right = 8
 patch_margin_bottom = 8
 
 [node name="ActionRadiusMesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("PlaneMesh_ljna7")
+
+[node name="CameraTarget" type="Node3D" parent="."]
