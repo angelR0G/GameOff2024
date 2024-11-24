@@ -1,6 +1,7 @@
 class_name Machine extends Node3D
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var energy_particles: GPUParticles3D = $GPUParticles3D
 
 enum Type {
 	Drill,
@@ -33,7 +34,8 @@ func set_machine_powered(new_state:bool) -> void:
 	if powered != new_state:
 		powered = new_state
 		_check_machine_new_state(new_state)
-
+	if energy_particles != null:
+		energy_particles.emitting = powered
 
 func display_interactions() -> void:
 	var interactions_ui := InteractionsDisplay.Instance

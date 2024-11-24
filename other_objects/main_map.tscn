@@ -62,17 +62,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.397, -1.48456, 215.777)
 material_id = 12
 
 [node name="EnergyStation" parent="NavigationRegion3D" instance=ExtResource("6_xuiti")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.591, -1.90735e-06, 141.37)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.591, -1.2, 141.37)
 
 [node name="BaseCamp" parent="NavigationRegion3D" instance=ExtResource("7_xbics")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.626, -1.30797, 256.596)
 
 [node name="ExplorerDroneStation" parent="NavigationRegion3D" instance=ExtResource("8_6pe1t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.186, 0, 211.187)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.186, -1.2, 211.187)
 collision_mask = 1
 
 [node name="EnergyExtender" parent="NavigationRegion3D" instance=ExtResource("9_1ysv7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.572, 0, 188.447)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.572, -1.2, 188.447)
 
 [node name="CameraPivot" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_avipw")]
 transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 127.064, -0.852147, 247.438)

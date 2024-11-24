@@ -89,6 +89,7 @@ libraries = {
 }
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
 amount = 4
 process_material = ExtResource("2_ujyjo")
 draw_pass_1 = SubResource("QuadMesh_umrr8")

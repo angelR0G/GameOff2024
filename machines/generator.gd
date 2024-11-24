@@ -14,6 +14,7 @@ func _init() -> void:
 
 func on_install(mine:Mine) -> void:
 	active = true
+	powered = true
 	
 	# Get mine's material and update global energy
 	material_id = mine.material_id
