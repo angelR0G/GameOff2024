@@ -1,6 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwhsrv7idketp"]
+[gd_scene load_steps=12 format=3 uid="uid://dwhsrv7idketp"]
 
 [ext_resource type="Script" path="res://machines/machine_base.gd" id="1_ufmo7"]
+[ext_resource type="Material" uid="uid://dut3lslwjjp2s" path="res://particles/machine_energy.tres" id="2_ujyjo"]
+[ext_resource type="Texture2D" uid="uid://dj1k4wl104btl" path="res://assets/sprites/thunder.png" id="3_ey466"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ovwt0"]
 
@@ -45,6 +47,21 @@ _data = {
 "working": SubResource("Animation_wam72")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2m0uq"]
+transparency = 1
+albedo_texture = ExtResource("3_ey466")
+emission_enabled = true
+emission = Color(0.658824, 0.807843, 0, 1)
+emission_energy_multiplier = 1.7
+emission_texture = ExtResource("3_ey466")
+texture_filter = 0
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_umrr8"]
+material = SubResource("StandardMaterial3D_2m0uq")
+size = Vector2(0.2, 0.2)
+
 [node name="Machine" type="StaticBody3D"]
 script = ExtResource("1_ufmo7")
 
@@ -70,3 +87,8 @@ shape = SubResource("BoxShape3D_hwrio")
 libraries = {
 "": SubResource("AnimationLibrary_m2ik1")
 }
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+amount = 4
+process_material = ExtResource("2_ujyjo")
+draw_pass_1 = SubResource("QuadMesh_umrr8")

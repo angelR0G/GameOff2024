@@ -14,4 +14,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 material_override = ExtResource("4_vdtr0")
 mesh = ExtResource("3_ij47e")
 
+[node name="GPUParticles3D" parent="." index="5"]
+amount = 8
+
 [editable path="InteractionTrigger"]
