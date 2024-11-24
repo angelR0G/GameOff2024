@@ -21,7 +21,8 @@ func _init() -> void:
 
 func _ready() -> void:
 	interaction.interaction_function = _interaction
-	
+	powered = true
+	active = true
 	update_energy_radius()
 
 
@@ -40,7 +41,7 @@ func update_energy_radius() -> void:
 func deactivate_all_connected_machines() -> void:
 	if BaseCamp.Instance.total_energy < calculate_energy_cost():
 		for machine in connected_machines:
-			if !self:
+			if !self && machine.energy_cost > 0:
 				machine.set_machine_powered(false)
 
 	
@@ -55,18 +56,26 @@ func calculate_energy_cost() -> int:
 func machine_already_connected(new_machine:Machine) -> int:
 	return connected_machines.find(new_machine)
 	
-func display_interactions() -> void:
-	var interactions_ui := InteractionsDisplay.Instance
+#func display_interactions() -> void:
+	#var interactions_ui := InteractionsDisplay.Instance
+	#
+	#if active:
+		#interactions_ui.add_interaction("Turn Off", set_machine_energy_active.bind(false))
+	#else:
+		#interactions_ui.add_interaction("Turn On", set_machine_energy_active.bind(true))
+
+func _on_start_working() -> void:
+	super()
 	
-	if active:
-		interactions_ui.add_interaction("Turn Off", set_machine_energy_active.bind(false))
-	else:
-		interactions_ui.add_interaction("Turn On", set_machine_energy_active.bind(true))
+	set_machine_energy_active(true)
+
+func _on_stop_working() -> void:
+	super()
+	
+	set_machine_energy_active(false)
 
 func set_machine_energy_active(state:bool)-> void:
-	set_machine_active(state)
 	for machine in connected_machines:
-		#machine.set_machine_active(state)
 		machine.set_machine_powered(state)
 
 func _interaction() -> void:

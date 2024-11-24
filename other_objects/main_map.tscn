@@ -1,16 +1,16 @@
 [gd_scene load_steps=15 format=3 uid="uid://b4orgig5vucs"]
 
-[ext_resource type="MeshLibrary" uid="uid://cxxnks2uerslc" path="res://resources/mesh_library.tres" id="3_b48o4"]
-[ext_resource type="NavigationMesh" uid="uid://dh4f0g6kfwjtn" path="res://resources/navigation.tres" id="4_anflr"]
-[ext_resource type="Script" path="res://other_objects/navigation_reference.gd" id="4_hsajl"]
-[ext_resource type="PackedScene" uid="uid://bgdwweowv3rlk" path="res://other_objects/mine.tscn" id="5_jvwno"]
-[ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="6_ilm4o"]
-[ext_resource type="PackedScene" uid="uid://0cfxskcwk864" path="res://machines/energy_station.tscn" id="6_xuiti"]
-[ext_resource type="PackedScene" uid="uid://folm8xiajm5v" path="res://machines/motorbike.tscn" id="7_qb53i"]
-[ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="7_xbics"]
-[ext_resource type="PackedScene" uid="uid://cof3bpt74mx06" path="res://machines/explorer_drone_station.tscn" id="8_6pe1t"]
-[ext_resource type="PackedScene" uid="uid://co27ray1b76sa" path="res://other_objects/isometric_camera.tscn" id="8_avipw"]
-[ext_resource type="PackedScene" uid="uid://dawtwmq3by4w7" path="res://machines/energy_extender.tscn" id="9_1ysv7"]
+[ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_6ms4c"]
+[ext_resource type="PackedScene" uid="uid://folm8xiajm5v" path="res://machines/motorbike.tscn" id="2_sjjn5"]
+[ext_resource type="NavigationMesh" uid="uid://dh4f0g6kfwjtn" path="res://resources/navigation.tres" id="3_4ase6"]
+[ext_resource type="Script" path="res://other_objects/navigation_reference.gd" id="4_g7i58"]
+[ext_resource type="MeshLibrary" uid="uid://cxxnks2uerslc" path="res://resources/mesh_library.tres" id="5_qk3jo"]
+[ext_resource type="PackedScene" uid="uid://bgdwweowv3rlk" path="res://other_objects/mine.tscn" id="6_117xo"]
+[ext_resource type="PackedScene" uid="uid://0cfxskcwk864" path="res://machines/energy_station.tscn" id="7_l1nla"]
+[ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="8_h4axl"]
+[ext_resource type="PackedScene" uid="uid://cof3bpt74mx06" path="res://machines/explorer_drone_station.tscn" id="9_fwfkw"]
+[ext_resource type="PackedScene" uid="uid://dawtwmq3by4w7" path="res://machines/energy_extender.tscn" id="10_q5ulr"]
+[ext_resource type="PackedScene" uid="uid://co27ray1b76sa" path="res://other_objects/isometric_camera.tscn" id="11_607wd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pxk6m"]
 
@@ -29,18 +29,18 @@ environment = SubResource("Environment_pja6g")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, 3.86973e-09, 8.73371e-08, 4.37114e-08, -0.843044, 0.537844, 7.57103e-08, 0.537844, 0.843044, 7.73001, 68, 3)
 
-[node name="Player" parent="." instance=ExtResource("6_ilm4o")]
+[node name="Player" parent="." instance=ExtResource("1_6ms4c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 127.064, -0.852147, 247.438)
 
-[node name="Motorbike" parent="." instance=ExtResource("7_qb53i")]
+[node name="Motorbike" parent="." instance=ExtResource("2_sjjn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.112, -0.225737, 254.748)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = ExtResource("4_anflr")
-script = ExtResource("4_hsajl")
+navigation_mesh = ExtResource("3_4ase6")
+script = ExtResource("4_g7i58")
 
 [node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
-mesh_library = ExtResource("3_b48o4")
+mesh_library = ExtResource("5_qk3jo")
 cell_size = Vector3(7, 1, 7)
 cell_octant_size = 1
 collision_layer = 3
@@ -49,30 +49,31 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, -2, 0)
 
-[node name="Mine" parent="NavigationRegion3D" instance=ExtResource("5_jvwno")]
+[node name="Mine" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.5569, -1.48456, 269.323)
 material_id = 2
 
-[node name="Mine2" parent="NavigationRegion3D" instance=ExtResource("5_jvwno")]
+[node name="Mine2" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.8652, -1.48456, 202.81)
 material_id = 1
 
-[node name="Mine3" parent="NavigationRegion3D" instance=ExtResource("5_jvwno")]
+[node name="Mine3" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 109.397, -1.48456, 215.777)
 material_id = 12
 
-[node name="EnergyStation" parent="NavigationRegion3D" instance=ExtResource("6_xuiti")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.591, -1.90735e-06, 141.37)
+[node name="EnergyStation" parent="NavigationRegion3D" instance=ExtResource("7_l1nla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.591, -1.2, 141.37)
 
-[node name="BaseCamp" parent="NavigationRegion3D" instance=ExtResource("7_xbics")]
+[node name="BaseCamp" parent="NavigationRegion3D" instance=ExtResource("8_h4axl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.626, -1.30797, 256.596)
 
-[node name="ExplorerDroneStation" parent="NavigationRegion3D" instance=ExtResource("8_6pe1t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.186, 0, 211.187)
+[node name="ExplorerDroneStation" parent="NavigationRegion3D" instance=ExtResource("9_fwfkw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 153.186, -1.2, 211.187)
 collision_mask = 1
 
-[node name="EnergyExtender" parent="NavigationRegion3D" instance=ExtResource("9_1ysv7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.572, 0, 188.447)
+[node name="EnergyExtender" parent="NavigationRegion3D" instance=ExtResource("10_q5ulr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.572, -1.2, 188.447)
 
-[node name="CameraPivot" parent="." node_paths=PackedStringArray("target") instance=ExtResource("8_avipw")]
+[node name="CameraPivot" parent="." node_paths=PackedStringArray("target") instance=ExtResource("11_607wd")]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 127.064, -0.852147, 247.438)
 target = NodePath("../Player")

@@ -141,11 +141,15 @@ func place_machine_at_position(position2D:Vector2) -> bool:
 		return false
 
 
-func place_machine(machine:Machine, position:Vector3) -> void:
+func place_machine(machine:Machine, pos:Vector3) -> void:
 	navigation_reference.add_child(machine)
-	navigation_reference.bake_navigation_mesh()
-	machine.global_position = position
+	update_navmesh()
+	machine.global_position = pos
 	machine_placed = true
+
+func update_navmesh() -> void:
+	await get_tree().create_timer(0.5).timeout
+	navigation_reference.bake_navigation_mesh()
 
 func check_if_can_be_placed(pos:Vector3) -> bool:
 	var bodies := await get_bodies_in_area(pos, 5.0)

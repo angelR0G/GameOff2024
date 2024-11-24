@@ -13,15 +13,13 @@ func _init() -> void:
 	active = false
 
 func on_install(mine:Mine) -> void:
-	active = true
-	
 	# Get mine's material and update global energy
 	material_id = mine.material_id
-	increase_base_energy()
+	active = true
+	powered = true
 
 func on_destroy() -> void:
-	# Update global energy and destroy object
-	decrease_base_energy()
+	active = false
 	queue_free()
 
 func increase_base_energy() -> void:
