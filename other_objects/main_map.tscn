@@ -53,6 +53,10 @@ metadata/_editor_floor_ = Vector3(0, -2, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.5569, -1.48456, 269.323)
 material_id = 2
 
+[node name="Mine4" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 115.185, -1.48456, 293.51)
+material_id = 2
+
 [node name="Mine2" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.8652, -1.48456, 202.81)
 material_id = 1
