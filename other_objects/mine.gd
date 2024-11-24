@@ -1,5 +1,8 @@
 class_name Mine extends StaticBody3D
 
+const EXPLORE_UI := preload("res://ui/explore_ui.tscn")
+const EXPLORATION_TIME := 10.0
+
 @export var material_id :int = 0
 var explored :bool = false
 var installed_machine :MineMachine = null
@@ -45,9 +48,12 @@ func explore_mine(is_player_exploring:bool = true) -> void:
 	
 	if is_player_exploring:
 		Player.Instance.input_disabled = true
+		var explore_ui := EXPLORE_UI.instantiate()
+		Player.Instance.hud.add_child(explore_ui)
+		await  explore_ui.start_exploration(EXPLORATION_TIME)
+	else:
+		await get_tree().create_timer(EXPLORATION_TIME).timeout
 	
-	await get_tree().create_timer(10).timeout
-	#mesh.material_override.albedo_color = Color(255, 0, 255)
 	mesh.material_override = load("res://resources/materials/researched_mine.tres")
 	
 	if is_player_exploring:
