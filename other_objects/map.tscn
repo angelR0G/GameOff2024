@@ -1,14 +1,14 @@
 [gd_scene load_steps=19 format=3 uid="uid://b280biq3pyqki"]
 
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_0ablw"]
-[ext_resource type="NavigationMesh" uid="uid://dh4f0g6kfwjtn" path="res://resources/navigation.tres" id="2_iirlk"]
+[ext_resource type="NavigationMesh" uid="uid://crg1rr88drtng" path="res://resources/navigation.tres" id="2_iirlk"]
 [ext_resource type="Texture2D" uid="uid://bd0wpcadrq5yw" path="res://icon.svg" id="2_il2m7"]
 [ext_resource type="PackedScene" uid="uid://bgdwweowv3rlk" path="res://other_objects/mine.tscn" id="3_hiqea"]
 [ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="4_tmabt"]
 [ext_resource type="PackedScene" uid="uid://0cfxskcwk864" path="res://machines/energy_station.tscn" id="5_y2tle"]
 [ext_resource type="PackedScene" uid="uid://cof3bpt74mx06" path="res://machines/explorer_drone_station.tscn" id="6_8qcia"]
 [ext_resource type="PackedScene" uid="uid://dawtwmq3by4w7" path="res://machines/energy_extender.tscn" id="7_8l0j6"]
-[ext_resource type="PackedScene" uid="uid://7wsq8muok7u3" path="res://other_objects/barrier.tscn" id="8_5j6gh"]
+[ext_resource type="PackedScene" path="res://other_objects/barrier.tscn" id="8_5j6gh"]
 [ext_resource type="PackedScene" uid="uid://folm8xiajm5v" path="res://machines/motorbike.tscn" id="8_mqsru"]
 [ext_resource type="PackedScene" uid="uid://co27ray1b76sa" path="res://other_objects/isometric_camera.tscn" id="9_kiutb"]
 

@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=14 format=4 uid="uid://cxxnks2uerslc"]
+[gd_resource type="MeshLibrary" load_steps=14 format=4 uid="uid://cmivlmx2pytjl"]
 
 [ext_resource type="Material" uid="uid://doxp0nbo12s3i" path="res://assets/meshes/materials/mountain.tres" id="1_0j1kp"]
 [ext_resource type="Material" uid="uid://doa401ouk6o5p" path="res://assets/meshes/materials/big_mountain.tres" id="2_uqy5s"]
