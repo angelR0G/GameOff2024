@@ -18,17 +18,24 @@ func _init() -> void:
 	active = false
 	can_be_placed_on_world = true
 
+
 func _ready() -> void:
 	interaction.interaction_function = _interaction
 	
+	update_energy_radius()
+
+
+func _on_upgrade() -> void:
+	radius += 5.0
+	
+	update_energy_radius()
+
+
+func update_energy_radius() -> void:
 	var collider:SphereShape3D = SphereShape3D.new()
 	collider.set_radius(radius)
 	energy_collider.set_shape(collider)
-	#connected_machines.append(self)
-	
-	## Draw energy radius for debug
-	#debug_mesh.mesh = energy_collider.shape.get_debug_mesh()
-	return
+
 
 func deactivate_all_connected_machines() -> void:
 	if BaseCamp.Instance.total_energy < calculate_energy_cost():

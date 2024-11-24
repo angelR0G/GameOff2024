@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5quukjq8lxp0"]
+
+[ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_egfrc"]
+[ext_resource type="Script" path="res://machines/disruptor.gd" id="2_c05tl"]
+
+[node name="DisruptionDevice" instance=ExtResource("1_egfrc")]
+script = ExtResource("2_c05tl")

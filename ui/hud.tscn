@@ -191,20 +191,15 @@ upgrade_cost = Array[Dictionary]([{
 }])
 
 [node name="DrillUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
 layout_mode = 2
 upgrade_name = "Drill"
 upgrade_description = "Increases extraction speed and maximum capacity."
 upgrade_cost = Array[Dictionary]([{
 1: 10
 }, {
-1: 20,
-2: 5
-}, {
-1: 50,
-2: 20
-}, {
-1: 80,
-2: 20
+1: 30,
+2: 10
 }, {
 2: 30,
 3: 5
@@ -228,6 +223,79 @@ upgrade_cost = Array[Dictionary]([{
 7: 50,
 8: 10,
 9: 10
+}])
+
+[node name="EnergyStationUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
+layout_mode = 2
+upgrade_name = "Energy Station"
+upgrade_description = "Increases effective range."
+upgrade_cost = Array[Dictionary]([{
+3: 30,
+4: 20
+}, {
+3: 60,
+5: 5
+}, {
+4: 60,
+6: 10
+}])
+
+[node name="CollectorDroneUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
+layout_mode = 2
+upgrade_name = "Collector Drone"
+upgrade_description = "Increases maximum capacity, movement speed and effective range."
+upgrade_cost = Array[Dictionary]([{
+3: 80,
+5: 35,
+6: 15
+}, {
+1: 200,
+5: 40,
+6: 20
+}, {
+4: 100,
+5: 50,
+6: 30
+}, {
+7: 50
+}])
+
+[node name="ExplorerDroneUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
+layout_mode = 2
+upgrade_name = "Explorer Drone"
+upgrade_description = "Increases effective range and the maximum number of mines that can explore."
+upgrade_cost = Array[Dictionary]([{
+1: 60,
+4: 5
+}, {
+2: 40,
+4: 10
+}, {
+3: 40,
+4: 15
+}, {
+4: 20,
+6: 5
+}, {
+4: 50
+}])
+
+[node name="TransportDroneUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
+visible = false
+layout_mode = 2
+upgrade_name = "Transport Drone"
+upgrade_description = "Increases drone speed."
+upgrade_cost = Array[Dictionary]([{
+5: 30,
+6: 15,
+7: 20
+}, {
+5: 50,
+6: 40,
+7: 35
 }])
 
 [node name="MotorbikeUpgrade" parent="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer" instance=ExtResource("3_tecb0")]
@@ -261,4 +329,8 @@ upgrade_cost = Array[Dictionary]([{
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/UpgradeButton" to="." method="set_menu_visibility"]
 [connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/EngineerUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/EngineerUpgrade" method="upgrade_player"]
 [connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/DrillUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/DrillUpgrade" method="upgrade_drill"]
-[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/MotorbikeUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/MotorbikeUpgrade" method="upgrade_player"]
+[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/EnergyStationUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/EnergyStationUpgrade" method="upgrade_energy_station"]
+[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/CollectorDroneUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/CollectorDroneUpgrade" method="upgrade_collector_drone"]
+[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/ExplorerDroneUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/ExplorerDroneUpgrade" method="upgrade_explorer_drone"]
+[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/TransportDroneUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/TransportDroneUpgrade" method="upgrade_transport_drone"]
+[connection signal="upgrade_created" from="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/MotorbikeUpgrade" to="Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/MotorbikeUpgrade" method="upgrade_motorbike"]

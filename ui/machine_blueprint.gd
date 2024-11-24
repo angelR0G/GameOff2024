@@ -1,6 +1,6 @@
 class_name MachineBlueprint extends Blueprint
 
-signal machine_created
+signal machine_created(machine_type:Machine.Type)
 
 var machine_type:Machine.Type
 var machine :Machine
@@ -22,4 +22,4 @@ func build_machine() -> void:
 	
 	blueprint_cost_display.remove_cost_from_player()
 	Player.Instance.machines.add_machine_by_type(machine._type)
-	machine_created.emit()
+	machine_created.emit(machine_type)

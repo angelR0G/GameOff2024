@@ -3,7 +3,7 @@ class_name Drone extends CharacterBody3D
 @warning_ignore("unused_signal")
 signal drone_arrived_to_station
 
-var speed:float = 2.0
+var speed:float = 2.0 : set = set_speed
 var station:DroneStation = null
 var moving_to_target:bool = false
 
@@ -13,6 +13,12 @@ var moving_to_target:bool = false
 func _ready() -> void:
 	gl_target.game_location_reached.connect(on_target_enter)
 	nav_agent.max_speed = speed
+
+
+func set_speed(new_speed:float) -> void:
+	speed = new_speed
+	if nav_agent != null:
+		nav_agent.max_speed = speed
 
 
 func return_to_station() -> void:

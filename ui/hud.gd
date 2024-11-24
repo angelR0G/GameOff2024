@@ -25,7 +25,8 @@ func _ready() -> void:
 	for machine_type in Machine.Type.values():
 		var machine_blueprint :MachineBlueprint = MACHINE_BUILD_ICON.instantiate()
 		machine_blueprint.machine_type = machine_type
-		machine_blueprint.machine_created.connect(update_build_menu)
+		machine_blueprint.machine_created.connect(update_build_menu.unbind(1))
+		machine_blueprint.machine_created.connect(unlock_upgrade)
 		machine_blueprint_container.add_child(machine_blueprint)
 	
 	for upgrade:UpgradeBlueprint in upgrade_blueprint_container.get_children():
@@ -150,7 +151,11 @@ func update_build_menu() -> void:
 		return
 	
 	for child:MachineBlueprint in machine_blueprint_container.get_children():
-		child.update_blueprint_info()
+		if child.blueprint_cost_display.are_all_materials_discovered():
+			child.update_blueprint_info()
+			child.visible = true
+		else:
+			child.visible = false
 
 
 # # #
@@ -168,3 +173,23 @@ func update_upgrade_menu() -> void:
 	
 	for child:UpgradeBlueprint in upgrade_blueprint_container.get_children():
 		child.update_blueprint_info()
+	
+	# Engineer and motorbike upgrades only available when materials are discovered
+	var player_upgrade :UpgradeBlueprint = $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/EngineerUpgrade
+	var motorbike_upgrade :UpgradeBlueprint = $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/MotorbikeUpgrade
+	
+	player_upgrade.visible = player_upgrade.current_level > 0 or player_upgrade.blueprint_cost_display.are_all_materials_discovered()
+	motorbike_upgrade.visible = motorbike_upgrade.current_level > 0 or motorbike_upgrade.blueprint_cost_display.are_all_materials_discovered()
+
+
+func unlock_upgrade(machine_type:Machine.Type) -> void:
+	if machine_type == Machine.Type.Drill:
+		$Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/DrillUpgrade.visible = true
+	elif machine_type == Machine.Type.EnergyStation:
+		$Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/EnergyStationUpgrade.visible = true
+	elif machine_type == Machine.Type.CollectorDroneStation:
+		$Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/CollectorDroneUpgrade.visible = true
+	elif machine_type == Machine.Type.ExplorerDroneStation:
+		$Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/ExplorerDroneUpgrade.visible = true
+	elif machine_type == Machine.Type.TransportDroneStation:
+		$Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/TransportDroneUpgrade.visible = true

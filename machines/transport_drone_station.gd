@@ -2,7 +2,7 @@ class_name TransportDroneStation extends DroneStation
 
 const DRONE_SCENE := preload("res://machines/transport_drone.tscn")
 
-static var drone_max_weight :int = 1000
+static var drone_max_weight :int = 2000
 
 var nearby_stations :Array[CollectorDroneStation]
 var last_station_index :int = -1
@@ -20,6 +20,7 @@ func _init() -> void:
 	energy_cost = 2
 	
 	radius = 50.0
+	speed = 4.0
 
 
 func _ready() -> void:
@@ -45,6 +46,14 @@ func save_stations_in_radius() -> void:
 	var stations_in_radius :Array[Node3D] = (await BUILDMODE.get_bodies_in_area(global_position, radius)).filter(is_a_valid_station)
 	for station:Node3D in stations_in_radius:
 		add_nearby_station(station)
+
+
+func _on_upgrade() -> void:
+	# Return drone to station to prevent errors
+	if not is_drone_in_station:
+		drone.return_to_station()
+	
+	drone.speed += 4.0
 
 
 func add_nearby_station(station:Node3D) -> void:

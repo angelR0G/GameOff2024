@@ -9,7 +9,8 @@ enum Type {
 	EnergyExtender,
 	ExplorerDroneStation,
 	CollectorDroneStation,
-	TransportDroneStation
+	TransportDroneStation,
+	Disruptor,
 }
 
 @warning_ignore("unused_private_class_variable")

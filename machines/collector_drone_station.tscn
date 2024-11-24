@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://d2ad2c6jamqv7" path="res://machines/drone_station.tscn" id="1_d48rs"]
 [ext_resource type="Script" path="res://machines/collector_drone_station.gd" id="2_32ema"]
 
-[node name="CollectorDroneStation" instance=ExtResource("1_d48rs")]
+[node name="CollectorDroneStation" groups=["collector_drones"] instance=ExtResource("1_d48rs")]
 script = ExtResource("2_32ema")
 
 [node name="MachineMesh" parent="." index="0"]

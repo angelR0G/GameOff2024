@@ -71,16 +71,36 @@ func upgrade_player() -> void:
 
 
 func upgrade_drill() -> void:
-	Drill.max_weight += 20
-	Drill.mining_speed += 0.3
+	Drill.max_weight += 30
+	Drill.mining_speed += 0.375
 	get_tree().call_group("drills", "_on_upgraded")
 
 
 func upgrade_motorbike() -> void:
 	var motorbike :Motorbike = get_tree().get_first_node_in_group("bike")
 	
-	if current_level == 0:
+	if current_level == 1:
 		motorbike.broken = false
 		set_blueprint_description("Increases speed and maximum weight.")
 	else:
 		motorbike._on_upgrade()
+
+
+func upgrade_energy_station() -> void:
+	get_tree().call_group("energy_stations", "_on_upgrade")
+
+
+func upgrade_explorer_drone() -> void:
+	ExplorerDroneStation.max_explorable_mines += 1
+	get_tree().call_group("explorer_drones", "_on_upgrade")
+
+
+func upgrade_collector_drone() -> void:
+	CollectorDroneStation.storage_max_weight += 500
+	CollectorDroneStation.drone_max_weight += 40
+	
+	get_tree().call_group("collector_drones", "_on_upgrade")
+
+
+func upgrade_transport_drone() -> void:
+	get_tree().call_group("transport_drones", "_on_upgrade")

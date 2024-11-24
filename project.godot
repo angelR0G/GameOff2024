@@ -33,6 +33,10 @@ import/blender/enabled=false
 
 bike=""
 drills=""
+energy_stations=""
+collector_drones=""
+explorer_drones=""
+transport_drones=""
 
 [input]
 

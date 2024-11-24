@@ -3,7 +3,7 @@ class_name ExplorerDroneStation extends DroneStation
 const DRONE_SCENE := preload("res://machines/explorer_drone.tscn")
 
 var explored_mines_count :int = 0
-var max_explorable_mines :int = 3
+static var max_explorable_mines :int = 3
 var nearby_mines :Array[Mine]
 
 
@@ -17,6 +17,7 @@ func _init() -> void:
 	energy_cost = 0
 	
 	radius = 50.0
+	speed = 4.0
 
 
 func _ready() -> void:
@@ -72,6 +73,15 @@ func can_continue_exploring_mines() -> bool:
 
 func increase_explored_mines_count() -> void:
 	explored_mines_count += 1
+
+
+func _on_upgrade() -> void:
+	# Return drone to station to prevent errors
+	if not is_drone_in_station:
+		drone.return_to_station()
+	
+	radius += 20.0
+	save_mines_in_radius()
 
 
 func display_interactions() -> void:
