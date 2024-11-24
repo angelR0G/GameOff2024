@@ -150,7 +150,11 @@ func update_build_menu() -> void:
 		return
 	
 	for child:MachineBlueprint in machine_blueprint_container.get_children():
-		child.update_blueprint_info()
+		if child.blueprint_cost_display.are_all_materials_discovered():
+			child.update_blueprint_info()
+			child.visible = true
+		else:
+			child.visible = false
 
 
 # # #

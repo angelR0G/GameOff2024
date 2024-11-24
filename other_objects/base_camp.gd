@@ -21,8 +21,8 @@ func _init() -> void:
 
 func store_materials(new_mat:MaterialContainer)->void:
 	materials.transfer_materials(new_mat)
-	return
-	
+	mark_stored_materials_as_discovered()
+
 func add_substract_energy(energy:int) -> void:
 	total_energy+=energy
 	return
@@ -42,3 +42,8 @@ func _interaction() -> void:
 	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()
 	await interactions_ui.display_closed
+
+
+func mark_stored_materials_as_discovered() -> void:
+	for mat_id in materials.get_all_keys():
+		MATERIALS.search_by_id(mat_id).discovered = true
