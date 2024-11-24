@@ -1,6 +1,7 @@
 class_name Hud extends CanvasLayer
 
 const MATERIAL_ICON := preload("res://ui/material_icon.tscn")
+const HUD_MAT_ICON := preload("res://ui/hud_material_icon.tscn")
 const MACHINE_INV_ICON := preload("res://ui/machine_inventory_icon.tscn")
 const MACHINE_BUILD_ICON := preload("res://ui/machine_blueprint.tscn")
 
@@ -20,6 +21,8 @@ var menu_opened:bool = false
 @onready var upgrade_menu_display := $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay
 @onready var upgrade_blueprint_container := $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer
 
+@onready var hud_materials_container : HBoxContainer = $MarginContainer/VBoxContainer/HUDMaterialsContainer
+
 
 func _ready() -> void:
 	for machine_type in Machine.Type.values():
@@ -31,6 +34,11 @@ func _ready() -> void:
 	
 	for upgrade:UpgradeBlueprint in upgrade_blueprint_container.get_children():
 		upgrade.upgrade_created.connect(update_upgrade_menu)
+	
+	# Wait until BaseCamp is created to connect
+	while BaseCamp.Instance == null:
+		await get_tree().create_timer(1.0).timeout
+	BaseCamp.Instance.materials_stored.connect(update_hud_materials)
 
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -193,3 +201,25 @@ func unlock_upgrade(machine_type:Machine.Type) -> void:
 		$Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/ExplorerDroneUpgrade.visible = true
 	elif machine_type == Machine.Type.TransportDroneStation:
 		$Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer/TransportDroneUpgrade.visible = true
+
+
+# # #
+# HUD
+# # #
+func update_hud_materials() -> void:
+	for child in hud_materials_container.get_children():
+		child.queue_free()
+	
+	# Create an icon for each discovered material
+	for mat_id in MATERIALS.all_materials:
+		var mat :GMaterial = MATERIALS.all_materials[mat_id]
+		if not mat.discovered:
+			continue
+		
+		var new_icon :HudMatIcon = HUD_MAT_ICON.instantiate()
+		hud_materials_container.add_child(new_icon)
+		new_icon.set_texture(mat.sprite)
+		
+		# Display the amount stored in base
+		if BaseCamp.Instance != null:
+			new_icon.set_quantity(BaseCamp.Instance.materials.get_material_quantity_from_id(mat_id))
