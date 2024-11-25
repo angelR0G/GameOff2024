@@ -52,7 +52,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func set_menu_visibility(new_state:bool) -> void:
 	var tween := get_tree().create_tween()
-	tween.tween_property(menu_node, "position", Vector2(0, 0 if new_state else 260), 0.5)
+	tween.tween_property(menu_node, "position", Vector2(0, 0 if new_state else 260), 0.5).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
 	
 	# Disable player input when interacting with the menu
 	Player.Instance.input_disabled = new_state
