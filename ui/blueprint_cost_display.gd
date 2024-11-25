@@ -45,6 +45,9 @@ func remove_cost_from_player() -> void:
 	for material_id in _cost:
 		player_materials.remove_material(material_id, _cost[material_id])
 	
+	if Player.Instance != null:
+		Player.Instance.hud.update_hud_materials()
+	
 
 func are_all_materials_discovered() -> bool:
 	for mat_id in _cost:
