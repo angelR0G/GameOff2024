@@ -52,8 +52,22 @@ func collect_materials(container:MaterialContainer) -> void:
 
 
 func mine_materials() -> void:
-	if mining_timer.is_stopped() and has_capacity_for_more_materials():
-		mining_timer.start()
+	if not is_working():
+		return
+	
+	if mining_timer.is_stopped(): 
+		if has_capacity_for_more_materials():
+			mining_timer.start()
+			update_drill_full_state(false)
+		else:
+			update_drill_full_state(true)
+
+
+func update_drill_full_state(is_full:bool) -> void:
+	if is_full:
+		anim.stop()
+	else:
+		anim.play("working")
 
 
 func _on_material_extracted() -> void:
@@ -88,11 +102,13 @@ func display_interactions() -> void:
 func _on_start_working() -> void:
 	super()
 	
-	if mining_timer and has_capacity_for_more_materials():
+	if mining_timer and mining_timer.paused:
 		mining_timer.paused = false
+	else:
+		mine_materials()
 
 func _on_stop_working() -> void:
 	super()
 	
-	if mining_timer and not mining_timer.paused:
+	if mining_timer and not mining_timer.is_stopped():
 		mining_timer.paused = true
