@@ -4,5 +4,6 @@
 
 [node name="InteractionButton" type="Button"]
 custom_minimum_size = Vector2(200, 40)
+pivot_offset = Vector2(100, 20)
 theme = ExtResource("1_nfgcl")
 text = "InteractionText"
