@@ -31,7 +31,9 @@ func _interaction() -> void:
 				if machine != null:
 					place_machine(machine)
 			
-			interactions_ui.add_interaction("Place Drill", place_machine_by_type.bind(Machine.Type.Drill), not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
+			var has_drill_enough_capacity := Drill.max_weight >= MATERIALS.search_by_id(material_id).weight
+			
+			interactions_ui.add_interaction("Place Drill", place_machine_by_type.bind(Machine.Type.Drill), not has_drill_enough_capacity or not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill))
 			interactions_ui.add_interaction("Place Generator", place_machine_by_type.bind(Machine.Type.Generator), not Player.Instance.machines.has_machine_of_type(Machine.Type.Generator))
 	else:
 		# Mine with machine, display machine interactions
