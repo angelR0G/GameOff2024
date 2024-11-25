@@ -3,6 +3,7 @@ class_name EnergyStation extends Machine
 
 @export var radius: float
 var connected_machines: Array[Machine]
+var total_energy:int = 0
 
 @onready var energy_area:Area3D = $EnergyArea
 @onready var energy_collider:CollisionShape3D = $EnergyArea/EnergyCollision
@@ -39,20 +40,24 @@ func update_energy_radius() -> void:
 
 
 func deactivate_all_connected_machines() -> void:
-	if BaseCamp.Instance.total_energy < calculate_energy_cost():
+	if BaseCamp.Instance.total_energy < total_energy:
 		for machine in connected_machines:
 			if !self && machine.energy_cost > 0:
 				machine.set_machine_powered(false)
 
 	
 func calculate_energy_cost() -> int:
-	var total_energy = 0
+	total_energy = energy_cost
 	for machine in connected_machines:
 		if machine.active:
 			total_energy += machine.energy_cost
+	BaseCamp.Instance.update_required_energy_cost()
 	return total_energy
 		
 	
+func get_total_energy_cost() -> int:
+	return total_energy
+
 func machine_already_connected(new_machine:Machine) -> int:
 	return connected_machines.find(new_machine)
 	
@@ -103,6 +108,7 @@ func _on_energy_area_area_shape_entered(_area_rid: RID, area: Area3D, _area_shap
 			connected_machines.append(machine)
 			machine.set_machine_powered(true)
 			print("Added")
+		calculate_energy_cost()
 		deactivate_all_connected_machines()
 
 
@@ -113,13 +119,5 @@ func _on_energy_area_area_shape_exited(_area_rid: RID, area: Area3D, _area_shape
 		if machine_already_connected(machine) != -1:
 			connected_machines.erase(machine)
 			machine.set_machine_powered(false)
+			calculate_energy_cost()
 			print("Removed")
-
-func print_connected_machines(machines:Machine, spacer:int)->void:
-	for machine in machines.connected_machines:
-
-		print_rich("[color=green][b]"+ str(spacer)+". "+ machine.machine_name +"[/b][/color]")
-		if machine != self:
-			if machine._type == Type.EnergyExtender || machine._type == Type.EnergyStation:
-				spacer +=1
-				print_connected_machines(machine, spacer)

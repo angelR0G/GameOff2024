@@ -7,7 +7,7 @@ signal energy_updated
 
 static var Instance :BaseCamp = null
 
-var total_energy: int = 3
+var total_energy: int = 10
 var required_energy :int = 0 : set = _set_required_energy
 var materials :MaterialContainer = MaterialContainer.new()
 
@@ -36,8 +36,14 @@ func add_substract_energy(energy:int) -> void:
 func _set_required_energy(e : int) -> void:
 	required_energy = e
 	energy_updated.emit()
-
-
+	
+func update_required_energy_cost() -> void:
+	var energy :int= 0
+	var energy_stations := get_tree().get_nodes_in_group("energy_stations")
+	for station in energy_stations:
+		energy += station.get_total_energy_cost()
+	required_energy = energy
+	
 func _interaction() -> void:
 	var motorbike :Motorbike = get_tree().get_first_node_in_group("bike")
 	var can_motorbike_be_unload := func() -> bool:
