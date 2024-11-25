@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bkmkdpqg74rjl"]
+[gd_scene load_steps=25 format=3 uid="uid://bkmkdpqg74rjl"]
 
 [ext_resource type="Script" path="res://other_objects/mine_manager.gd" id="1_4ew5w"]
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_6ms4c"]
@@ -19,6 +19,9 @@ sky_material = SubResource("ProceduralSkyMaterial_pxk6m")
 [sub_resource type="Environment" id="Environment_pja6g"]
 background_mode = 2
 sky = SubResource("Sky_uyfhl")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c4xue"]
+size = Vector3(650, 1, 900)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_akm04"]
 size = Vector3(1, 8, 24)
@@ -91,6 +94,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147.075, -0.225737, 235.781)
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = ExtResource("3_4ase6")
 script = ExtResource("4_g7i58")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.6502, -1.47509, 31.2645)
+shape = SubResource("BoxShape3D_c4xue")
 
 [node name="GridMap" type="GridMap" parent="NavigationRegion3D"]
 mesh_library = ExtResource("5_qk3jo")
