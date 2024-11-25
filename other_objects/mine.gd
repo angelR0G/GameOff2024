@@ -66,8 +66,8 @@ func explore_mine(is_player_exploring:bool = true) -> void:
 
 func change_mineral_color() ->void:
 	# Change mineral color
-	var shader_mine:ShaderMaterial =  load("res://shaders/material_color_mine.tres")
-	#var shader_mine:ShaderMaterial = mesh.get_active_material(0)
+	#var shader_mine:ShaderMaterial =  load("res://shaders/material_color_mine.tres")
+	var shader_mine:ShaderMaterial = mesh.get_active_material(0).duplicate()
 	shader_mine.set_shader_parameter("special_mat", MATERIALS.is_special_material(material_id))
 	var col :Color= MATERIALS.search_by_id(material_id).material_color
 	shader_mine.set_shader_parameter("color", Vector4(col.r, col.g, col.b, 1.0))

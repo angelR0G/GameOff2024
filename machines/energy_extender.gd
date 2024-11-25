@@ -19,6 +19,7 @@ func _on_energy_area_area_shape_entered(_area_rid: RID, area: Area3D, _area_shap
 			connected_machines.append(machine)
 			machine.set_machine_powered(true)
 			print("Added")
+		calculate_energy_cost()
 		deactivate_all_connected_machines()
 
 
@@ -29,4 +30,5 @@ func _on_energy_area_area_shape_exited(_area_rid: RID, area: Area3D, _area_shape
 		if machine_already_connected(machine) != -1:
 			connected_machines.erase(machine)
 			machine.set_machine_powered(false)
+			calculate_energy_cost()
 			print("Removed")
