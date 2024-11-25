@@ -12,6 +12,7 @@ const MAX_ZOON := 50.0
 
 static var Instance :FollowCamera = null
 var target_zoom := 0.0
+var zoom_enabled := true
 
 func _ready() -> void:
 	Instance = self
@@ -39,10 +40,11 @@ func update_zoom(delta:float) -> void:
 	camera.size = lerp(camera.size, target_zoom, ZOOM_LERP_FACTOR * delta)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("zoom_in"):
-		target_zoom = maxf(MIN_ZOOM, target_zoom - 5.0)
-	elif event.is_action_pressed("zoom_out"):
-		target_zoom = minf(target_zoom + 5.0, MAX_ZOON)
+	if zoom_enabled:
+		if event.is_action_pressed("zoom_in"):
+			target_zoom = maxf(MIN_ZOOM, target_zoom - 5.0)
+		elif event.is_action_pressed("zoom_out"):
+			target_zoom = minf(target_zoom + 5.0, MAX_ZOON)
 
 func set_target(node:Node3D) -> void:
 	target = node

@@ -56,6 +56,8 @@ func set_menu_visibility(new_state:bool) -> void:
 	
 	# Disable player input when interacting with the menu
 	Player.Instance.input_disabled = new_state
+	# Prevent from change camera zoom while in menu
+	FollowCamera.Instance.zoom_enabled = not new_state
 	menu_opened = new_state
 
 
