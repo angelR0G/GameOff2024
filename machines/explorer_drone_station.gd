@@ -26,6 +26,9 @@ func _ready() -> void:
 	create_drone(DRONE_SCENE)
 	(drone as ExplorerDrone).drone_explored_mine.connect(increase_explored_mines_count)
 	
+	# The object position is updated after being placed, so wait for it to be updated
+	await get_tree().create_timer(0.1).timeout
+	
 	await save_mines_in_radius()
 	active = true
 

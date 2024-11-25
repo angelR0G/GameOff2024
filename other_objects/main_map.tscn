@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkmkdpqg74rjl"]
+[gd_scene load_steps=13 format=3 uid="uid://bkmkdpqg74rjl"]
 
 [ext_resource type="Script" path="res://other_objects/mine_manager.gd" id="1_4ew5w"]
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_6ms4c"]
@@ -7,9 +7,7 @@
 [ext_resource type="Script" path="res://other_objects/navigation_reference.gd" id="4_g7i58"]
 [ext_resource type="MeshLibrary" uid="uid://cmivlmx2pytjl" path="res://resources/mesh_library.tres" id="5_qk3jo"]
 [ext_resource type="PackedScene" uid="uid://bgdwweowv3rlk" path="res://other_objects/mine.tscn" id="6_117xo"]
-[ext_resource type="PackedScene" uid="uid://0cfxskcwk864" path="res://machines/energy_station.tscn" id="7_l1nla"]
 [ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="8_h4axl"]
-[ext_resource type="PackedScene" uid="uid://dawtwmq3by4w7" path="res://machines/energy_extender.tscn" id="10_q5ulr"]
 [ext_resource type="PackedScene" uid="uid://co27ray1b76sa" path="res://other_objects/isometric_camera.tscn" id="11_607wd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pxk6m"]
@@ -68,14 +66,8 @@ material_id = 1
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 109.397, -1.48456, 215.777)
 material_id = 12
 
-[node name="EnergyStation" parent="NavigationRegion3D" instance=ExtResource("7_l1nla")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.591, -1.2, 141.37)
-
 [node name="BaseCamp" parent="NavigationRegion3D" instance=ExtResource("8_h4axl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 111.626, -1.30797, 256.596)
-
-[node name="EnergyExtender" parent="NavigationRegion3D" instance=ExtResource("10_q5ulr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.572, -1.2, 188.447)
 
 [node name="CameraPivot" parent="." node_paths=PackedStringArray("target") instance=ExtResource("11_607wd")]
 transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 127.064, -0.852147, 247.438)

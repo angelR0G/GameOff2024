@@ -30,6 +30,9 @@ func _ready() -> void:
 	create_drone(DRONE_SCENE)
 	(drone as CollectorDrone).materials.max_weight = drone_max_weight
 	
+	# The object position is updated after being placed, so wait for it to be updated
+	await get_tree().create_timer(0.1).timeout
+	
 	await save_mines_in_radius()
 	active = true
 

@@ -1,11 +1,14 @@
 class_name BuildMode extends Node3D
 
+const BUILD_SAFE_RADIUS := 10.0
+
 var machine_to_place:Machine
 var machine_placed:bool = false
 var build_mode_active:bool = false
 var movement_enabled:bool = false
 
-var navigation_reference:NavigationRegion3D = null
+var navigation_reference:NavigationRegion3D = null : set = _set_nav_reference
+var navmesh_update_required :bool = false
 
 @export var speed :float = 0.5
 @export var distance_from_player:float = 30.0
@@ -55,6 +58,17 @@ func exit_build_mode() -> void:
 	action_radius_mesh.visible = false
 	FollowCamera.Instance.set_target(Player.Instance)
 	build_mode_exited.emit()
+
+
+func _set_nav_reference(new_nav_region:NavigationRegion3D) -> void:
+	if navigation_reference != null:
+		if navigation_reference.bake_finished.is_connected(update_navmesh):
+			navigation_reference.bake_finished.disconnect(update_navmesh)
+	
+	navigation_reference = new_nav_region
+	
+	if navigation_reference != null:
+		navigation_reference.bake_finished.connect(update_navmesh)
 
 
 func _process(_delta: float) -> void:
@@ -142,17 +156,25 @@ func place_machine_at_position(position2D:Vector2) -> bool:
 
 
 func place_machine(machine:Machine, pos:Vector3) -> void:
-	machine.global_position = pos
 	navigation_reference.add_child(machine)
-	update_navmesh()
+	machine.global_position = pos
+	update_navmesh(true)
 	machine_placed = true
 
-func update_navmesh() -> void:
+
+func update_navmesh(force_update :bool = false) -> void:
 	await get_tree().create_timer(0.5).timeout
-	navigation_reference.bake_navigation_mesh()
+	
+	if force_update or navmesh_update_required:
+		if not navigation_reference.is_baking():
+			navmesh_update_required = false
+			navigation_reference.bake_navigation_mesh()
+		else:
+			navmesh_update_required = true
+
 
 func check_if_can_be_placed(pos:Vector3) -> bool:
-	var bodies := await get_bodies_in_area(pos, 5.0)
+	var bodies := await get_bodies_in_area(pos, BUILD_SAFE_RADIUS)
 	#if bodies[0] is GridMap:
 		#var tile_pos := Vector3(pos.x/bodies[0].cell_size.x, -2, pos.z/bodies[0].cell_size.z)
 		#print( bodies[0].get_cell_item(tile_pos))
