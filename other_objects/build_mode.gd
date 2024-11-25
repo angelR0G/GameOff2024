@@ -1,6 +1,6 @@
 class_name BuildMode extends Node3D
 
-const BUILD_SAFE_RADIUS := 10.0
+const BUILD_SAFE_RADIUS := 8.0
 
 var machine_to_place:Machine
 var machine_placed:bool = false
