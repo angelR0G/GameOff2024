@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://doykgicjv6x5a"]
+[gd_scene load_steps=3 format=3 uid="uid://doykgicjv6x5a"]
 
 [ext_resource type="Theme" uid="uid://coraw2y7jv3i8" path="res://resources/ui.tres" id="1_nfgcl"]
+[ext_resource type="AudioStream" uid="uid://bnejx3f88g2ks" path="res://assets/sounds/ui_appear.mp3" id="2_pyiw1"]
 
 [node name="InteractionButton" type="Button"]
 custom_minimum_size = Vector2(200, 40)
 pivot_offset = Vector2(100, 20)
 theme = ExtResource("1_nfgcl")
 text = "InteractionText"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pyiw1")

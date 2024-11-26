@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnmugypts2fc8"]
+[gd_scene load_steps=3 format=3 uid="uid://bnmugypts2fc8"]
 
 [ext_resource type="Script" path="res://ui/interactions_display.gd" id="1_d75vn"]
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_kmyhg"]
+polyphony = 8
 
 [node name="InteractionsDisplay" type="CanvasLayer"]
 script = ExtResource("1_d75vn")
@@ -19,3 +22,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 mouse_filter = 2
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamPolyphonic_kmyhg")

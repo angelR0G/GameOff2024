@@ -1,7 +1,12 @@
 class_name InteractionsDisplay extends CanvasLayer
 
 const INTERACTION_BUTTON := preload("res://ui/interaction_button.tscn")
+const UI_BACK_SOUND = preload("res://assets/sounds/ui_back.mp3")
+const UI_ACCEPT_SOUND = preload("res://assets/sounds/ui_accept.mp3")
+const UI_APPEAR_SOUND = preload("res://assets/sounds/ui_appear.mp3")
+const UI_CRAFT = preload("res://assets/sounds/ui_craft.mp3")
 @onready var interactions_list := $InteractionsList
+@onready var sound_player: AudioStreamPlayer = $SoundPlayer
 
 static var Instance :InteractionsDisplay = null
 
@@ -26,6 +31,9 @@ func add_interaction(text:String, function:Callable, disabled:bool = false) -> v
 	new_interaction.text = text
 	new_interaction.disabled = disabled
 	new_interaction.pressed.connect(func () -> void:
+		sound_player.set_stream(UI_ACCEPT_SOUND if function.is_valid() else UI_BACK_SOUND)
+		sound_player.play()
+		
 		await clear_list()
 		if function.is_valid():
 			await function.call()
@@ -34,8 +42,11 @@ func add_interaction(text:String, function:Callable, disabled:bool = false) -> v
 	
 	# Animate button
 	new_interaction.scale = Vector2.ZERO
+	var delay := (interactions_list.get_child_count()-1)*0.15
+	
 	var tween := get_tree().create_tween()
-	tween.tween_property(new_interaction, "scale", Vector2.ONE, 0.2).set_delay((interactions_list.get_child_count()-1)*0.05).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(new_interaction.get_child(0).play).set_delay(delay)
+	tween.tween_property(new_interaction, "scale", Vector2.ONE, 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func add_close_list_button() -> void:
 	add_interaction("Close", Callable())
@@ -60,5 +71,8 @@ func clear_list() -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if interactions_list.visible and event.is_action_pressed("back"):
+		sound_player.set_stream(UI_BACK_SOUND)
+		sound_player.play()
+		
 		await clear_list()
 		display_closed.emit()
