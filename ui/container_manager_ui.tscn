@@ -99,6 +99,8 @@ horizontal_alignment = 1
 [node name="ContainerDisplay2" parent="CenterContainer/Containers/VBoxContainer2" instance=ExtResource("2_7g8kc")]
 layout_mode = 2
 
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="CenterContainer/Containers/MarginContainer/VBoxContainer/MoveAllButton" to="." method="transfer_all"]
 [connection signal="pressed" from="CenterContainer/Containers/MarginContainer/VBoxContainer/MoveHalfButton" to="." method="transfer_half"]
 [connection signal="pressed" from="CenterContainer/Containers/MarginContainer/VBoxContainer/MoveOneButton" to="." method="transfer_one"]

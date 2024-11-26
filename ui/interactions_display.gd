@@ -4,7 +4,7 @@ const INTERACTION_BUTTON := preload("res://ui/interaction_button.tscn")
 const UI_BACK_SOUND = preload("res://assets/sounds/ui_back.mp3")
 const UI_ACCEPT_SOUND = preload("res://assets/sounds/ui_accept.mp3")
 const UI_APPEAR_SOUND = preload("res://assets/sounds/ui_appear.mp3")
-const UI_CRAFT = preload("res://assets/sounds/ui_craft.mp3")
+
 @onready var interactions_list := $InteractionsList
 @onready var sound_player: AudioStreamPlayer = $SoundPlayer
 

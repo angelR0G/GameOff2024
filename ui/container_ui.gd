@@ -1,5 +1,8 @@
 class_name ContainerManagerUI extends CanvasLayer
 
+const UI_BACK_SOUND = preload("res://assets/sounds/ui_back.mp3")
+const UI_ACCEPT_SOUND = preload("res://assets/sounds/ui_accept.mp3")
+
 @onready var player_container: ContainerDisplay = $CenterContainer/Containers/VBoxContainer/ContainerDisplay
 @onready var storage_container: ContainerDisplay = $CenterContainer/Containers/VBoxContainer2/ContainerDisplay2
 @onready var transfer_buttons: Array[Button] = [
@@ -9,6 +12,7 @@ class_name ContainerManagerUI extends CanvasLayer
 	]
 @onready var close_button: Button = $CenterContainer/Containers/MarginContainer/VBoxContainer/CloseButton
 @onready var transfer_direction_icon: TextureRect = $CenterContainer/Containers/MarginContainer/VBoxContainer/TransferDirectionIcon
+@onready var audio_player: AudioStreamPlayer = $AudioPlayer
 
 signal request_close
 
@@ -26,6 +30,8 @@ func open_container_manager(storage:MaterialContainer) -> void:
 	if storage == null:
 		return
 	
+	audio_player.set_stream(UI_ACCEPT_SOUND)
+	
 	player_container.set_container_reference(Player.Instance.materials)
 	storage_container.set_container_reference(storage)
 	
@@ -34,6 +40,8 @@ func open_container_manager(storage:MaterialContainer) -> void:
 	set_container_manager_visibility(true)
 	
 	await request_close
+	audio_player.set_stream(UI_BACK_SOUND)
+	audio_player.play()
 	set_container_manager_visibility(false)
 	# Deactivate highlight so it is not highlighted next time container is opened
 	(player_container if transfer_from_player else storage_container).update_highlighted_icon(null)
@@ -53,6 +61,8 @@ func _on_material_selected(material_id:int, from_player_container:bool) -> void:
 	
 	# Deactivate highlight in oposite container, just in case a material was selected
 	(storage_container if from_player_container else player_container).update_highlighted_icon(null)
+	
+	audio_player.play()
 
 
 func disable_transfer_buttons(new_state: bool) -> void:
@@ -97,6 +107,7 @@ func transfer_materials(from_container:MaterialContainer, to_container:MaterialC
 		disable_transfer_buttons(true)
 	
 	update_container_manager()
+	audio_player.play()
 
 
 func update_container_manager() -> void:
