@@ -1,6 +1,6 @@
 class_name BaseCamp extends Node3D
 
-const BASE_ENERGY := 4
+const BASE_ENERGY := 10
 const material_container := preload("res://materials/material_container.gd")
 
 signal materials_stored

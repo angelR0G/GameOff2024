@@ -234,11 +234,11 @@ func update_hud_energy() -> void:
 	var base := BaseCamp.Instance
 	if base == null:
 		return
-	
 	hud_energy_label.text = str(base.required_energy) + "/" + str(base.total_energy)
 	var label_color := Color.WHITE
 	if base.required_energy > base.total_energy - 4:
 		label_color = Color.RED
-	elif base.required_energy > base.total_energy:
+		@warning_ignore("integer_division")
+	elif base.required_energy > base.total_energy / 2:
 		label_color = Color.YELLOW
 	hud_energy_label.add_theme_color_override("font_color", label_color)
