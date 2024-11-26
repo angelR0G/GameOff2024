@@ -18,9 +18,6 @@ func on_install(mine:Mine) -> void:
 	active = true
 	powered = true
 
-func on_destroy() -> void:
-	active = false
-	queue_free()
 
 func increase_base_energy() -> void:
 	BaseCamp.Instance.add_substract_energy(MATERIALS.search_by_id(material_id).energy_produced)

@@ -44,13 +44,22 @@ func display_interactions() -> void:
 	if active:
 		interactions_ui.add_interaction("Turn Off", set_machine_active.bind(false))
 	else:
-		interactions_ui.add_interaction("Turn On", set_machine_active.bind(true))
+		interactions_ui.add_interaction("Turn On", set_machine_active.bind(true), not BaseCamp.has_enough_energy(energy_cost))
 
 
 func set_machine_active(new_state:bool) -> void:
 	if active != new_state:
+		if new_state and not BaseCamp.has_enough_energy(energy_cost):
+			# Cannot activate a machine if system cannot support its energy cost
+			return
+		
 		active = new_state
 		_check_machine_new_state(new_state)
+
+
+func destroy_machine() -> void:
+	active = false
+	queue_free()
 
 
 func get_machine_mesh() -> Mesh:
@@ -79,11 +88,11 @@ func _check_machine_new_state(is_being_activated:bool) -> void:
 func _on_start_working() -> void:
 	anim.play("working")
 	
-	if BaseCamp.Instance and energy_cost > 0:
-		BaseCamp.Instance.required_energy += energy_cost
+	if BaseCamp.Instance:
+		BaseCamp.Instance.add_machine_to_powered(self)
 
 func _on_stop_working() -> void:
 	anim.stop()
 	
-	if BaseCamp.Instance and energy_cost > 0:
-		BaseCamp.Instance.required_energy -= energy_cost
+	if BaseCamp.Instance:
+		BaseCamp.Instance.remove_machine_from_powered(self)

@@ -39,13 +39,6 @@ func update_energy_radius() -> void:
 	energy_collider.set_shape(collider)
 
 
-func deactivate_all_connected_machines() -> void:
-	#if BaseCamp.Instance.total_energy < total_energy:
-		for machine in connected_machines:
-			if !self && machine.energy_cost > 0:
-				machine.set_machine_powered(false)
-
-
 func machine_already_connected(new_machine:Machine) -> bool:
 	return connected_machines.has(new_machine)
 
@@ -69,15 +62,11 @@ func _interaction() -> void:
 	var interactions_ui := InteractionsDisplay.Instance
 
 	display_interactions()
-	interactions_ui.add_interaction("Remove Machine", destroy)
+	interactions_ui.add_interaction("Remove Machine", destroy_machine)
 	
 	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()
 	await interactions_ui.display_closed
-
-
-func destroy() -> void:
-	queue_free()
 
 
 func _on_energy_area_area_shape_entered(_area_rid: RID, area: Area3D, _area_shape_index: int, _local_shape_index: int) -> void:
