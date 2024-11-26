@@ -17,6 +17,10 @@ var zoom_enabled := true
 func _ready() -> void:
 	Instance = self
 	target_zoom = camera.size
+	
+	# Update player audio listener rotation
+	if Player.Instance:
+		Player.Instance.audio_listener.rotation.y = rotation.y
 
 func _process(delta: float) -> void:
 	move_to_target(delta)

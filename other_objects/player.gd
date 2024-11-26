@@ -14,6 +14,9 @@ var materials :MaterialContainer = MaterialContainer.new()
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var mesh: MeshInstance3D = $MeshInstance3D
 @onready var container_manager: ContainerManagerUI = $ContainerManager
+@onready var footsteps_timer: Timer = $FootstepsTimer
+@onready var footsteps_audio: AudioStreamPlayer3D = $FootstepsTimer/FootstepsAudio
+@onready var audio_listener: AudioListener3D = $AudioListener3D
 
 
 var target_velocity := Vector3.ZERO
@@ -25,9 +28,10 @@ func _init() -> void:
 	materials.max_weight = 40
 
 func _ready() -> void:
-	movement_enabled = true
 	if Instance == null:
 		Instance = self
+	
+	movement_enabled = true
 	
 	machines.add_machine_by_type(Machine.Type.Drill)
 	machines.add_machine_by_type(Machine.Type.Drill)
@@ -81,6 +85,13 @@ func _process(delta):
 	move_and_slide()
 	
 	anim.play("walking" if velocity.length() > 0.1 else "idle")
+	if velocity.length() > 0.1:
+		if footsteps_timer.is_stopped():
+			footsteps_timer.start()
+	else:
+		footsteps_timer.stop()
+	
+	# Rotate to movement direction
 	if target_velocity.x != 0 or target_velocity.z != 0:
 		var target_rot := Vector3.FORWARD.rotated(Vector3.UP, mesh.rotation.y).signed_angle_to(Vector3(target_velocity.x, 0, target_velocity.z), Vector3.UP)
 		target_rot = minf(ROTATION_SPEED * delta, abs(target_rot)) * sign(target_rot)
@@ -123,3 +134,8 @@ func enable_collision(new_state:bool) -> void:
 
 func toggle_cheats() -> void:
 	Engine.time_scale = 2.5 if Engine.time_scale < 2.0 else 1.0
+
+
+func play_footstep() -> void:
+	footsteps_audio.pitch_scale = randf_range(0.9, 1.3)
+	footsteps_audio.play()

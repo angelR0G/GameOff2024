@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://baa4tvph24mkf"]
+[gd_scene load_steps=12 format=3 uid="uid://baa4tvph24mkf"]
 
 [ext_resource type="Script" path="res://other_objects/player.gd" id="1_nq4kw"]
 [ext_resource type="PackedScene" uid="uid://bnmugypts2fc8" path="res://ui/interactions_display.tscn" id="2_6mo8e"]
 [ext_resource type="ArrayMesh" uid="uid://bucm810ot85m6" path="res://assets/meshes/engineer.obj" id="2_vrfgc"]
 [ext_resource type="PackedScene" uid="uid://cfjsaxbypqcrh" path="res://ui/hud.tscn" id="3_l3poo"]
 [ext_resource type="PackedScene" uid="uid://5eveljb5rw8u" path="res://ui/container_manager_ui.tscn" id="5_rnmcg"]
+[ext_resource type="AudioStream" uid="uid://c1a1n154hfg4k" path="res://assets/sounds/step.wav" id="6_hb1nb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ccjio"]
 radius = 0.7
@@ -91,3 +92,15 @@ layer = 2
 libraries = {
 "": SubResource("AnimationLibrary_dgcot")
 }
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
+
+[node name="FootstepsTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="FootstepsAudio" type="AudioStreamPlayer3D" parent="FootstepsTimer"]
+stream = ExtResource("6_hb1nb")
+volume_db = 18.0
+
+[connection signal="timeout" from="FootstepsTimer" to="." method="play_footstep"]
