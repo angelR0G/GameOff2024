@@ -1,5 +1,6 @@
 class_name BaseCamp extends Node3D
 
+const BASE_ENERGY := 4
 const material_container := preload("res://materials/material_container.gd")
 
 signal materials_stored
@@ -7,8 +8,9 @@ signal energy_updated
 
 static var Instance :BaseCamp = null
 
-var total_energy: int = 10
+var total_energy: int = BASE_ENERGY
 var required_energy :int = 0 : set = _set_required_energy
+var powered_machines :Array[Machine] = []
 var materials :MaterialContainer = MaterialContainer.new()
 
 @onready var interaction := $InteractionTrigger
@@ -29,21 +31,44 @@ func store_materials(new_mat:MaterialContainer)->void:
 	materials_stored.emit()
 
 func add_substract_energy(energy:int) -> void:
-	total_energy+=energy
+	total_energy += energy
+	
+	# If total energy goes below required energy, turn off machines
+	while required_energy > total_energy and not powered_machines.is_empty():
+		powered_machines.back().active = false
+	
 	energy_updated.emit()
 
 
 func _set_required_energy(e : int) -> void:
 	required_energy = e
 	energy_updated.emit()
+
+
+func add_machine_to_powered(machine:Machine) -> void:
+	if machine == null or machine.energy_cost <= 0:
+		return
 	
-func update_required_energy_cost() -> void:
-	var energy :int= 0
-	var energy_stations := get_tree().get_nodes_in_group("energy_stations")
-	for station in energy_stations:
-		energy += station.get_total_energy_cost()
-	required_energy = energy
+	if not powered_machines.has(machine):
+		powered_machines.append(machine)
+		required_energy += machine.energy_cost
+
+
+func remove_machine_from_powered(machine:Machine) -> void:
+	var machine_index := powered_machines.find(machine)
+	if machine_index == -1:
+		return
 	
+	powered_machines.remove_at(machine_index)
+	required_energy -= machine.energy_cost
+
+
+static func has_enough_energy(extra_cost:int) -> bool:
+	if BaseCamp.Instance == null:
+		return true
+	
+	return BaseCamp.Instance.required_energy + extra_cost <= BaseCamp.Instance.total_energy
+
 func _interaction() -> void:
 	var motorbike :Motorbike = get_tree().get_first_node_in_group("bike")
 	var can_motorbike_be_unload := func() -> bool:
@@ -53,7 +78,11 @@ func _interaction() -> void:
 		var d := global_position.distance_to(motorbike.global_position)
 		return d < 20.0
 	
+	var player_needs_equipment := not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill) and get_tree().get_node_count_in_group("drills") == 0
+	
 	var interactions_ui := InteractionsDisplay.Instance
+	if player_needs_equipment:
+		interactions_ui.add_interaction("Request Equipment", Player.Instance.machines.add_machine_by_type.bind(Machine.Type.Drill))
 	interactions_ui.add_interaction("Store Materials", store_materials.bind(Player.Instance.materials), Player.Instance.materials.current_weight <= 0)
 	interactions_ui.add_interaction("Unload Motorbike", store_materials.bind(motorbike.stored_materials), not can_motorbike_be_unload.call())
 	interactions_ui.add_close_list_button()

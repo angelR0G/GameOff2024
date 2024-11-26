@@ -39,9 +39,6 @@ func _on_upgraded() -> void:
 		mine_materials()
 
 
-func on_destroy() -> void:
-	queue_free()
-
 func collect_materials(container:MaterialContainer) -> void:
 	if container != null and material_amount > 0:
 		material_amount -= container.add_material(material_id, material_amount)

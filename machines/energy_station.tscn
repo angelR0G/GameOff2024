@@ -26,7 +26,7 @@ radius = 2.0
 
 [node name="EnergyStation" groups=["energy_stations"] instance=ExtResource("1_vvoke")]
 script = ExtResource("2_nhyuo")
-radius = 10.0
+radius = 12.0
 
 [node name="MachineMesh" parent="." index="0"]
 mesh = SubResource("ArrayMesh_a1uo3")

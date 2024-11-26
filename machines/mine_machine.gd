@@ -8,4 +8,4 @@ func on_install(_mine:Mine) -> void:
 	return
 
 func on_destroy() -> void:
-	return
+	destroy_machine()

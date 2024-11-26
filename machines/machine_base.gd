@@ -24,6 +24,7 @@ var powered:bool = false : set = set_machine_powered
 var can_be_placed_on_world :bool = true
 var place_instructions :String = ""
 var build_cost :Dictionary = {}
+var connected_energy_sources :Array[Machine] = []
 
 
 func is_working() -> bool:
@@ -43,17 +44,35 @@ func display_interactions() -> void:
 	if active:
 		interactions_ui.add_interaction("Turn Off", set_machine_active.bind(false))
 	else:
-		interactions_ui.add_interaction("Turn On", set_machine_active.bind(true))
+		interactions_ui.add_interaction("Turn On", set_machine_active.bind(true), not BaseCamp.has_enough_energy(energy_cost))
 
 
 func set_machine_active(new_state:bool) -> void:
 	if active != new_state:
+		if new_state and not BaseCamp.has_enough_energy(energy_cost):
+			# Cannot activate a machine if system cannot support its energy cost
+			return
+		
 		active = new_state
 		_check_machine_new_state(new_state)
 
 
+func destroy_machine() -> void:
+	active = false
+	queue_free()
+
+
 func get_machine_mesh() -> Mesh:
 	return get_child(0).mesh
+
+
+func update_power_supply() -> void:
+	for machine in connected_energy_sources:
+		if machine.is_working():
+			powered = true
+			return
+		
+	powered = false
 
 
 # Check power and active state when they change and emit signals when starts or stops working
@@ -68,6 +87,12 @@ func _check_machine_new_state(is_being_activated:bool) -> void:
 # Should be overridden
 func _on_start_working() -> void:
 	anim.play("working")
+	
+	if BaseCamp.Instance:
+		BaseCamp.Instance.add_machine_to_powered(self)
 
 func _on_stop_working() -> void:
 	anim.stop()
+	
+	if BaseCamp.Instance:
+		BaseCamp.Instance.remove_machine_from_powered(self)
