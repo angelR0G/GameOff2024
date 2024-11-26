@@ -93,6 +93,8 @@ func _unhandled_input(input: InputEvent) -> void:
 	
 	if input.is_action_pressed("interact"):
 		interact()
+	elif input.is_action_pressed("cheat"):
+		toggle_cheats()
 	
 
 func interact() -> void:
@@ -117,3 +119,7 @@ func remove_interaction_object(obj:InteractionCollider) -> void:
 func enable_collision(new_state:bool) -> void:
 	set_collision_mask_value(1, new_state)
 	set_collision_layer_value(1, new_state)
+
+
+func toggle_cheats() -> void:
+	Engine.time_scale = 2.5 if Engine.time_scale < 2.0 else 1.0
