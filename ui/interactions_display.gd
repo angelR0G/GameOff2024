@@ -58,7 +58,7 @@ func clear_list() -> void:
 	await tween.finished
 	hide_list()
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_key_input(event: InputEvent) -> void:
 	if interactions_list.visible and event.is_action_pressed("back"):
 		await clear_list()
 		display_closed.emit()
