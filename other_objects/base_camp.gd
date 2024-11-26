@@ -78,7 +78,11 @@ func _interaction() -> void:
 		var d := global_position.distance_to(motorbike.global_position)
 		return d < 20.0
 	
+	var player_needs_equipment := not Player.Instance.machines.has_machine_of_type(Machine.Type.Drill) and get_tree().get_node_count_in_group("drills") == 0
+	
 	var interactions_ui := InteractionsDisplay.Instance
+	if player_needs_equipment:
+		interactions_ui.add_interaction("Request Equipment", Player.Instance.machines.add_machine_by_type.bind(Machine.Type.Drill))
 	interactions_ui.add_interaction("Store Materials", store_materials.bind(Player.Instance.materials), Player.Instance.materials.current_weight <= 0)
 	interactions_ui.add_interaction("Unload Motorbike", store_materials.bind(motorbike.stored_materials), not can_motorbike_be_unload.call())
 	interactions_ui.add_close_list_button()
