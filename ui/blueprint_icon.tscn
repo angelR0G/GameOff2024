@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8dpceh8gf0mo"]
+[gd_scene load_steps=6 format=3 uid="uid://c8dpceh8gf0mo"]
 
 [ext_resource type="Script" path="res://ui/blueprint_icon.gd" id="1_imh73"]
 [ext_resource type="Theme" uid="uid://bbdvh3qc5ymts" path="res://resources/blueprint.tres" id="2_c36ln"]
 [ext_resource type="StyleBox" uid="uid://bnhcwxhd2hlsi" path="res://resources/material_icon_background.tres" id="3_1m1ig"]
 [ext_resource type="PackedScene" uid="uid://1ldpht6mberg" path="res://ui/blueprint_cost_display.tscn" id="4_f8lax"]
+[ext_resource type="AudioStream" uid="uid://clnt8jq6qaocb" path="res://assets/sounds/ui_craft.mp3" id="5_cv5wf"]
 
 [node name="Blueprint" type="AspectRatioContainer"]
 offset_right = 151.0
@@ -79,3 +80,8 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Build"
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cv5wf")
+
+[connection signal="pressed" from="BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/BuildButton" to="AudioPlayer" method="play"]

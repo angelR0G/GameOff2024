@@ -1,5 +1,8 @@
 class_name MachineInventoryIcon extends AspectRatioContainer
 
+const PLACE_MACHINE_SOUND = preload("res://assets/sounds/place_machine.mp3")
+const UI_BACK_SOUND = preload("res://assets/sounds/ui_back.mp3")
+
 var machine:Machine
 
 @onready var name_label := $MachineIcon/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MachineNameLabel
@@ -44,10 +47,10 @@ func enter_build_mode() -> void:
 	hud.set_menu_visibility(false)
 	hud.set_menu_enabled(false)
 	
-	await BUILDMODE.build_mode_exited
+	var machine_placed :bool = await BUILDMODE.build_mode_exited
 	
 	player.input_disabled = false
-	hud.set_menu_visibility(true)
+	hud.set_menu_visibility(true, PLACE_MACHINE_SOUND if machine_placed else UI_BACK_SOUND)
 	hud.show_machines_inventory()
 	hud.set_menu_enabled(true)
 	

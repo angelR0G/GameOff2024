@@ -22,7 +22,7 @@ var navmesh_update_required :bool = false
 @onready var camera_target: Node3D = $CameraTarget
 
 
-signal build_mode_exited
+signal build_mode_exited(machine_placed:bool)
 
 func _ready() -> void:
 	pass
@@ -49,7 +49,6 @@ func enter_build_mode(machine:Machine):
 
 func exit_build_mode() -> void:
 	preview_machine.mesh = null
-	machine_placed = true
 	build_mode_active = false
 	movement_enabled = true
 	machine_to_place = null
@@ -57,7 +56,7 @@ func exit_build_mode() -> void:
 	build_mode_border.visible = false
 	action_radius_mesh.visible = false
 	FollowCamera.Instance.set_target(Player.Instance)
-	build_mode_exited.emit()
+	build_mode_exited.emit(machine_placed)
 
 
 func _set_nav_reference(new_nav_region:NavigationRegion3D) -> void:

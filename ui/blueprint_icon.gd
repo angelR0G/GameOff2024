@@ -4,6 +4,7 @@ class_name Blueprint extends AspectRatioContainer
 @onready var description_label := $BlueprintIcon/MarginContainer/VBoxContainer/BlueprintDescriptionLabel
 @onready var build_button :Button = $BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/BuildButton
 @onready var blueprint_cost_display: BlueprintCostDisplay = $BlueprintIcon/MarginContainer/VBoxContainer/MarginContainer2/VBoxContainer/BlueprintCostDisplay
+@onready var audio_player: AudioStreamPlayer = $AudioPlayer
 
 func set_blueprint_name(text:String) -> void:
 	name_label.text = text

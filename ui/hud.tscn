@@ -375,6 +375,8 @@ theme_override_constants/shadow_outline_size = 2
 text = "0/5"
 horizontal_alignment = 1
 
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="show_materials_inventory"]
 [connection signal="toggled" from="Menu/VBoxContainer/MenuButtons/MaterialsInventoryButton" to="." method="set_menu_visibility"]
 [connection signal="pressed" from="Menu/VBoxContainer/MenuButtons/MachineInventoryButton" to="." method="show_machines_inventory"]
