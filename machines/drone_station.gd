@@ -23,6 +23,7 @@ func create_drone(scene:PackedScene) -> void:
 
 
 func destroy_station() -> void:
+	powered = false
 	queue_free()
 
 

@@ -24,6 +24,7 @@ var powered:bool = false : set = set_machine_powered
 var can_be_placed_on_world :bool = true
 var place_instructions :String = ""
 var build_cost :Dictionary = {}
+var connected_energy_sources :Array[Machine] = []
 
 
 func is_working() -> bool:
@@ -56,6 +57,15 @@ func get_machine_mesh() -> Mesh:
 	return get_child(0).mesh
 
 
+func update_power_supply() -> void:
+	for machine in connected_energy_sources:
+		if machine.is_working():
+			powered = true
+			return
+		
+	powered = false
+
+
 # Check power and active state when they change and emit signals when starts or stops working
 func _check_machine_new_state(is_being_activated:bool) -> void:
 	if is_being_activated:
@@ -68,6 +78,12 @@ func _check_machine_new_state(is_being_activated:bool) -> void:
 # Should be overridden
 func _on_start_working() -> void:
 	anim.play("working")
+	
+	if BaseCamp.Instance and energy_cost > 0:
+		BaseCamp.Instance.required_energy += energy_cost
 
 func _on_stop_working() -> void:
 	anim.stop()
+	
+	if BaseCamp.Instance and energy_cost > 0:
+		BaseCamp.Instance.required_energy -= energy_cost

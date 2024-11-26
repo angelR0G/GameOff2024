@@ -9,6 +9,7 @@ signal display_closed
 
 func _ready() -> void:
 	Instance = self
+	interactions_list.visible = false
 
 func add_interaction(text:String, function:Callable, disabled:bool = false) -> void:
 	var new_interaction :Button = INTERACTION_BUTTON.instantiate()

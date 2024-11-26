@@ -130,7 +130,7 @@ func display_interactions() -> void:
 	super()
 	
 	var interactions_ui := InteractionsDisplay.Instance
-	interactions_ui.add_interaction("Remove Collector Drone", func()->void:
+	interactions_ui.add_interaction("Remove Transport Drone", func()->void:
 		station_being_destroyed = true
 		if is_drone_in_station:
 			destroy_station()
