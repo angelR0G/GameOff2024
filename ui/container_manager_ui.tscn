@@ -49,6 +49,7 @@ theme_override_constants/separation = 6
 alignment = 1
 
 [node name="TransferDirectionIcon" type="TextureRect" parent="CenterContainer/Containers/MarginContainer/VBoxContainer"]
+texture_filter = 4
 custom_minimum_size = Vector2(60, 30)
 layout_mode = 2
 texture = ExtResource("4_i4qcf")

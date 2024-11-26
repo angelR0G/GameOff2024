@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfjsaxbypqcrh"]
+[gd_scene load_steps=7 format=3 uid="uid://cfjsaxbypqcrh"]
 
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_36fne"]
 [ext_resource type="Theme" uid="uid://do4klmwnfpkxv" path="res://resources/inventory_menu.tres" id="1_ukre5"]
+[ext_resource type="Texture2D" uid="uid://djod55v3dbmda" path="res://assets/sprites/weight_icon.png" id="3_74lu0"]
 [ext_resource type="PackedScene" uid="uid://dthoe7vljreuy" path="res://ui/upgrade_blueprint.tscn" id="3_tecb0"]
 [ext_resource type="StyleBox" uid="uid://cdpbep4y3h4hq" path="res://resources/shadow_panel.tres" id="4_4xoym"]
+[ext_resource type="Texture2D" uid="uid://cldh03fgfddu6" path="res://assets/sprites/energy_icon.png" id="5_br1g8"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_36fne")
@@ -71,6 +73,12 @@ alignment = 1
 layout_mode = 2
 size_flags_vertical = 0
 alignment = 1
+
+[node name="WeightIcon" type="TextureRect" parent="Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay/VBoxContainer/InventoryInfo"]
+texture_filter = 4
+layout_mode = 2
+texture = ExtResource("3_74lu0")
+expand_mode = 3
 
 [node name="WeightLabel" type="Label" parent="Menu/VBoxContainer/MenuDisplay/MaterialsInventoryDisplay/VBoxContainer/InventoryInfo"]
 layout_mode = 2
@@ -345,11 +353,20 @@ theme_override_styles/panel = ExtResource("4_4xoym")
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 6
-theme_override_constants/margin_top = 2
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 4
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 6
 
-[node name="HUDEnergyLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="EnergyIcon" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+texture_filter = 4
+layout_mode = 2
+texture = ExtResource("5_br1g8")
+expand_mode = 3
+
+[node name="HUDEnergyLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 2

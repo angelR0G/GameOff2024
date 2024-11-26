@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4nhop5ett7j5"]
+[gd_scene load_steps=3 format=3 uid="uid://d4nhop5ett7j5"]
 
+[ext_resource type="Texture2D" uid="uid://djod55v3dbmda" path="res://assets/sprites/weight_icon.png" id="2_6nivm"]
 [ext_resource type="Script" path="res://ui/container_display.gd" id="2_kljsw"]
 
 [node name="ContainerDisplay" type="PanelContainer"]
@@ -15,7 +16,17 @@ script = ExtResource("2_kljsw")
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="WeightLabel" type="Label" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="WeightIcon" type="TextureRect" parent="VBoxContainer/HBoxContainer"]
+texture_filter = 4
+layout_mode = 2
+texture = ExtResource("2_6nivm")
+expand_mode = 3
+
+[node name="WeightLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)

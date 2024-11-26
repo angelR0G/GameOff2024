@@ -6,7 +6,7 @@ var container :MaterialContainer = null
 var selected_icon :MaterialIcon = null
 
 @onready var mat_icons_container :GridContainer = $VBoxContainer/CenterContainer/GridContainer
-@onready var weight_label: Label = $VBoxContainer/WeightLabel
+@onready var weight_label: Label = $VBoxContainer/HBoxContainer/WeightLabel
 
 signal material_selected(id:int)
 

@@ -22,7 +22,7 @@ var menu_opened:bool = false
 @onready var upgrade_blueprint_container := $Menu/VBoxContainer/MenuDisplay/UpgradeMenuDisplay/ScrollContainer/MarginContainer/HBoxContainer
 
 @onready var hud_materials_container : HBoxContainer = $MarginContainer/VBoxContainer/HUDMaterialsContainer
-@onready var hud_energy_label: Label = $MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HUDEnergyLabel
+@onready var hud_energy_label: Label = $MarginContainer/VBoxContainer/PanelContainer/MarginContainer/HBoxContainer/HUDEnergyLabel
 
 
 func _ready() -> void:
@@ -118,7 +118,7 @@ func update_materials_inventory() -> void:
 	mat_container_2.visible = mat_container_2.get_child_count() > 0
 	
 	# Update iventory information
-	var weight_label :Label = materials_inv_info.get_child(0)
+	var weight_label :Label = materials_inv_info.get_child(1)
 	weight_label.text = str(player_materials.current_weight) + "/" + str(player_materials.max_weight)
 	weight_label.add_theme_color_override("font_color", Color.BLACK if player_materials.current_weight < player_materials.max_weight * 0.8 else Color.RED)
 
@@ -236,3 +236,9 @@ func update_hud_energy() -> void:
 		return
 	
 	hud_energy_label.text = str(base.required_energy) + "/" + str(base.total_energy)
+	var label_color := Color.WHITE
+	if base.required_energy > base.total_energy - 4:
+		label_color = Color.RED
+	elif base.required_energy > base.total_energy:
+		label_color = Color.YELLOW
+	hud_energy_label.add_theme_color_override("font_color", label_color)
