@@ -4,8 +4,7 @@ const MATERIAL_ICON := preload("res://ui/material_icon.tscn")
 const HUD_MAT_ICON := preload("res://ui/hud_material_icon.tscn")
 const MACHINE_INV_ICON := preload("res://ui/machine_inventory_icon.tscn")
 const MACHINE_BUILD_ICON := preload("res://ui/machine_blueprint.tscn")
-const UI_MENU_SOUND = preload("res://assets/sounds/ui_menu.mp3")
-const UI_ACCEPT_SOUND = preload("res://assets/sounds/ui_accept.mp3")
+const UI_MENU_SOUND = preload("res://assets/sounds/ui_accept.mp3")
 
 var menu_opened:bool = false
 
@@ -62,10 +61,7 @@ func set_menu_visibility(new_state:bool, sound_to_play:AudioStream = null) -> vo
 	# Prevent from change camera zoom while in menu
 	FollowCamera.Instance.zoom_enabled = not new_state
 	
-	if sound_to_play == null:
-		audio_player.set_stream(UI_MENU_SOUND if menu_opened != new_state else UI_ACCEPT_SOUND)
-	else:
-		audio_player.set_stream(sound_to_play)
+	audio_player.set_stream(UI_MENU_SOUND if sound_to_play == null else sound_to_play)
 	audio_player.play()
 	
 	menu_opened = new_state

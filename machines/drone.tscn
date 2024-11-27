@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dh1rf7rdrn0v1"]
+[gd_scene load_steps=6 format=3 uid="uid://dh1rf7rdrn0v1"]
 
 [ext_resource type="Script" path="res://machines/drone.gd" id="1_pwi3w"]
 [ext_resource type="Script" path="res://other_objects/game_location_agent.gd" id="2_pew1x"]
+[ext_resource type="AudioStream" uid="uid://cs2ip1x85lp7b" path="res://assets/sounds/drone.wav" id="3_mf2bn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uyr52"]
 radius = 1.0
@@ -29,5 +30,13 @@ debug_enabled = true
 
 [node name="GameLocationAgent" type="Node3D" parent="."]
 script = ExtResource("2_pew1x")
+
+[node name="AudioPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_mf2bn")
+attenuation_model = 3
+volume_db = -9.0
+autoplay = true
+max_distance = 17.0
+bus = &"World"
 
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_velocity_computed"]

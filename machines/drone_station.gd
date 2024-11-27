@@ -41,6 +41,8 @@ func _on_start_working() -> void:
 		await ready
 	super()
 	
+	audio_player.play()
+	
 	if is_drone_in_station:
 		update_drone_target()
 
@@ -50,5 +52,7 @@ func _on_stop_working() -> void:
 	if not is_node_ready():
 		await ready
 	super()
+	
+	audio_player.stop()
 	
 	drone.return_to_station()
