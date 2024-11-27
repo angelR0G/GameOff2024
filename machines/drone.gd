@@ -44,7 +44,7 @@ func _physics_process(_delta: float) -> void:
 
 func _move_to_target() -> void:
 	var movement_direction := (get_next_pathfinding_location() - global_position).normalized()
-	
+	look_at(get_next_pathfinding_location())
 	nav_agent.velocity = movement_direction * speed
 
 func get_next_pathfinding_location() -> Vector3:
