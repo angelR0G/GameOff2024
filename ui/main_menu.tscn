@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bopu3gqrmahcs"]
+[gd_scene load_steps=11 format=3 uid="uid://bopu3gqrmahcs"]
 
 [ext_resource type="Theme" uid="uid://bbdvh3qc5ymts" path="res://resources/blueprint.tres" id="1_fpa5m"]
 [ext_resource type="Script" path="res://ui/main_menu.gd" id="1_jmw8l"]
 [ext_resource type="Texture2D" uid="uid://bd0wpcadrq5yw" path="res://icon.svg" id="2_bjp3a"]
+[ext_resource type="AudioStream" uid="uid://ct8mixriwtm4w" path="res://assets/sounds/ui_accept.mp3" id="4_h7syn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g70oc"]
 bg_color = Color(0.929715, 0.929715, 0.929715, 1)
@@ -381,5 +382,9 @@ libraries = {
 "": SubResource("AnimationLibrary_tphvv")
 }
 
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_h7syn")
+
 [connection signal="pressed" from="Background/CenterContainer/VBoxContainer/PlayButton" to="." method="start_game"]
+[connection signal="pressed" from="Background/CenterContainer/VBoxContainer/PlayButton" to="AudioPlayer" method="play"]
 [connection signal="pressed" from="Background/CenterContainer/VBoxContainer/ExitButton" to="." method="exit_game"]

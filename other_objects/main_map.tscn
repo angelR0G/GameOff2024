@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkmkdpqg74rjl"]
+[gd_scene load_steps=29 format=3 uid="uid://bkmkdpqg74rjl"]
 
 [ext_resource type="Script" path="res://other_objects/mine_manager.gd" id="1_4ew5w"]
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_6ms4c"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="8_h4axl"]
 [ext_resource type="PackedScene" uid="uid://7wsq8muok7u3" path="res://other_objects/barrier.tscn" id="9_4aefs"]
 [ext_resource type="PackedScene" uid="uid://co27ray1b76sa" path="res://other_objects/isometric_camera.tscn" id="11_607wd"]
+[ext_resource type="Script" path="res://other_objects/final_cinematic.gd" id="11_p6x5o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pxk6m"]
 
@@ -48,6 +49,42 @@ size = Vector3(1, 8, 26)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_18csa"]
 size = Vector3(1, 8, 20)
+
+[sub_resource type="Animation" id="Animation_omm5x"]
+resource_name = "cinematic"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g5vol"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DirectionalLight3D:light_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kva3s"]
+_data = {
+"RESET": SubResource("Animation_g5vol"),
+"cinematic": SubResource("Animation_omm5x")
+}
 
 [node name="MainMap" type="Node3D"]
 script = ExtResource("1_4ew5w")
@@ -658,6 +695,12 @@ material_id = 1
 [node name="CameraPivot" parent="." node_paths=PackedStringArray("target") instance=ExtResource("11_607wd")]
 transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 138.535, -0.852147, 242.04)
 target = NodePath("../Player")
+
+[node name="FinalCinematic" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kva3s")
+}
+script = ExtResource("11_p6x5o")
 
 [editable path="NavigationRegion3D/FirstBarrier"]
 [editable path="NavigationRegion3D/FirstBarrier/MainPillar/InteractionTrigger"]

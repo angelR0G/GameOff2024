@@ -20,6 +20,9 @@ func build_machine() -> void:
 	if not blueprint_cost_display.has_player_enough_materials():
 		return
 	
-	blueprint_cost_display.remove_cost_from_player()
-	Player.Instance.machines.add_machine_by_type(machine._type)
-	machine_created.emit(machine_type)
+	if machine._type == Machine.Type.Bomb:
+		FinalCinematic.Instance.play_cinematic()
+	else:
+		blueprint_cost_display.remove_cost_from_player()
+		Player.Instance.machines.add_machine_by_type(machine._type)
+		machine_created.emit(machine_type)

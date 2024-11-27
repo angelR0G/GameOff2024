@@ -7,13 +7,19 @@ static var Instance :MainMenu = null
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 var game_instance :Node3D = null
-var is_menu_open :bool = true
+var is_menu_open :bool = false
+var restore_progress :bool = true
 
 func _ready() -> void:
-	open_menu()
+	Instance = self
+	open_menu(false)
 
 
 func start_game() -> void:
+	if restore_progress and game_instance != null:
+		game_instance.free()
+		game_instance = null
+	
 	if game_instance == null:
 		game_instance = MAIN_MAP.instantiate()
 		get_tree().root.add_child(game_instance)
@@ -25,16 +31,12 @@ func start_game() -> void:
 	is_menu_open = false
 
 
-func restore_progress() -> void:
-	if game_instance != null:
-		game_instance.free()
-		game_instance = null
+func open_menu(play_quick_fade:bool = true) -> void:
+	if is_menu_open:
+		return
 	
-
-
-func open_menu() -> void:
 	get_tree().paused = true
-	anim.play("start_screen" if game_instance == null else "quick_fade_in")
+	anim.play("quick_fade_in" if play_quick_fade else "start_screen")
 	is_menu_open = true
 
 

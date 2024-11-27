@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://s8d7ve2p2poj"]
+
+[ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_ebhtf"]
+[ext_resource type="Script" path="res://machines/bomb.gd" id="2_dos8s"]
+
+[node name="Bomb" instance=ExtResource("1_ebhtf")]
+script = ExtResource("2_dos8s")

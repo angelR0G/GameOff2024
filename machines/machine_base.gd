@@ -13,6 +13,7 @@ enum Type {
 	CollectorDroneStation,
 	TransportDroneStation,
 	Disruptor,
+	Bomb,
 }
 
 @warning_ignore("unused_private_class_variable")
