@@ -42,4 +42,7 @@ mesh = SubResource("ArrayMesh_dioqw")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 shape = SubResource("CylinderShape3D_ofopd")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+top_level = true
+
 [editable path="InteractionTrigger"]

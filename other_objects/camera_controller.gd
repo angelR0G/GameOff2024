@@ -18,9 +18,12 @@ func _ready() -> void:
 	Instance = self
 	target_zoom = camera.size
 	
-	# Update player audio listener rotation
+	# Update player and motorbike audio listeners' rotation
 	if Player.Instance:
 		Player.Instance.audio_listener.rotation.y = rotation.y
+	var motorbike :Motorbike = get_tree().get_first_node_in_group("bike")
+	if motorbike != null:
+		motorbike.audio_listener.rotation.y = rotation.y
 
 func _process(delta: float) -> void:
 	move_to_target(delta)
@@ -42,6 +45,9 @@ func update_zoom(delta:float) -> void:
 		return
 	
 	camera.size = lerp(camera.size, target_zoom, ZOOM_LERP_FACTOR * delta)
+	# Update audio bus volume
+	var bus_volume := remap(camera.size, MIN_ZOOM, MAX_ZOON, 0.0, -12.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("World"), bus_volume)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if zoom_enabled:

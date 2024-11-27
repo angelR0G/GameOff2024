@@ -29,8 +29,10 @@ func _on_start_working() -> void:
 	super()
 	
 	increase_base_energy()
+	audio_player.play()
 
 func _on_stop_working() -> void:
 	super()
 	
 	decrease_base_energy()
+	audio_player.stop()

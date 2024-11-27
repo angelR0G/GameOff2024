@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://5ch0d45cbjc8"]
+[gd_scene load_steps=6 format=4 uid="uid://5ch0d45cbjc8"]
 
 [ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_p0hda"]
 [ext_resource type="Script" path="res://machines/generator.gd" id="2_uiwcs"]
 [ext_resource type="Material" uid="uid://bmk0tpjkbyeft" path="res://assets/meshes/materials/generator.tres" id="3_qlhje"]
+[ext_resource type="AudioStream" uid="uid://btnqy6nh1vjhi" path="res://assets/sounds/generator.wav" id="4_d7415"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4wox6"]
 _surfaces = [{
@@ -26,3 +27,6 @@ script = ExtResource("2_uiwcs")
 [node name="MachineMesh" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_4wox6")
+
+[node name="AudioPlayer" parent="." index="5"]
+stream = ExtResource("4_d7415")

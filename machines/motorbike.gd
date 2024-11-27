@@ -5,8 +5,9 @@ const ACCELERATION := 20.0
 const STOP_ACCELERATION := 50.0
 
 @onready var interaction: InteractionCollider = $InteractionTrigger
+@onready var audio_listener: AudioListener3D = $AudioListener3D
 
-var broken:bool = true
+var broken:bool = false
 var player_riding :Player = null
 var movement_vector :Vector3 = Vector3.ZERO
 var speed :float = 0
@@ -36,6 +37,8 @@ func _process(delta):
 	# Moves the bike
 	velocity = movement_vector
 	move_and_slide()
+	
+	audio_listener.global_position = global_position
 
 
 func calculate_horizontal_speed(delta) -> Vector2:
@@ -107,6 +110,7 @@ func update_player_riding_state(is_getting_off:bool) -> void:
 	player_riding.enable_collision(is_getting_off)
 	player_riding.movement_enabled = is_getting_off
 	FollowCamera.Instance.set_target((Player.Instance as Node3D) if is_getting_off else (self as Node3D))
+	(player_riding.audio_listener if is_getting_off else audio_listener).make_current()
 
 
 func _interaction() -> void:

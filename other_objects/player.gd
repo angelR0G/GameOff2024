@@ -18,7 +18,6 @@ var materials :MaterialContainer = MaterialContainer.new()
 @onready var footsteps_audio: AudioStreamPlayer3D = $FootstepsTimer/FootstepsAudio
 @onready var audio_listener: AudioListener3D = $AudioListener3D
 
-
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
 var input_disabled :bool = false

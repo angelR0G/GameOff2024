@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://bvk6jnel7iow7"]
+[gd_scene load_steps=6 format=4 uid="uid://bvk6jnel7iow7"]
 
 [ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_jmc5u"]
 [ext_resource type="Script" path="res://machines/drill.gd" id="2_oyb7y"]
 [ext_resource type="Material" uid="uid://bdejp25xvjuxa" path="res://assets/meshes/materials/drill.tres" id="3_r6gp1"]
+[ext_resource type="AudioStream" uid="uid://doqrw1ln8ipyk" path="res://assets/sounds/drill.wav" id="4_4myny"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_40w0x"]
 _surfaces = [{
@@ -28,5 +29,8 @@ mesh = SubResource("ArrayMesh_40w0x")
 
 [node name="MiningTimer" type="Timer" parent="." index="1"]
 one_shot = true
+
+[node name="AudioPlayer" parent="." index="6"]
+stream = ExtResource("4_4myny")
 
 [connection signal="timeout" from="MiningTimer" to="." method="_on_material_extracted"]

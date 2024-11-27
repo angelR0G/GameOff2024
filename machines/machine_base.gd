@@ -2,6 +2,7 @@ class_name Machine extends Node3D
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var energy_particles: GPUParticles3D = $GPUParticles3D
+@onready var audio_player: AudioStreamPlayer3D = $AudioPlayer
 
 enum Type {
 	Drill,

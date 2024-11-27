@@ -63,8 +63,10 @@ func mine_materials() -> void:
 func update_drill_full_state(is_full:bool) -> void:
 	if is_full:
 		anim.stop()
+		audio_player.stop()
 	else:
 		anim.play("working")
+		audio_player.play()
 
 
 func _on_material_extracted() -> void:
@@ -101,6 +103,7 @@ func _on_start_working() -> void:
 	
 	if mining_timer and mining_timer.paused:
 		mining_timer.paused = false
+		audio_player.play()
 	else:
 		mine_materials()
 
@@ -109,3 +112,4 @@ func _on_stop_working() -> void:
 	
 	if mining_timer and not mining_timer.is_stopped():
 		mining_timer.paused = true
+		audio_player.stop()
