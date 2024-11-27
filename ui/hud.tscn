@@ -26,6 +26,7 @@ alignment_vertical = 2
 layout_mode = 2
 
 [node name="MenuButtons" type="HBoxContainer" parent="Menu/VBoxContainer"]
+texture_filter = 4
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 alignment = 1
@@ -55,6 +56,7 @@ toggle_mode = true
 text = "Upgrade"
 
 [node name="MenuDisplay" type="PanelContainer" parent="Menu/VBoxContainer"]
+texture_filter = 4
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -336,6 +338,7 @@ grow_horizontal = 2
 theme_override_constants/margin_top = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+texture_filter = 4
 layout_mode = 2
 
 [node name="HUDMaterialsContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
