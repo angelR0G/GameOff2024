@@ -3,11 +3,14 @@ class_name Motorbike extends CharacterBody3D
 const ROTATION_SPEED := 4.0
 const ACCELERATION := 20.0
 const STOP_ACCELERATION := 50.0
+const MOTORBIKE_SOUND := preload("res://assets/sounds/motorbike2.wav")
+const ENGINE_OFF_SOUND := preload("res://assets/sounds/engine_off.wav")
 
 @onready var interaction: InteractionCollider = $InteractionTrigger
 @onready var audio_listener: AudioListener3D = $AudioListener3D
+@onready var audio_player: AudioStreamPlayer3D = $AudioPlayer
 
-var broken:bool = false
+var broken:bool = true
 var player_riding :Player = null
 var movement_vector :Vector3 = Vector3.ZERO
 var speed :float = 0
@@ -111,9 +114,14 @@ func update_player_riding_state(is_getting_off:bool) -> void:
 	player_riding.movement_enabled = is_getting_off
 	FollowCamera.Instance.set_target((Player.Instance as Node3D) if is_getting_off else (self as Node3D))
 	(player_riding.audio_listener if is_getting_off else audio_listener).make_current()
+	audio_player.set_stream(ENGINE_OFF_SOUND if is_getting_off else MOTORBIKE_SOUND)
+	audio_player.play()
 
 
 func _interaction() -> void:
+	if broken:
+		return
+	
 	var interactions_ui := InteractionsDisplay.Instance
 	
 	interactions_ui.add_interaction("Ride Motorbike", func() -> void:

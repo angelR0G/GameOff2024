@@ -84,7 +84,8 @@ func _interaction() -> void:
 	if player_needs_equipment:
 		interactions_ui.add_interaction("Request Equipment", Player.Instance.machines.add_machine_by_type.bind(Machine.Type.Drill))
 	interactions_ui.add_interaction("Store Materials", store_materials.bind(Player.Instance.materials), Player.Instance.materials.current_weight <= 0)
-	interactions_ui.add_interaction("Unload Motorbike", store_materials.bind(motorbike.stored_materials), not can_motorbike_be_unload.call())
+	if not motorbike.broken:
+		interactions_ui.add_interaction("Unload Motorbike", store_materials.bind(motorbike.stored_materials), not can_motorbike_be_unload.call())
 	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()
 	await interactions_ui.display_closed

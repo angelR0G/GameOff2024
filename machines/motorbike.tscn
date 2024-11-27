@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://folm8xiajm5v"]
+[gd_scene load_steps=8 format=4 uid="uid://folm8xiajm5v"]
 
 [ext_resource type="PackedScene" uid="uid://bcsnulyrjoclq" path="res://other_objects/interaction_collider.tscn" id="1_5rwkd"]
 [ext_resource type="Script" path="res://machines/motorbike.gd" id="1_yqhj7"]
 [ext_resource type="Material" uid="uid://dj1ltaicjurnc" path="res://assets/meshes/materials/motorcycle.tres" id="2_5pp4j"]
+[ext_resource type="AudioStream" uid="uid://ckbegd07d5unb" path="res://assets/sounds/motorbike.wav" id="4_w1i0b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4y6t"]
 size = Vector3(0.5, 0.5, 1)
@@ -44,5 +45,9 @@ shape = SubResource("CylinderShape3D_ofopd")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 top_level = true
+
+[node name="AudioPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_w1i0b")
+bus = &"World"
 
 [editable path="InteractionTrigger"]
