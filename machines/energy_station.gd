@@ -47,12 +47,14 @@ func _on_start_working() -> void:
 	
 	update_connected_machines()
 	energy_supply_state_change.emit(true)
+	audio_player.play()
 
 func _on_stop_working() -> void:
 	super()
 	
 	update_connected_machines()
 	energy_supply_state_change.emit(false)
+	audio_player.play()
 
 func update_connected_machines() -> void:
 	for machine in connected_machines:
