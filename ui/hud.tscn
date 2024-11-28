@@ -205,7 +205,7 @@ upgrade_cost = Array[Dictionary]([{
 visible = false
 layout_mode = 2
 upgrade_name = "Drill"
-upgrade_description = "Increases extraction speed and maximum capacity."
+upgrade_description = "Increases extraction speed and maximum capacity. Required to mine some materials."
 upgrade_cost = Array[Dictionary]([{
 1: 10
 }, {
