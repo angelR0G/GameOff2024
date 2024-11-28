@@ -92,7 +92,7 @@ func connect_machine(machine:Machine) -> void:
 	machine.connected_energy_sources.append(self)
 	
 	# If energy station is active, supply energy to machine
-	if active:
+	if is_working():
 		machine.powered = true
 
 

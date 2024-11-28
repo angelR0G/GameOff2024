@@ -62,6 +62,8 @@ func set_machine_active(new_state:bool) -> void:
 func destroy_machine() -> void:
 	active = false
 	queue_free()
+	
+	BUILDMODE.update_navmesh(true)
 
 
 func get_machine_mesh() -> Mesh:

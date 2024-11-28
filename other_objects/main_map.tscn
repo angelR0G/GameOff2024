@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bkmkdpqg74rjl"]
+[gd_scene load_steps=33 format=3 uid="uid://bkmkdpqg74rjl"]
 
 [ext_resource type="Script" path="res://other_objects/mine_manager.gd" id="1_4ew5w"]
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_6ms4c"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="8_h4axl"]
 [ext_resource type="PackedScene" uid="uid://7wsq8muok7u3" path="res://other_objects/barrier.tscn" id="9_4aefs"]
 [ext_resource type="PackedScene" uid="uid://co27ray1b76sa" path="res://other_objects/isometric_camera.tscn" id="11_607wd"]
+[ext_resource type="AudioStream" uid="uid://cqnu4khyosoem" path="res://assets/sounds/barrier.wav" id="11_fxv64"]
 [ext_resource type="Script" path="res://other_objects/final_cinematic.gd" id="11_p6x5o"]
 [ext_resource type="ArrayMesh" uid="uid://r5khg6a8d4t3" path="res://assets/meshes/motorcycle.obj" id="12_bgcss"]
 [ext_resource type="PackedScene" uid="uid://2r3paoyij140" path="res://credits.tscn" id="13_yateh"]
@@ -268,22 +269,26 @@ _data = {
 
 [node name="MainMap" type="Node3D"]
 script = ExtResource("1_4ew5w")
-_mines_by_area = Array[Array]([[NodePath("NavigationRegion3D/Mine"), NodePath("NavigationRegion3D/Mine2"), NodePath("NavigationRegion3D/Mine3"), NodePath("NavigationRegion3D/Mine4"), NodePath("NavigationRegion3D/Mine5"), NodePath("NavigationRegion3D/Mine7"), NodePath("NavigationRegion3D/Mine8"), NodePath("NavigationRegion3D/Mine9"), NodePath("NavigationRegion3D/Mine10"), NodePath("NavigationRegion3D/Mine12"), NodePath("NavigationRegion3D/Mine13")], [NodePath("NavigationRegion3D/Mine14"), NodePath("NavigationRegion3D/Mine15"), NodePath("NavigationRegion3D/Mine16"), NodePath("NavigationRegion3D/Mine17"), NodePath("NavigationRegion3D/Mine18"), NodePath("NavigationRegion3D/Mine19"), NodePath("NavigationRegion3D/Mine20"), NodePath("NavigationRegion3D/Mine21"), NodePath("NavigationRegion3D/Mine22"), NodePath("NavigationRegion3D/Mine23"), NodePath("NavigationRegion3D/Mine24"), NodePath("NavigationRegion3D/Mine25"), NodePath("NavigationRegion3D/Mine26"), NodePath("NavigationRegion3D/Mine27"), NodePath("NavigationRegion3D/Mine28"), NodePath("NavigationRegion3D/Mine29"), NodePath("NavigationRegion3D/Mine30"), NodePath("NavigationRegion3D/Mine31")], [NodePath("NavigationRegion3D/Mine32"), NodePath("NavigationRegion3D/Mine33"), NodePath("NavigationRegion3D/Mine34"), NodePath("NavigationRegion3D/Mine35"), NodePath("NavigationRegion3D/Mine36"), NodePath("NavigationRegion3D/Mine37"), NodePath("NavigationRegion3D/Mine38"), NodePath("NavigationRegion3D/Mine39"), NodePath("NavigationRegion3D/Mine40"), NodePath("NavigationRegion3D/Mine41"), NodePath("NavigationRegion3D/Mine42"), NodePath("NavigationRegion3D/Mine43"), NodePath("NavigationRegion3D/Mine44"), NodePath("NavigationRegion3D/Mine45"), NodePath("NavigationRegion3D/Mine46"), NodePath("NavigationRegion3D/Mine47"), NodePath("NavigationRegion3D/Mine49"), NodePath("NavigationRegion3D/Mine50"), NodePath("NavigationRegion3D/Mine51"), NodePath("NavigationRegion3D/Mine52"), NodePath("NavigationRegion3D/Mine53"), NodePath("NavigationRegion3D/Mine54")], [NodePath("NavigationRegion3D/Mine55"), NodePath("NavigationRegion3D/Mine56"), NodePath("NavigationRegion3D/Mine57"), NodePath("NavigationRegion3D/Mine58"), NodePath("NavigationRegion3D/Mine59"), NodePath("NavigationRegion3D/Mine60"), NodePath("NavigationRegion3D/Mine61"), NodePath("NavigationRegion3D/Mine62"), NodePath("NavigationRegion3D/Mine63"), NodePath("NavigationRegion3D/Mine64"), NodePath("NavigationRegion3D/Mine65"), NodePath("NavigationRegion3D/Mine66"), NodePath("NavigationRegion3D/Mine67"), NodePath("NavigationRegion3D/Mine68"), NodePath("NavigationRegion3D/Mine69"), NodePath("NavigationRegion3D/Mine70"), NodePath("NavigationRegion3D/Mine71"), NodePath("NavigationRegion3D/Mine72"), NodePath("NavigationRegion3D/Mine73"), NodePath("NavigationRegion3D/Mine74"), NodePath("NavigationRegion3D/Mine75"), NodePath("NavigationRegion3D/Mine76"), NodePath("NavigationRegion3D/Mine77"), NodePath("NavigationRegion3D/Mine78"), NodePath("NavigationRegion3D/Mine79"), NodePath("NavigationRegion3D/Mine80"), NodePath("NavigationRegion3D/Mine81"), NodePath("NavigationRegion3D/Mine82"), NodePath("NavigationRegion3D/Mine83"), NodePath("NavigationRegion3D/Mine84"), NodePath("NavigationRegion3D/Mine85"), NodePath("NavigationRegion3D/Mine86"), NodePath("NavigationRegion3D/Mine87"), NodePath("NavigationRegion3D/Mine88"), NodePath("NavigationRegion3D/Mine89"), NodePath("NavigationRegion3D/Mine90"), NodePath("NavigationRegion3D/Mine91")]])
+_mines_by_area = Array[Array]([[NodePath("NavigationRegion3D/Mine"), NodePath("NavigationRegion3D/Mine1"), NodePath("NavigationRegion3D/Mine2"), NodePath("NavigationRegion3D/Mine3"), NodePath("NavigationRegion3D/Mine5"), NodePath("NavigationRegion3D/Mine7"), NodePath("NavigationRegion3D/Mine13")], [NodePath("NavigationRegion3D/Mine14"), NodePath("NavigationRegion3D/Mine15"), NodePath("NavigationRegion3D/Mine16"), NodePath("NavigationRegion3D/Mine17"), NodePath("NavigationRegion3D/Mine18"), NodePath("NavigationRegion3D/Mine19"), NodePath("NavigationRegion3D/Mine20"), NodePath("NavigationRegion3D/Mine21"), NodePath("NavigationRegion3D/Mine22"), NodePath("NavigationRegion3D/Mine23"), NodePath("NavigationRegion3D/Mine24"), NodePath("NavigationRegion3D/Mine25"), NodePath("NavigationRegion3D/Mine26"), NodePath("NavigationRegion3D/Mine27"), NodePath("NavigationRegion3D/Mine28"), NodePath("NavigationRegion3D/Mine29"), NodePath("NavigationRegion3D/Mine30"), NodePath("NavigationRegion3D/Mine31")], [NodePath("NavigationRegion3D/Mine32"), NodePath("NavigationRegion3D/Mine33"), NodePath("NavigationRegion3D/Mine34"), NodePath("NavigationRegion3D/Mine35"), NodePath("NavigationRegion3D/Mine36"), NodePath("NavigationRegion3D/Mine37"), NodePath("NavigationRegion3D/Mine38"), NodePath("NavigationRegion3D/Mine39"), NodePath("NavigationRegion3D/Mine40"), NodePath("NavigationRegion3D/Mine41"), NodePath("NavigationRegion3D/Mine42"), NodePath("NavigationRegion3D/Mine43"), NodePath("NavigationRegion3D/Mine44"), NodePath("NavigationRegion3D/Mine45"), NodePath("NavigationRegion3D/Mine46"), NodePath("NavigationRegion3D/Mine47"), NodePath("NavigationRegion3D/Mine48"), NodePath("NavigationRegion3D/Mine49"), NodePath("NavigationRegion3D/Mine50"), NodePath("NavigationRegion3D/Mine51"), NodePath("NavigationRegion3D/Mine52"), NodePath("NavigationRegion3D/Mine53"), NodePath("NavigationRegion3D/Mine54")], [NodePath("NavigationRegion3D/Mine55"), NodePath("NavigationRegion3D/Mine56"), NodePath("NavigationRegion3D/Mine57"), NodePath("NavigationRegion3D/Mine58"), NodePath("NavigationRegion3D/Mine59"), NodePath("NavigationRegion3D/Mine60"), NodePath("NavigationRegion3D/Mine61"), NodePath("NavigationRegion3D/Mine62"), NodePath("NavigationRegion3D/Mine63"), NodePath("NavigationRegion3D/Mine64"), NodePath("NavigationRegion3D/Mine65"), NodePath("NavigationRegion3D/Mine66"), NodePath("NavigationRegion3D/Mine67"), NodePath("NavigationRegion3D/Mine68"), NodePath("NavigationRegion3D/Mine69"), NodePath("NavigationRegion3D/Mine70"), NodePath("NavigationRegion3D/Mine71"), NodePath("NavigationRegion3D/Mine72"), NodePath("NavigationRegion3D/Mine73"), NodePath("NavigationRegion3D/Mine74"), NodePath("NavigationRegion3D/Mine75"), NodePath("NavigationRegion3D/Mine76"), NodePath("NavigationRegion3D/Mine77"), NodePath("NavigationRegion3D/Mine78"), NodePath("NavigationRegion3D/Mine79"), NodePath("NavigationRegion3D/Mine80"), NodePath("NavigationRegion3D/Mine81"), NodePath("NavigationRegion3D/Mine82"), NodePath("NavigationRegion3D/Mine83"), NodePath("NavigationRegion3D/Mine84"), NodePath("NavigationRegion3D/Mine85"), NodePath("NavigationRegion3D/Mine86"), NodePath("NavigationRegion3D/Mine87"), NodePath("NavigationRegion3D/Mine88"), NodePath("NavigationRegion3D/Mine89"), NodePath("NavigationRegion3D/Mine90"), NodePath("NavigationRegion3D/Mine91")]])
 _materials_by_area = Array[Dictionary]([{
-1: 7,
-2: 4
+1: 5,
+2: 2
 }, {
 1: 1,
 2: 5,
 3: 5,
-4: 5
+4: 5,
+12: 1,
+13: 1
 }, {
-2: 1,
+2: 2,
 3: 3,
 4: 3,
 5: 4,
 6: 4,
-7: 4
+7: 4,
+12: 2,
+13: 1
 }, {
 2: 1,
 3: 2,
@@ -293,7 +298,8 @@ _materials_by_area = Array[Dictionary]([{
 7: 4,
 8: 6,
 9: 6,
-10: 6
+10: 6,
+12: 2
 }])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -341,6 +347,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 137.097, -1.30797, 228.596)
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 112.519, -1.2, 298.596)
 material_id = 2
 
+[node name="Mine1" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 193.887, -1.2, 171.17)
+material_id = 2
+
 [node name="Mine2" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 191.257, -1.2, 257.463)
 material_id = 1
@@ -351,18 +361,18 @@ material_id = 12
 
 [node name="Mine4" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 178.48, -1.2, 200.523)
-material_id = 1
+material_id = 2
 
 [node name="Mine5" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 199.771, -1.2, 220.747)
 material_id = 1
 
 [node name="Mine6" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 193.379, -1.2, 158.537)
-material_id = 12
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 187.219, -1.2, 137.745)
+material_id = 13
 
 [node name="Mine7" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 166.878, -1.2, 147.853)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 154.868, -1.2, 149.584)
 material_id = 1
 
 [node name="Mine8" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -379,11 +389,11 @@ material_id = 1
 
 [node name="Mine11" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 72.0924, -1.2, 195.829)
-material_id = 13
+material_id = 12
 
 [node name="Mine12" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 108.119, -1.2, 172.479)
-material_id = 1
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 105.331, -1.2, 189.089)
+material_id = 2
 
 [node name="Mine13" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 81.514, -1.2, 278.307)
@@ -419,6 +429,13 @@ shape = SubResource("BoxShape3D_akm04")
 transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 12, 0, 0, 0)
 mesh = SubResource("PlaneMesh_lt1ss")
 skeleton = NodePath("../..")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/FirstBarrier/Wall2"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
 
 [node name="Mine14" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 126.075, -1.20001, 19.8521)
@@ -516,6 +533,13 @@ transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 9, 0, 0, 
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/SecondBarrier/Wall2"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
 [node name="Pillar3" type="CollisionShape3D" parent="NavigationRegion3D/SecondBarrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 48)
 shape = SubResource("BoxShape3D_sdp4g")
@@ -533,6 +557,13 @@ shape = SubResource("BoxShape3D_joqas")
 transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 13, 0, 0, 0)
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/SecondBarrier/Wall3"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
 
 [node name="Mine32" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 107.458, -1.19989, -226.753)
@@ -693,6 +724,13 @@ transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0,
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall3"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
 [node name="Wall2" type="CollisionShape3D" parent="NavigationRegion3D/ThirdBarrier"]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 4, -33)
 shape = SubResource("BoxShape3D_18csa")
@@ -701,6 +739,13 @@ shape = SubResource("BoxShape3D_18csa")
 transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall2"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
 
 [node name="Wall4" type="CollisionShape3D" parent="NavigationRegion3D/ThirdBarrier"]
 transform = Transform3D(0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, 0.34202, -9.39693, 4, 25.4202)
@@ -711,6 +756,13 @@ transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0,
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall4"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
 [node name="Wall6" type="CollisionShape3D" parent="NavigationRegion3D/ThirdBarrier"]
 transform = Transform3D(0.342022, 0, -0.9397, 0, 1, 0, 0.9397, 0, 0.342022, -50.7437, 4, 40.4692)
 shape = SubResource("BoxShape3D_18csa")
@@ -720,6 +772,13 @@ transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0,
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall6"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
 [node name="Wall5" type="CollisionShape3D" parent="NavigationRegion3D/ThirdBarrier"]
 transform = Transform3D(0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, 0.34202, -30.0702, 4, 32.9446)
 shape = SubResource("BoxShape3D_18csa")
@@ -728,6 +787,13 @@ shape = SubResource("BoxShape3D_18csa")
 transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall5"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
 
 [node name="Mine55" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -167.6, -1.19989, 36.4622)
