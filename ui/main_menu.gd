@@ -21,6 +21,7 @@ func start_game() -> void:
 		game_instance = null
 	
 	if game_instance == null:
+		restore_progress = false
 		game_instance = MAIN_MAP.instantiate()
 		get_tree().root.add_child(game_instance)
 	

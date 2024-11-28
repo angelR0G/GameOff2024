@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://2r3paoyij140"]
+
+[ext_resource type="Texture2D" uid="uid://cpaounkyjnl21" path="res://assets/sprites/godot.svg" id="1_a0u8b"]
+[ext_resource type="Script" path="res://credits.gd" id="1_ci3vn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sscam"]
+
+[node name="Credits" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_ci3vn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+texture_filter = 4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="Display1" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Display1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Game developed by"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Display1"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_sscam")
+
+[node name="Label2" type="Label" parent="MarginContainer/Display1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Adrian Marco"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/Display1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Angel Robles"
+horizontal_alignment = 1
+
+[node name="Display2" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/Display2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Powered by"
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Display2"]
+texture_filter = 4
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_a0u8b")
+expand_mode = 5
+
+[node name="Display3" type="VBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/Display3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "Additional resources from"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/Display3"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxEmpty_sscam")
+
+[node name="Label2" type="Label" parent="MarginContainer/Display3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Freesound.org"
+horizontal_alignment = 1

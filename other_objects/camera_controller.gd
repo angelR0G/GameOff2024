@@ -16,6 +16,7 @@ var zoom_enabled := true
 
 func _ready() -> void:
 	Instance = self
+	camera.make_current()
 	target_zoom = camera.size
 	
 	# Update player and motorbike audio listeners' rotation

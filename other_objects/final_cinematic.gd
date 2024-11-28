@@ -6,6 +6,8 @@ func _ready() -> void:
 	Instance = self
 
 func play_cinematic() -> void:
+	Engine.time_scale = 1.0
+	
 	var menu := MainMenu.Instance
 	var player := Player.Instance
 	

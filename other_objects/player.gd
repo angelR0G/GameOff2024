@@ -138,3 +138,7 @@ func toggle_cheats() -> void:
 func play_footstep() -> void:
 	footsteps_audio.pitch_scale = randf_range(0.9, 1.3)
 	footsteps_audio.play()
+
+
+func _exit_tree() -> void:
+	Instance = null

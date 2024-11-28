@@ -94,3 +94,7 @@ func _interaction() -> void:
 func mark_stored_materials_as_discovered() -> void:
 	for mat_id in materials.get_all_keys():
 		MATERIALS.search_by_id(mat_id).discovered = true
+
+
+func _exit_tree() -> void:
+	Instance = null
