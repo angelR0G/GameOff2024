@@ -1,11 +1,27 @@
-[gd_scene load_steps=12 format=3 uid="uid://baa4tvph24mkf"]
+[gd_scene load_steps=13 format=4 uid="uid://baa4tvph24mkf"]
 
 [ext_resource type="Script" path="res://other_objects/player.gd" id="1_nq4kw"]
 [ext_resource type="PackedScene" uid="uid://bnmugypts2fc8" path="res://ui/interactions_display.tscn" id="2_6mo8e"]
-[ext_resource type="ArrayMesh" uid="uid://bucm810ot85m6" path="res://assets/meshes/engineer.obj" id="2_vrfgc"]
+[ext_resource type="Material" uid="uid://dnmxir5bpvwr3" path="res://assets/meshes/materials/engineer.tres" id="2_eau40"]
 [ext_resource type="PackedScene" uid="uid://cfjsaxbypqcrh" path="res://ui/hud.tscn" id="3_l3poo"]
 [ext_resource type="PackedScene" uid="uid://5eveljb5rw8u" path="res://ui/container_manager_ui.tscn" id="5_rnmcg"]
 [ext_resource type="AudioStream" uid="uid://c1a1n154hfg4k" path="res://assets/sounds/step.wav" id="6_hb1nb"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_3ugdk"]
+_surfaces = [{
+"aabb": AABB(-0.80767, -0.001669, -0.4375, 1.61534, 1.49332, 1),
+"attribute_data": PackedByteArray("/3//n/9//6//b/+f/2//r/+/AAD/v/8P/68AAP+v/w//r/8j/6//E/+//yP/v/8T/6//J/+v/zf/v/8n/7//N/+7/2f/u/93/6v/Z/+r/3f/a/+b/2v/q/9b/5v/W/+r/4P/Qyh6/4P/Q/9D1k3/g/8//0NNMf+DAAD/Q7IO/4P/v/9/KLb/v/9//3/Vif+//4MAAE11/z//QwAAslL/P/8r/4f/K/+rAAD/hwAA/6v/V/+n/y//p/9X/4f/L/+HZzSYC5gLmAv/PwAAAAAAAGc0ZzRnNJgL/z//P/8/AACYC2c0ZzRnNAAA/z//P/8/mAuYC5gLZzQAAAAAAAD/P/+r/xf/q/8//4P/F/+D/z//r/9j/4f/Y/+v/0P/h/9D/1f/y/8v/8v/V/+r/y//q/8n/88AAP/P/yf/rwAA/6//w/87/8P/S/+z/zv/s/9L/3//s/9//8P/b/+z/2//w/+7/8v/u/+7/8v/y//L/7v/v/9j/7//c//P/2P/z/9z/8P/T//D/1//s/9P/7P/X/9r/6//a/+//1v/r/9b/78="),
+"format": 34896613399,
+"index_count": 156,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABgAFAAcACAAJAAoACgAJAAsADAANAA4ADgANAA8AEAARABIAEgARABMAFAAVABYAFgAVABcAGAAZABoAGgAZABsAHAAdAB4AHgAdAB8AIAAhACIAIgAhACMAJAAlACYAJgAlACcAKAApACoAKgApACsALAAtAC4ALgAtAC8AMAAxADIAMgAxADMANAA1ADYANgA1ADcAOAA5ADoAOgA5ADsAPAA9AD4APgA9AD8AQABBAEIAQgBBAEMARABFAEYARgBFAEcASABJAEoASgBJAEsATABNAE4ATgBNAE8AUABRAFIAUgBRAFMAVABVAFYAVgBVAFcAWABZAFoAWgBZAFsAXABdAF4AXgBdAF8AYABhAGIAYgBhAGMAZABlAGYAZgBlAGcA"),
+"material": ExtResource("2_eau40"),
+"name": "m_46d1363f-2e71-f215-6597-45a696c69b02",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 104,
+"vertex_data": PackedByteArray("9NS0bjdA6upF39VF1knq6q31mHu7Xurq//+4Ulto6ure4Zh7KJafmC/suFLHn5+YJcG0bqN3n5h2y9VFQ4GfmPTUtG43QC3erfWYe7teLd4lwbRuo3ct3t7hmHsoli3e//+4UltodRhF39VF1kl1GC/suFLHn3UYdsvVRUOBdRit9Zh7u15HrP//uFJbaEes3uGYeyiWR6wv7LhSx59HrCXBtG6jd+DVdsvVRUOB4NX01LRuN0Dg1UXf1UXWSeDVwjBtq///g8AnVQAApdiDwMIwbasAAIPAJ1UAAFkng8DCMG2rAAD//ydVAABZJ///PM9tqwAA///XqgAAWSf//zzPbasAAIPA16oAAFkng8A8z22r//+DwNeqAACl2IPAPM9tq///NobXqgAApdg2hsIwbav//zaGJ1UAAKXYNobXqgAAWSdU1SdVAABZJ1TV16oAAKXYVNUnVQAApdhU1Yaybaue0QCAeE1tq57RAICGsv//ntEAgHhN//+e0QCAeE1tq2AuVNV4TW2rntFU1cIwbasAAFTVwjBtq///VNWGsm2rYC5U1XhNbatgLlTVPM9tqwAAVNXCMG2rAABU1Yaybaue0VTVhrJtq2AuVNU8z22r//9U1TzPbasAAFTVeE1tq57RVNWGsm2rntFU1cIwbav//1TVPM9tq///VNV4Tf//YC5U1Yay//9gLlTVeE3//57RVNWGsv//ntFU1XhNbatgLv//hrJtq2Au//94Tf//YC7//4ay//9gLv//hrJtq2Au/7+Gsm2rntH/v4ay//9gLv+/hrL//57R/794TW2rntH/v3hNbatgLv+/eE3//57R/794Tf//YC7/v1EKmHu7XurqAAC4Ulto6uoKK7RuN0Dq6rkg1UXWSerq2T60bqN3n5iINNVFQ4GfmCAemHsolp+YzxO4Usefn5hRCph7u14w1AortG43QDDUIB6YeyiWMNTZPrRuo3cw1Lkg1UXWSQA/AAC4UltoAD+INNVFQ4EAP88TuFLHnwA/Ciu0bjdA4NW5INVF1kng1dk+tG6jd+DViDTVRUOB4NUgHph7KJZHrM8TuFLHn0esUQqYe7teR6wAALhSW2hHrHuQ5hR7kOYUe5DmFHuQ5hTvtZj077WY9O+1mPTvtZj0H5lZux+ZWbsfmVm7H5lZu54oA+CeKAPgnigD4J4oA+DjpQUY46UFGOOlBRjjpQUY/mbY9v5m2Pb+Ztj2/mbY9lhoK/RYaCv0WGgr9FhoK/Tpdv//6Xb//+l2///pdv//K3SnFyt0pxcrdKcXK3SnFwAA/38AAP9/AAD/fwAA/39UVVRVVFVUVVRVVFVUVVRV/3////9/////f////3///1TVqipU1aoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoqVNWqKlTVqipU1aoq/3////9/////f////3////9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///5pSD7+aUg+/mlIPv5pSD72WL8DVli/A1ZYvwNWWL8DX5vxSb+b8Um/m/FJv5vxSbnireyZ4q3smeKt7Jnireydh2ARnYdgEZ2HYBGdh2ARkFmBvaBZgb2gWYG9oFmBva")
+}]
+blend_shape_mode = 0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ccjio"]
 radius = 0.7
@@ -72,7 +88,7 @@ collision_mask = 3
 script = ExtResource("1_nq4kw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = ExtResource("2_vrfgc")
+mesh = SubResource("ArrayMesh_3ugdk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
