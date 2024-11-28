@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://bkmkdpqg74rjl"]
+[gd_scene load_steps=32 format=3 uid="uid://bkmkdpqg74rjl"]
 
 [ext_resource type="Script" path="res://other_objects/mine_manager.gd" id="1_4ew5w"]
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_6ms4c"]
 [ext_resource type="PackedScene" uid="uid://folm8xiajm5v" path="res://machines/motorbike.tscn" id="2_sjjn5"]
 [ext_resource type="NavigationMesh" uid="uid://crg1rr88drtng" path="res://resources/navigation.tres" id="3_4ase6"]
+[ext_resource type="AudioStream" uid="uid://bgu5qlaj5a3tn" path="res://assets/sounds/wind.mp3" id="4_734tg"]
 [ext_resource type="Script" path="res://other_objects/navigation_reference.gd" id="4_g7i58"]
 [ext_resource type="MeshLibrary" uid="uid://cmivlmx2pytjl" path="res://resources/mesh_library.tres" id="5_qk3jo"]
 [ext_resource type="PackedScene" uid="uid://bgdwweowv3rlk" path="res://other_objects/mine.tscn" id="6_117xo"]
@@ -306,6 +307,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 138.535, -0.852147, 242.04)
 
 [node name="Motorbike" parent="." instance=ExtResource("2_sjjn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 147.075, -0.225737, 235.781)
+
+[node name="WindAudioPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_734tg")
+volume_db = -9.0
+autoplay = true
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = ExtResource("3_4ase6")
