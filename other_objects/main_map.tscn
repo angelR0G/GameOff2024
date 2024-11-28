@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bkmkdpqg74rjl"]
+[gd_scene load_steps=33 format=3 uid="uid://bkmkdpqg74rjl"]
 
 [ext_resource type="Script" path="res://other_objects/mine_manager.gd" id="1_4ew5w"]
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_6ms4c"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="8_h4axl"]
 [ext_resource type="PackedScene" uid="uid://7wsq8muok7u3" path="res://other_objects/barrier.tscn" id="9_4aefs"]
 [ext_resource type="PackedScene" uid="uid://co27ray1b76sa" path="res://other_objects/isometric_camera.tscn" id="11_607wd"]
+[ext_resource type="AudioStream" uid="uid://cqnu4khyosoem" path="res://assets/sounds/barrier.wav" id="11_fxv64"]
 [ext_resource type="Script" path="res://other_objects/final_cinematic.gd" id="11_p6x5o"]
 [ext_resource type="ArrayMesh" uid="uid://r5khg6a8d4t3" path="res://assets/meshes/motorcycle.obj" id="12_bgcss"]
 [ext_resource type="PackedScene" uid="uid://2r3paoyij140" path="res://credits.tscn" id="13_yateh"]
@@ -420,6 +421,13 @@ transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 12, 0, 0,
 mesh = SubResource("PlaneMesh_lt1ss")
 skeleton = NodePath("../..")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/FirstBarrier/Wall2"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
 [node name="Mine14" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 126.075, -1.20001, 19.8521)
 material_id = 1
@@ -516,6 +524,13 @@ transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 9, 0, 0, 
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/SecondBarrier/Wall2"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
 [node name="Pillar3" type="CollisionShape3D" parent="NavigationRegion3D/SecondBarrier"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 48)
 shape = SubResource("BoxShape3D_sdp4g")
@@ -533,6 +548,13 @@ shape = SubResource("BoxShape3D_joqas")
 transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 13, 0, 0, 0)
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/SecondBarrier/Wall3"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
 
 [node name="Mine32" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 107.458, -1.19989, -226.753)
@@ -693,6 +715,13 @@ transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0,
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall3"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
 [node name="Wall2" type="CollisionShape3D" parent="NavigationRegion3D/ThirdBarrier"]
 transform = Transform3D(1, 0, -1.49012e-08, 0, 1, 0, 1.49012e-08, 0, 1, 0, 4, -33)
 shape = SubResource("BoxShape3D_18csa")
@@ -701,6 +730,13 @@ shape = SubResource("BoxShape3D_18csa")
 transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall2"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
 
 [node name="Wall4" type="CollisionShape3D" parent="NavigationRegion3D/ThirdBarrier"]
 transform = Transform3D(0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, 0.34202, -9.39693, 4, 25.4202)
@@ -711,6 +747,13 @@ transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0,
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall4"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
 [node name="Wall6" type="CollisionShape3D" parent="NavigationRegion3D/ThirdBarrier"]
 transform = Transform3D(0.342022, 0, -0.9397, 0, 1, 0, 0.9397, 0, 0.342022, -50.7437, 4, 40.4692)
 shape = SubResource("BoxShape3D_18csa")
@@ -720,6 +763,13 @@ transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0,
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall6"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
 [node name="Wall5" type="CollisionShape3D" parent="NavigationRegion3D/ThirdBarrier"]
 transform = Transform3D(0.34202, 0, -0.939693, 0, 1, 0, 0.939693, 0, 0.34202, -30.0702, 4, 32.9446)
 shape = SubResource("BoxShape3D_18csa")
@@ -728,6 +778,13 @@ shape = SubResource("BoxShape3D_18csa")
 transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="NavigationRegion3D/ThirdBarrier/Wall5"]
+stream = ExtResource("11_fxv64")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
 
 [node name="Mine55" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -167.6, -1.19989, 36.4622)

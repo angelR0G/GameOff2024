@@ -101,7 +101,10 @@ wait_time = 0.6
 
 [node name="FootstepsAudio" type="AudioStreamPlayer3D" parent="FootstepsTimer"]
 stream = ExtResource("6_hb1nb")
-volume_db = 9.0
+attenuation_model = 3
+volume_db = -21.0
+panning_strength = 0.0
 bus = &"World"
+attenuation_filter_cutoff_hz = 20500.0
 
 [connection signal="timeout" from="FootstepsTimer" to="." method="play_footstep"]

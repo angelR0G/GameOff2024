@@ -46,6 +46,8 @@ func _ready() -> void:
 	machines.add_machine_by_type(Machine.Type.EnergyExtender)
 	machines.add_machine_by_type(Machine.Type.TransportDroneStation)
 	machines.add_machine_by_type(Machine.Type.Disruptor)
+	machines.add_machine_by_type(Machine.Type.Disruptor)
+	machines.add_machine_by_type(Machine.Type.Disruptor)
 
 func _process(delta):
 	if riding_on != null:

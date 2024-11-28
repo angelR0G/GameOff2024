@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://7wsq8muok7u3"]
+[gd_scene load_steps=10 format=3 uid="uid://7wsq8muok7u3"]
 
 [ext_resource type="Script" path="res://other_objects/barrier.gd" id="1_bo5rp"]
 [ext_resource type="PackedScene" uid="uid://bcsnulyrjoclq" path="res://other_objects/interaction_collider.tscn" id="2_6ewat"]
+[ext_resource type="AudioStream" uid="uid://cqnu4khyosoem" path="res://assets/sounds/barrier.wav" id="3_ngani"]
+[ext_resource type="AudioStream" uid="uid://bini263aga0sn" path="res://assets/sounds/disruptor.wav" id="4_gowrg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdp4g"]
 size = Vector3(3, 10, 3)
@@ -53,5 +55,16 @@ shape = SubResource("BoxShape3D_f0koa")
 transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 9, 0, 0, 0)
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Wall"]
+stream = ExtResource("3_ngani")
+attenuation_model = 3
+autoplay = true
+max_distance = 25.0
+bus = &"World"
+
+[node name="DisruptorAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gowrg")
+bus = &"World"
 
 [editable path="MainPillar/InteractionTrigger"]
