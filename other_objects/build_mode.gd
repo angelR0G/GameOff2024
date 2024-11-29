@@ -174,6 +174,7 @@ func update_navmesh(force_update :bool = false) -> void:
 
 func check_if_can_be_placed(pos:Vector3) -> bool:
 	var bodies := await get_bodies_in_area(pos, BUILD_SAFE_RADIUS)
+	
 	#if bodies[0] is GridMap:
 		#var tile_pos := Vector3(pos.x/bodies[0].cell_size.x, -2, pos.z/bodies[0].cell_size.z)
 		#print( bodies[0].get_cell_item(tile_pos))
@@ -186,8 +187,8 @@ func check_if_can_be_placed(pos:Vector3) -> bool:
 			#return true
 		#return false
 	var start_loop_range = 0
-	if bodies[0] is GridMap:
-		start_loop_range = 1
+	#if bodies[0] is GridMap:
+		#start_loop_range = 1
 	for num in range(start_loop_range, bodies.size()):
 		#var body:CollisionShape3D = bodies[num].get_node("CollisionShape3D")
 		var body = bodies[num]
