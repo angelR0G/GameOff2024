@@ -11,6 +11,8 @@ height = 3.0
 [sub_resource type="TorusMesh" id="TorusMesh_n00dl"]
 
 [node name="Drone" type="CharacterBody3D"]
+collision_layer = 16
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_pwi3w")
 
@@ -24,7 +26,6 @@ mesh = SubResource("TorusMesh_n00dl")
 skeleton = NodePath("")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-avoidance_enabled = true
 radius = 2.0
 debug_enabled = true
 
