@@ -6,7 +6,7 @@ const MOVEMENT_LERP_FACTOR := 2.0
 const ZOOM_LERP_FACTOR := 3.0
 const TARGET_SPEED_FACTOR := 1.5
 const MIN_ZOOM := 20.0
-const MAX_ZOON := 50.0
+const MAX_ZOON := 52.0
 
 @export var target:Node3D = null
 
@@ -53,9 +53,9 @@ func update_zoom(delta:float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if zoom_enabled:
 		if event.is_action_pressed("zoom_in"):
-			target_zoom = maxf(MIN_ZOOM, target_zoom - 5.0)
+			target_zoom = maxf(MIN_ZOOM, target_zoom - 4.0)
 		elif event.is_action_pressed("zoom_out"):
-			target_zoom = minf(target_zoom + 5.0, MAX_ZOON)
+			target_zoom = minf(target_zoom + 4.0, MAX_ZOON)
 
 func set_target(node:Node3D) -> void:
 	target = node

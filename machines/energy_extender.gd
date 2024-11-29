@@ -18,6 +18,12 @@ func _ready() -> void:
 	update_energy_radius()
 
 
+func _on_upgrade() -> void:
+	radius += 2.0
+	
+	update_energy_radius()
+
+
 func _on_energy_area_area_shape_entered(_area_rid: RID, area: Area3D, _area_shape_index: int, _local_shape_index: int) -> void:
 	var machine : Machine = area.get_parent()
 	if machine is EnergyStation:

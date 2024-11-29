@@ -15,7 +15,7 @@ func _init() -> void:
 	_type = Machine.Type.EnergyStation
 	machine_name = "Energy station"
 	description = "Provides energy to surrounding machines."
-	energy_cost = 1
+	energy_cost = 2
 	active = false
 	can_be_placed_on_world = true
 
@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func _on_upgrade() -> void:
-	radius += 6.0
+	radius += 4.0
 	
 	update_energy_radius()
 

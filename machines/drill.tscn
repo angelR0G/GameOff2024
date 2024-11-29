@@ -25,6 +25,7 @@ blend_shape_mode = 0
 script = ExtResource("2_oyb7y")
 
 [node name="MachineMesh" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_40w0x")
 
 [node name="MiningTimer" type="Timer" parent="." index="1"]

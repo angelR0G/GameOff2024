@@ -5,5 +5,5 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_5e2tw")
-shader_parameter/color = Vector4(0.44, 0.44, 0.44, 1)
+shader_parameter/color = Vector4(0.49, 0.44, 0.44, 1)
 shader_parameter/special_mat = false

@@ -10,7 +10,7 @@ void vertex() {
 void fragment() {
 	if(!special_mat){
 		ALBEDO = color.rgb;
-		EMISSION = color.rgb;
+		//EMISSION = color.rgb;
 	}else{
 		ALBEDO = color.rgb;
 		EMISSION = color.rgb;

@@ -1,14 +1,14 @@
-[gd_scene load_steps=11 format=4 uid="uid://7wsq8muok7u3"]
+[gd_scene load_steps=14 format=4 uid="uid://7wsq8muok7u3"]
 
 [ext_resource type="Script" path="res://other_objects/barrier.gd" id="1_bo5rp"]
 [ext_resource type="PackedScene" uid="uid://bcsnulyrjoclq" path="res://other_objects/interaction_collider.tscn" id="2_6ewat"]
 [ext_resource type="Material" uid="uid://kfxogkxa150a" path="res://assets/meshes/materials/barrier_center.tres" id="2_sjcyx"]
-[ext_resource type="Material" uid="uid://b4c5nls6hs5wp" path="res://assets/meshes/materials/barrier_pilar.tres" id="4_o27wg"]
 [ext_resource type="AudioStream" uid="uid://cqnu4khyosoem" path="res://assets/sounds/barrier.wav" id="3_ngani"]
 [ext_resource type="AudioStream" uid="uid://bini263aga0sn" path="res://assets/sounds/disruptor.wav" id="4_gowrg"]
+[ext_resource type="Material" uid="uid://b4c5nls6hs5wp" path="res://assets/meshes/materials/barrier_pilar.tres" id="4_o27wg"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdp4g"]
-size = Vector3(3, 10, 3)
+size = Vector3(4, 10, 4.5)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_devug"]
 _surfaces = [{
@@ -28,7 +28,10 @@ blend_shape_mode = 0
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_i4fu0"]
 height = 5.0
-radius = 5.0
+radius = 6.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ijr7r"]
+size = Vector3(3, 10, 3)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_gslsk"]
 _surfaces = [{
@@ -47,7 +50,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_f0koa"]
-size = Vector3(1, 8, 18)
+size = Vector3(1, 6, 18)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oril5"]
 
@@ -55,11 +58,11 @@ size = Vector3(1, 8, 18)
 script = ExtResource("1_bo5rp")
 
 [node name="MainPillar" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.59986, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
 shape = SubResource("BoxShape3D_sdp4g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MainPillar"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -4.38851, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -5, 0)
 mesh = SubResource("ArrayMesh_devug")
 skeleton = NodePath("../..")
 
@@ -72,19 +75,19 @@ shape = SubResource("CylinderShape3D_i4fu0")
 
 [node name="Pillar" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -20)
-shape = SubResource("BoxShape3D_sdp4g")
+shape = SubResource("BoxShape3D_ijr7r")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Pillar"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.00737, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
 mesh = SubResource("ArrayMesh_gslsk")
 skeleton = NodePath("../..")
 
 [node name="Wall" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -10)
 shape = SubResource("BoxShape3D_f0koa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
-transform = Transform3D(-1.74846e-07, 1, 0, -4, -4.37114e-08, 0, 0, 0, 9, 0, 0, 0)
+transform = Transform3D(-1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0, 9, 0, 0, 0)
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 
