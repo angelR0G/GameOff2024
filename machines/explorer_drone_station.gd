@@ -14,7 +14,7 @@ func _init() -> void:
 	_type = Machine.Type.ExplorerDroneStation
 	machine_name = "Explorer Drone"
 	description = "Explores nearby mines automatically."
-	energy_cost = 0
+	energy_cost = -1
 	
 	radius = 50.0
 	speed = 4.0
@@ -31,6 +31,7 @@ func _ready() -> void:
 	
 	await save_mines_in_radius()
 	active = true
+	powered = true
 
 
 func save_mines_in_radius() -> void:
