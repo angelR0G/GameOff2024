@@ -34,6 +34,9 @@ func is_working() -> bool:
 
 
 func set_machine_powered(new_state:bool) -> void:
+	# Machines with -1 energy cost are always powered
+	new_state = new_state or energy_cost == -1
+	
 	if powered != new_state:
 		powered = new_state
 		_check_machine_new_state(new_state)

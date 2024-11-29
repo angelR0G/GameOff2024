@@ -9,7 +9,7 @@ func _init() -> void:
 	_type = Machine.Type.Generator
 	machine_name = "Generator"
 	description = "Increases energy capacity when placed in a mine."
-	energy_cost = 0
+	energy_cost = -1
 	active = false
 
 func on_install(mine:Mine) -> void:

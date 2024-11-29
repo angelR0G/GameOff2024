@@ -113,6 +113,7 @@ main_menu={
 3d_physics/layer_1="SOLID"
 3d_physics/layer_2="GROUND"
 3d_physics/layer_4="ENERGY"
+3d_physics/layer_5="Drone"
 
 [rendering]
 

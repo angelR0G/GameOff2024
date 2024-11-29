@@ -9,6 +9,7 @@ const ENGINE_OFF_SOUND := preload("res://assets/sounds/engine_off.wav")
 @onready var interaction: InteractionCollider = $InteractionTrigger
 @onready var audio_listener: AudioListener3D = $AudioListener3D
 @onready var audio_player: AudioStreamPlayer3D = $AudioPlayer
+@onready var smoke_particles: GPUParticles3D = $SmokeParticles
 
 var broken:bool = true
 var player_riding :Player = null
@@ -21,6 +22,8 @@ var stored_materials := MaterialContainer.new()
 func _ready() -> void:
 	interaction.interaction_function = _interaction
 	stored_materials.max_weight = 200
+	
+	smoke_particles.emitting = broken
 
 
 func _process(delta):

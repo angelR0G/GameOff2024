@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://bluvwo6nxsta3"]
+[gd_scene load_steps=10 format=4 uid="uid://bluvwo6nxsta3"]
 
 [ext_resource type="PackedScene" uid="uid://d2ad2c6jamqv7" path="res://machines/drone_station.tscn" id="1_nehbs"]
 [ext_resource type="Script" path="res://machines/transport_drone_station.gd" id="2_adyr3"]
@@ -20,21 +20,48 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_25lbu"]
+size = Vector3(3.5, 2.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_esldm"]
+size = Vector3(3.5, 2.5, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ssdt7"]
+size = Vector3(6, 2, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bjuwj"]
+size = Vector3(5, 2, 8)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_7avff"]
 
 [node name="TransportDroneStation" groups=["transport_drones"] instance=ExtResource("1_nehbs")]
 script = ExtResource("2_adyr3")
 
 [node name="MachineMesh" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.651925, -0.0211864, 0.441801)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_c8ky0")
 skeleton = NodePath("..")
 
-[node name="UpdateWaitTimer" type="Timer" parent="." index="5"]
+[node name="CollisionShape3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -2.65)
+shape = SubResource("BoxShape3D_25lbu")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.25, 2.5)
+shape = SubResource("BoxShape3D_esldm")
+
+[node name="CollisionShape3D" parent="GameLocation/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.5)
+shape = SubResource("BoxShape3D_ssdt7")
+
+[node name="CollisionShape3D" parent="InteractionTrigger" index="0"]
+shape = SubResource("BoxShape3D_bjuwj")
+
+[node name="UpdateWaitTimer" type="Timer" parent="." index="6"]
 wait_time = 30.0
 one_shot = true
 
-[node name="CollectorDroneDetector" type="Area3D" parent="." index="7"]
+[node name="CollectorDroneDetector" type="Area3D" parent="." index="8"]
 monitoring = false
 monitorable = false
 

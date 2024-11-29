@@ -43,9 +43,14 @@ func _physics_process(_delta: float) -> void:
 
 
 func _move_to_target() -> void:
-	var movement_direction := (get_next_pathfinding_location() - global_position).normalized()
-	look_at(get_next_pathfinding_location())
+	var target_position := get_next_pathfinding_location()
+	var movement_direction := (target_position - global_position).normalized()
+	if movement_direction != Vector3.ZERO:
+		look_at(target_position)
 	nav_agent.velocity = movement_direction * speed
+	velocity = nav_agent.velocity
+	
+	move_and_slide()
 
 func get_next_pathfinding_location() -> Vector3:
 	if nav_agent.is_navigation_finished():

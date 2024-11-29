@@ -81,6 +81,7 @@ func upgrade_motorbike() -> void:
 	
 	if current_level == 1:
 		motorbike.broken = false
+		motorbike.smoke_particles.emitting = false
 		set_blueprint_description("Increases speed and maximum weight.")
 	else:
 		motorbike._on_upgrade()

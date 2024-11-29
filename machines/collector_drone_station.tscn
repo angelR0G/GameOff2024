@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://c16b4m038mttq"]
+[gd_scene load_steps=8 format=4 uid="uid://c16b4m038mttq"]
 
 [ext_resource type="PackedScene" uid="uid://d2ad2c6jamqv7" path="res://machines/drone_station.tscn" id="1_d48rs"]
 [ext_resource type="Script" path="res://machines/collector_drone_station.gd" id="2_32ema"]
@@ -20,6 +20,15 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_xlhj6"]
+size = Vector3(4.5, 2.5, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1xjhp"]
+size = Vector3(6, 2, 5)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pis6p"]
+radius = 4.0
+
 [node name="CollectorDroneStation" groups=["collector_drones"] instance=ExtResource("1_d48rs")]
 script = ExtResource("2_32ema")
 
@@ -27,6 +36,15 @@ script = ExtResource("2_32ema")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0952809, 0)
 mesh = SubResource("ArrayMesh_2cvoh")
 skeleton = NodePath("..")
+
+[node name="CollisionShape3D" parent="." index="2"]
+shape = SubResource("BoxShape3D_xlhj6")
+
+[node name="CollisionShape3D" parent="GameLocation/Area3D" index="0"]
+shape = SubResource("BoxShape3D_1xjhp")
+
+[node name="CollisionShape3D" parent="InteractionTrigger" index="0"]
+shape = SubResource("CylinderShape3D_pis6p")
 
 [node name="UpdateWaitTimer" type="Timer" parent="." index="5"]
 wait_time = 10.0
