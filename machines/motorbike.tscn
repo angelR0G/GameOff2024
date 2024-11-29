@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://folm8xiajm5v"]
+[gd_scene load_steps=14 format=4 uid="uid://folm8xiajm5v"]
 
 [ext_resource type="PackedScene" uid="uid://bcsnulyrjoclq" path="res://other_objects/interaction_collider.tscn" id="1_5rwkd"]
 [ext_resource type="Script" path="res://machines/motorbike.gd" id="1_yqhj7"]
 [ext_resource type="Material" uid="uid://dj1ltaicjurnc" path="res://assets/meshes/materials/motorcycle.tres" id="2_5pp4j"]
 [ext_resource type="AudioStream" uid="uid://ckbegd07d5unb" path="res://assets/sounds/motorbike.wav" id="4_w1i0b"]
+[ext_resource type="Texture2D" uid="uid://bl6o50m4fufii" path="res://assets/sprites/smoke.png" id="5_awfj5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4y6t"]
 size = Vector3(0.9, 0.8, 3.5)
@@ -28,6 +29,32 @@ blend_shape_mode = 0
 height = 1.0
 radius = 2.0
 
+[sub_resource type="Curve" id="Curve_xsexi"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.743083, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_41pcy"]
+curve = SubResource("Curve_xsexi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ffk6l"]
+direction = Vector3(0, 1, 0)
+spread = 10.0
+initial_velocity_min = 0.6
+initial_velocity_max = 0.65
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_41pcy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7kt2"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = ExtResource("5_awfj5")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_13tsx"]
+material = SubResource("StandardMaterial3D_w7kt2")
+size = Vector2(0.5, 0.5)
+
 [node name="Motorbike" type="CharacterBody3D" groups=["bike"]]
 script = ExtResource("1_yqhj7")
 
@@ -49,5 +76,13 @@ top_level = true
 [node name="AudioPlayer" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_w1i0b")
 bus = &"World"
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.583817, 0, 0)
+amount = 64
+lifetime = 8.0
+preprocess = 3.0
+process_material = SubResource("ParticleProcessMaterial_ffk6l")
+draw_pass_1 = SubResource("QuadMesh_13tsx")
 
 [editable path="InteractionTrigger"]
