@@ -1,4 +1,4 @@
-[gd_resource type="MeshLibrary" load_steps=14 format=4 uid="uid://cmivlmx2pytjl"]
+[gd_resource type="MeshLibrary" load_steps=13 format=4 uid="uid://cmivlmx2pytjl"]
 
 [ext_resource type="Material" uid="uid://doxp0nbo12s3i" path="res://assets/meshes/materials/mountain.tres" id="1_0j1kp"]
 [ext_resource type="Material" uid="uid://doa401ouk6o5p" path="res://assets/meshes/materials/big_mountain.tres" id="2_uqy5s"]
@@ -77,8 +77,6 @@ blend_shape_mode = 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_83haf"]
 size = Vector3(12, 40, 12)
 
-[sub_resource type="BoxMesh" id="BoxMesh_nygwq"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_vmflr"]
 
 [resource]
@@ -108,7 +106,6 @@ item/3/shapes = [SubResource("BoxShape3D_83haf"), Transform3D(1, 0, 0, 0, 1, 0, 
 item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 item/3/navigation_layers = 524288
 item/4/name = ""
-item/4/mesh = SubResource("BoxMesh_nygwq")
 item/4/mesh_transform = Transform3D(30, 0, 0, 0, 15, 0, 0, 0, 60, 0, 0, 0)
 item/4/shapes = [SubResource("BoxShape3D_vmflr"), Transform3D(30, 0, 0, 0, 15, 0, 0, 0, 60, 0, 0, 0)]
 item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
