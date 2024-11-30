@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ck8cuksfxtppe" path="res://other_objects/game_location.tscn" id="4_f3jlf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_io3vw"]
-size = Vector3(12.5, 5, 12.5)
+size = Vector3(11, 5, 11)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_bl5c4"]
 _surfaces = [{
