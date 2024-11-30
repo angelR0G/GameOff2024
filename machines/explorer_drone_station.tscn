@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://cof3bpt74mx06"]
+[gd_scene load_steps=6 format=4 uid="uid://cof3bpt74mx06"]
 
 [ext_resource type="PackedScene" uid="uid://d2ad2c6jamqv7" path="res://machines/drone_station.tscn" id="1_rtg11"]
 [ext_resource type="Script" path="res://machines/explorer_drone_station.gd" id="2_aj1oo"]
@@ -20,6 +20,9 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_krvoa"]
+size = Vector3(7, 2, 7)
+
 [node name="ExplorerDroneStation" groups=["explorer_drones"] instance=ExtResource("1_rtg11")]
 script = ExtResource("2_aj1oo")
 
@@ -27,6 +30,9 @@ script = ExtResource("2_aj1oo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10801, 0)
 mesh = SubResource("ArrayMesh_irmyb")
 skeleton = NodePath("..")
+
+[node name="CollisionShape3D" parent="GameLocation/Area3D" index="0"]
+shape = SubResource("BoxShape3D_krvoa")
 
 [editable path="GameLocation"]
 [editable path="InteractionTrigger"]
