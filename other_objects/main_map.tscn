@@ -1006,7 +1006,7 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 137.097, -1.30797, 228.596)
 
 [node name="Mine" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 112.519, -1.2, 298.596)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 112.519, -1.2, 298.596)
 material_id = 2
 
 [node name="Mine1" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1022,7 +1022,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 158.81
 material_id = 12
 
 [node name="Mine4" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 178.48, -1.2, 200.523)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 178.48, -1.2, 200.523)
 material_id = 2
 
 [node name="Mine5" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1038,7 +1038,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 154.86
 material_id = 1
 
 [node name="Mine8" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 138.655, -1.2, 193.411)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 138.655, -1.2, 193.411)
 material_id = 1
 
 [node name="Mine9" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1046,7 +1046,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 162.51
 material_id = 1
 
 [node name="Mine10" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 104.271, -1.2, 237.436)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 104.271, -1.2, 237.436)
 material_id = 1
 
 [node name="Mine11" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1112,11 +1112,11 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 184.11
 material_id = 1
 
 [node name="Mine17" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 157.153, -1.20001, -8.01867)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 157.153, -1.20001, -8.01867)
 material_id = 1
 
 [node name="Mine18" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 192.575, -1.20001, -1.94244)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 192.575, -1.20001, -1.94244)
 material_id = 1
 
 [node name="Mine19" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1128,7 +1128,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 190.08
 material_id = 1
 
 [node name="Mine21" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 143.479, -1.20001, -107.543)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 143.479, -1.20001, -107.543)
 material_id = 1
 
 [node name="Mine22" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1136,7 +1136,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 176.22
 material_id = 1
 
 [node name="Mine23" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 147.988, -1.19989, -167.318)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 147.988, -1.19989, -167.318)
 material_id = 1
 
 [node name="Mine24" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1152,11 +1152,11 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 130.06
 material_id = 1
 
 [node name="Mine27" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 81.4044, -1.19976, -79.7772)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 81.4044, -1.19976, -79.7772)
 material_id = 1
 
 [node name="Mine28" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 46.8224, -1.20001, -121.171)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 46.8224, -1.20001, -121.171)
 material_id = 1
 
 [node name="Mine29" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1242,11 +1242,11 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 107.45
 material_id = 1
 
 [node name="Mine33" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 89.7814, -1.19989, -268.592)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 89.7814, -1.19989, -268.592)
 material_id = 1
 
 [node name="Mine34" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 41.7224, -1.19989, -222.16)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 41.7224, -1.19989, -222.16)
 material_id = 1
 
 [node name="Mine35" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1302,15 +1302,15 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -171.6
 material_id = 1
 
 [node name="Mine48" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -191.83, -1.19989, -106.196)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -191.83, -1.19989, -106.196)
 material_id = 1
 
 [node name="Mine49" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -41.0256, -1.19989, -104.039)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -41.0256, -1.19989, -104.039)
 material_id = 1
 
 [node name="Mine50" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -96.7099, -1.19989, -174.641)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -96.7099, -1.19989, -174.641)
 material_id = 1
 
 [node name="Mine51" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1318,7 +1318,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -26.60
 material_id = 1
 
 [node name="Mine52" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -80.9992, -1.19989, -271.336)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -80.9992, -1.19989, -271.336)
 material_id = 1
 
 [node name="Mine53" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1476,7 +1476,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -193.0
 material_id = 1
 
 [node name="Mine57" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -211.291, -1.19989, 122.033)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -211.291, -1.19989, 122.033)
 material_id = 1
 
 [node name="Mine58" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1488,7 +1488,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -202.2
 material_id = 1
 
 [node name="Mine60" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -153.368, -1.19989, -16.7372)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -153.368, -1.19989, -16.7372)
 material_id = 1
 
 [node name="Mine61" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1508,7 +1508,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -94.93
 material_id = 1
 
 [node name="Mine65" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -98.0023, -1.19989, 140.88)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -98.0023, -1.19989, 140.88)
 material_id = 1
 
 [node name="Mine66" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1524,7 +1524,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -23.98
 material_id = 1
 
 [node name="Mine69" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -72.6514, -1.19982, 237.558)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -72.6514, -1.19982, 237.558)
 material_id = 1
 
 [node name="Mine70" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1540,7 +1540,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -120.4
 material_id = 1
 
 [node name="Mine73" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -96.4198, -1.19982, 353.883)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -96.4198, -1.19982, 353.883)
 material_id = 1
 
 [node name="Mine74" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1548,7 +1548,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -128.3
 material_id = 1
 
 [node name="Mine75" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -147.132, -1.19982, 322.535)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -147.132, -1.19982, 322.535)
 material_id = 1
 
 [node name="Mine76" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1556,7 +1556,7 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -169.3
 material_id = 1
 
 [node name="Mine77" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -154.032, -1.19976, 401.025)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -154.032, -1.19976, 401.025)
 material_id = 1
 
 [node name="Mine78" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
@@ -1568,11 +1568,11 @@ transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -208.2
 material_id = 1
 
 [node name="Mine80" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -168.368, -1.1997, 278.462)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -168.368, -1.1997, 278.462)
 material_id = 1
 
 [node name="Mine81" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -187.966, -1.1997, 238.568)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -187.966, -1.1997, 238.568)
 material_id = 1
 
 [node name="Mine82" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]

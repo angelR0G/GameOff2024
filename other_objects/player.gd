@@ -31,23 +31,7 @@ func _ready() -> void:
 		Instance = self
 	
 	movement_enabled = true
-	
-	machines.add_machine_by_type(Machine.Type.Drill)
-	machines.add_machine_by_type(Machine.Type.Drill)
-	machines.add_machine_by_type(Machine.Type.Drill)
-	machines.add_machine_by_type(Machine.Type.Generator)
-	machines.add_machine_by_type(Machine.Type.CollectorDroneStation)
-	machines.add_machine_by_type(Machine.Type.ExplorerDroneStation)
-	machines.add_machine_by_type(Machine.Type.EnergyStation)
-	machines.add_machine_by_type(Machine.Type.EnergyStation)
-	machines.add_machine_by_type(Machine.Type.EnergyExtender)
-	machines.add_machine_by_type(Machine.Type.EnergyExtender)
-	machines.add_machine_by_type(Machine.Type.EnergyExtender)
-	machines.add_machine_by_type(Machine.Type.EnergyExtender)
-	machines.add_machine_by_type(Machine.Type.TransportDroneStation)
-	machines.add_machine_by_type(Machine.Type.Disruptor)
-	machines.add_machine_by_type(Machine.Type.Disruptor)
-	machines.add_machine_by_type(Machine.Type.Disruptor)
+
 
 func _process(delta):
 	if riding_on != null:
