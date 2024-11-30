@@ -1,0 +1,27 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dxvx6etoptpfk"]
+
+[ext_resource type="Shader" path="res://shaders/energy_barrier_shader.gdshader" id="1_lwr0t"]
+
+[sub_resource type="Gradient" id="Gradient_xnqw4"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ls24a"]
+noise_type = 3
+frequency = 0.0094
+domain_warp_enabled = true
+domain_warp_fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2md6m"]
+width = 400
+height = 1000
+in_3d_space = true
+seamless = true
+seamless_blend_skirt = 0.299
+color_ramp = SubResource("Gradient_xnqw4")
+noise = SubResource("FastNoiseLite_ls24a")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_lwr0t")
+shader_parameter/base_color = Color(0.792, 0.494, 0.949, 0.8)
+shader_parameter/detail_color = Color(0.639, 0.365, 0.851, 0.8)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_2md6m")

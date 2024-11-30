@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://7wsq8muok7u3"]
+[gd_scene load_steps=15 format=4 uid="uid://7wsq8muok7u3"]
 
 [ext_resource type="Script" path="res://other_objects/barrier.gd" id="1_bo5rp"]
 [ext_resource type="PackedScene" uid="uid://bcsnulyrjoclq" path="res://other_objects/interaction_collider.tscn" id="2_6ewat"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cqnu4khyosoem" path="res://assets/sounds/barrier.wav" id="3_ngani"]
 [ext_resource type="AudioStream" uid="uid://bini263aga0sn" path="res://assets/sounds/disruptor.wav" id="4_gowrg"]
 [ext_resource type="Material" uid="uid://b4c5nls6hs5wp" path="res://assets/meshes/materials/barrier_pilar.tres" id="4_o27wg"]
+[ext_resource type="Material" uid="uid://dxvx6etoptpfk" path="res://shaders/energy_barrier.tres" id="5_p0uw6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdp4g"]
 size = Vector3(4, 10, 4.5)
@@ -53,6 +54,7 @@ blend_shape_mode = 0
 size = Vector3(1, 6, 18)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oril5"]
+material = ExtResource("5_p0uw6")
 
 [node name="Barrier" type="StaticBody3D"]
 script = ExtResource("1_bo5rp")
@@ -88,6 +90,7 @@ shape = SubResource("BoxShape3D_f0koa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Wall"]
 transform = Transform3D(-1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0, 9, 0, 0, 0)
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_oril5")
 skeleton = NodePath("../..")
 

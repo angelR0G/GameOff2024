@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://bkmkdpqg74rjl"]
+[gd_scene load_steps=67 format=4 uid="uid://bkmkdpqg74rjl"]
 
 [ext_resource type="Script" path="res://other_objects/mine_manager.gd" id="1_4ew5w"]
 [ext_resource type="PackedScene" uid="uid://baa4tvph24mkf" path="res://other_objects/player.tscn" id="1_6ms4c"]
@@ -9,6 +9,7 @@
 [ext_resource type="MeshLibrary" uid="uid://cmivlmx2pytjl" path="res://resources/mesh_library.tres" id="5_qk3jo"]
 [ext_resource type="ArrayMesh" uid="uid://bv7websydq48r" path="res://assets/meshes/barrier_pilar.obj" id="6_3fd8a"]
 [ext_resource type="PackedScene" uid="uid://bgdwweowv3rlk" path="res://other_objects/mine.tscn" id="6_117xo"]
+[ext_resource type="Material" uid="uid://dxvx6etoptpfk" path="res://shaders/energy_barrier.tres" id="7_b7wpy"]
 [ext_resource type="Shader" path="res://shaders/material_color_mine.gdshader" id="7_tbp3a"]
 [ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="8_h4axl"]
 [ext_resource type="Material" uid="uid://ccipqt5g330u" path="res://assets/meshes/materials/mine.tres" id="8_yaame"]
@@ -36,9 +37,16 @@ sky_material = SubResource("ProceduralSkyMaterial_pxk6m")
 [sub_resource type="Environment" id="Environment_pja6g"]
 background_mode = 2
 sky = SubResource("Sky_uyfhl")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 2
+glow_enabled = true
+glow_bloom = 0.1
+adjustment_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xtu1t"]
-size = Vector2(27, 6)
+material = ExtResource("7_b7wpy")
+size = Vector2(6, 27)
 orientation = 2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ad84g"]
@@ -336,6 +344,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_oril5"]
+material = ExtResource("7_b7wpy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vefwy"]
 size = Vector3(1, 6, 22)
@@ -871,7 +880,7 @@ _materials_by_area = Array[Dictionary]([{
 environment = SubResource("Environment_pja6g")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-1, 3.86973e-09, 8.73371e-08, 4.37114e-08, -0.843044, 0.537844, 7.57103e-08, 0.537844, 0.843044, 7.73001, 68, 3)
+transform = Transform3D(-0.821149, 0.241194, 0.517242, -7.92319e-08, -0.906307, 0.422618, 0.570714, 0.347032, 0.744214, 7.73001, 68, 3)
 light_color = Color(0.991376, 0.935225, 0.904963, 1)
 shadow_enabled = true
 
@@ -895,7 +904,7 @@ material_override = ExtResource("11_0mgop")
 mesh = ExtResource("6_3fd8a")
 
 [node name="Wall" type="MeshInstance3D" parent="UnreachableArea"]
-transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 76.9192, 1.78676, -34.4305)
+transform = Transform3D(-1.13133e-08, 0.258819, 0.965926, -1, -4.37114e-08, 0, 4.2222e-08, -0.965926, 0.258819, 76.9192, 1.78676, -34.4305)
 mesh = SubResource("PlaneMesh_xtu1t")
 
 [node name="Pillar2" type="MeshInstance3D" parent="UnreachableArea"]
