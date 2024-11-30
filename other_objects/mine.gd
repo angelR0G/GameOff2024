@@ -16,6 +16,8 @@ func _ready() -> void:
 	interaction.interaction_function = _interaction
 
 func _interaction() -> void:
+	set_cheats_active(true)
+	
 	var interactions_ui := InteractionsDisplay.Instance
 	
 	if not explored:
@@ -43,6 +45,8 @@ func _interaction() -> void:
 	interactions_ui.add_close_list_button()
 	interactions_ui.show_list()
 	await interactions_ui.display_closed
+	
+	set_cheats_active(false)
 
 func explore_mine(is_player_exploring:bool = true) -> void:
 	if explored:
@@ -108,3 +112,22 @@ func extract_special_material() -> void:
 		Player.Instance.materials.add_material(material_id, 1)
 		material_id = 1
 		change_mineral_color()
+
+func set_cheats_active(new_state: bool) -> void:
+	var cheats :CheatMode = MINECHEATS
+	cheats.enabled = new_state
+	if cheats.enabled:
+		cheats.cheat_callback = get_materials_cheat.bind(material_id)
+
+
+static func get_materials_cheat(mat_id:int) -> void:
+	var quantity := 5 if MATERIALS.is_special_material(mat_id) else 100
+	
+	var material_cont := MaterialContainer.new()
+	material_cont.max_weight = -1
+	material_cont.add_material(mat_id, quantity)
+	
+	if BaseCamp.Instance:
+		BaseCamp.Instance.store_materials(material_cont)
+	
+	material_cont.free()

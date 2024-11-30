@@ -17,10 +17,11 @@ var materials :MaterialContainer = MaterialContainer.new()
 @onready var footsteps_timer: Timer = $FootstepsTimer
 @onready var footsteps_audio: AudioStreamPlayer3D = $FootstepsTimer/FootstepsAudio
 @onready var audio_listener: AudioListener3D = $AudioListener3D
+@onready var cheats: CheatMode = $Cheats
 
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
-var input_disabled :bool = false
+var input_disabled :bool = false : set = _set_input_disabled
 var riding_on: Motorbike = null
 
 func _init() -> void:
@@ -31,6 +32,9 @@ func _ready() -> void:
 		Instance = self
 	
 	movement_enabled = true
+	
+	cheats.cheat_callback = toggle_cheats
+	cheats.enabled = true
 
 
 func _process(delta):
@@ -83,14 +87,20 @@ func _process(delta):
 		mesh.rotate_y(target_rot)
 
 
+func _set_input_disabled(new_value:bool) -> void:
+	input_disabled = new_value
+	if cheats != null:
+		cheats.enabled = not new_value
+
+
 func _unhandled_input(input: InputEvent) -> void:
 	if input_disabled or riding_on != null:
 		return
 	
 	if input.is_action_pressed("interact"):
 		interact()
-	elif input.is_action_pressed("cheat"):
-		toggle_cheats()
+	#elif input.is_action_pressed("cheat"):
+	#	toggle_cheats()
 	
 
 func interact() -> void:
@@ -118,7 +128,13 @@ func enable_collision(new_state:bool) -> void:
 
 
 func toggle_cheats() -> void:
-	Engine.time_scale = 2.5 if Engine.time_scale < 2.0 else 1.0
+	cheats.action_list = ["speed_cheat"]
+	cheats.cheat_callback = func() -> void:
+		Engine.time_scale = 2.5 if Engine.time_scale < 2.0 else 1.0
+	
+	await get_tree().create_timer(3.0).timeout
+	cheats.correct_input_audio.volume_db = -60.0
+	cheats.message = ""
 
 
 func play_footstep() -> void:

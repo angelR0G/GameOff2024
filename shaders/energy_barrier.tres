@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://dxvx6etoptpfk"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://bolwo8hmmyd0k"]
 
 [ext_resource type="Shader" path="res://shaders/energy_barrier_shader.gdshader" id="1_lwr0t"]
 

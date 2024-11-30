@@ -9,7 +9,7 @@
 [ext_resource type="MeshLibrary" uid="uid://cmivlmx2pytjl" path="res://resources/mesh_library.tres" id="5_qk3jo"]
 [ext_resource type="ArrayMesh" uid="uid://bv7websydq48r" path="res://assets/meshes/barrier_pilar.obj" id="6_3fd8a"]
 [ext_resource type="PackedScene" uid="uid://bgdwweowv3rlk" path="res://other_objects/mine.tscn" id="6_117xo"]
-[ext_resource type="Material" uid="uid://dxvx6etoptpfk" path="res://shaders/energy_barrier.tres" id="7_b7wpy"]
+[ext_resource type="Material" uid="uid://bolwo8hmmyd0k" path="res://shaders/energy_barrier.tres" id="7_b7wpy"]
 [ext_resource type="Shader" path="res://shaders/material_color_mine.gdshader" id="7_tbp3a"]
 [ext_resource type="PackedScene" uid="uid://c5d28f4x8takd" path="res://other_objects/base_camp.tscn" id="8_h4axl"]
 [ext_resource type="Material" uid="uid://ccipqt5g330u" path="res://assets/meshes/materials/mine.tres" id="8_yaame"]
@@ -575,7 +575,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 3, 8.46667, 8.53333, 11, 13.7667, 17.1, 20.1667, 23.7667, 27.0667, 30.2667, 32, 34, 39.5, 39.9667, 44),
 "transitions": PackedFloat32Array(1, 2, 1, 0.307786, -2, -2, -2, -2, -2, -2, -2, 2, 1, 1, 3, 1),
 "update": 0,
-"values": [Vector3(137.097, 4, 228.596), Vector3(137.097, 4, 228.596), Vector3(137.097, 120, 228.596), Vector3(137.097, 120, 228.596), Vector3(128.911, 123.136, 228.596), Vector3(129.166, 123.037, 228.596), Vector3(129.057, 123.09, 228.596), Vector3(129.471, 123.139, 228.596), Vector3(129.17, 123.074, 228.596), Vector3(129.675, 122.992, 228.596), Vector3(128.911, 123.136, 228.596), Vector3(129.426, 123.136, 228.596), Vector3(120.725, 123.136, 228.596), Vector3(120.725, 123.136, 228.596), Vector3(-359.806, 155.739, 96.802), Vector3(-359.806, 3.23274, 96.802)]
+"values": [Vector3(137.097, 2, 228.596), Vector3(137.097, 2, 228.596), Vector3(137.097, 120, 228.596), Vector3(137.097, 120, 228.596), Vector3(128.911, 123.136, 228.596), Vector3(129.166, 123.037, 228.596), Vector3(129.057, 123.09, 228.596), Vector3(129.471, 123.139, 228.596), Vector3(129.17, 123.074, 228.596), Vector3(129.675, 122.992, 228.596), Vector3(128.911, 123.136, 228.596), Vector3(129.426, 123.136, 228.596), Vector3(120.725, 123.136, 228.596), Vector3(120.725, 123.136, 228.596), Vector3(-359.806, 155.739, 96.802), Vector3(-359.806, 3.23274, 96.802)]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -835,8 +835,7 @@ proximity_fade_distance = 0.01
 material = SubResource("StandardMaterial3D_nqg3g")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_du7gn"]
-emission_enabled = true
-emission = Color(0.99111, 1, 0.598503, 1)
+shading_mode = 0
 
 [sub_resource type="SphereMesh" id="SphereMesh_vawar"]
 material = SubResource("StandardMaterial3D_du7gn")
@@ -894,6 +893,10 @@ transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 147.803, -
 stream = ExtResource("4_734tg")
 volume_db = -9.0
 autoplay = true
+
+[node name="CameraPivot" parent="." node_paths=PackedStringArray("target") instance=ExtResource("11_607wd")]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 134.545, -1.18931, 242.04)
+target = NodePath("../Player")
 
 [node name="UnreachableArea" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -333.206, 0, 145.741)
@@ -965,7 +968,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.3962, -1.19065, 99.9443)
 mesh = SubResource("ArrayMesh_tqxaj")
 
 [node name="EnemyBase" type="MeshInstance3D" parent="UnreachableArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1196, 3.41076, -48.7251)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1196, 2.68991, -48.7251)
 mesh = SubResource("ArrayMesh_17afo")
 surface_material_override/0 = SubResource("StandardMaterial3D_5dejg")
 
@@ -1614,10 +1617,6 @@ material_id = 1
 [node name="Mine91" parent="NavigationRegion3D" instance=ExtResource("6_117xo")]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -30.6653, -1.1997, 264.886)
 material_id = 1
-
-[node name="CameraPivot" parent="." node_paths=PackedStringArray("target") instance=ExtResource("11_607wd")]
-transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 138.535, -0.852147, 242.04)
-target = NodePath("../Player")
 
 [node name="Cinematic" type="Node3D" parent="."]
 

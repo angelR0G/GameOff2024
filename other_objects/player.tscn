@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://baa4tvph24mkf"]
+[gd_scene load_steps=14 format=4 uid="uid://baa4tvph24mkf"]
 
 [ext_resource type="Script" path="res://other_objects/player.gd" id="1_nq4kw"]
 [ext_resource type="PackedScene" uid="uid://bnmugypts2fc8" path="res://ui/interactions_display.tscn" id="2_6mo8e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cfjsaxbypqcrh" path="res://ui/hud.tscn" id="3_l3poo"]
 [ext_resource type="PackedScene" uid="uid://5eveljb5rw8u" path="res://ui/container_manager_ui.tscn" id="5_rnmcg"]
 [ext_resource type="AudioStream" uid="uid://c1a1n154hfg4k" path="res://assets/sounds/step.wav" id="6_hb1nb"]
+[ext_resource type="PackedScene" uid="uid://b4stollre1njj" path="res://other_objects/cheats.tscn" id="7_6w2m4"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3ugdk"]
 _surfaces = [{
@@ -123,5 +124,9 @@ volume_db = -21.0
 panning_strength = 0.0
 bus = &"World"
 attenuation_filter_cutoff_hz = 20500.0
+
+[node name="Cheats" parent="." instance=ExtResource("7_6w2m4")]
+action_list = Array[StringName]([&"up", &"up", &"down", &"down", &"left", &"right", &"left", &"right"])
+message = "Press SHIFT to change game speed."
 
 [connection signal="timeout" from="FootstepsTimer" to="." method="play_footstep"]
