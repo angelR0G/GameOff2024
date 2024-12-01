@@ -18,6 +18,8 @@ func add_material(id:int, quantity:int) -> int:
 	if  max_weight != -1:
 		@warning_ignore("integer_division")
 		quantity_to_add = mini(weight_left / material.weight, quantity)
+		if quantity_to_add <= 0:
+			return 0
 		
 	if objects.has(id):
 		objects[id] = objects.get(id)+quantity_to_add

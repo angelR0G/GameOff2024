@@ -14,7 +14,7 @@ func set_target(gl:GameLocation) -> void:
 
 
 func get_target_position() -> Vector3:
-	if target == null:
+	if target == null or not target.is_inside_tree():
 		return global_position
 	
 	return target.global_position

@@ -104,12 +104,12 @@ func _unhandled_input(input: InputEvent) -> void:
 	
 
 func interact() -> void:
-	if available_interactions.is_empty() or available_interactions[0] == null:
+	if available_interactions.is_empty() or available_interactions.back() == null:
 		return
 	
 	input_disabled = true
 	hud.set_menu_enabled(false)
-	await available_interactions[0].interact()
+	await available_interactions.back().interact()
 	
 	input_disabled = false
 	hud.set_menu_enabled(true)
