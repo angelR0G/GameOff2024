@@ -21,7 +21,7 @@ var stored_materials := MaterialContainer.new()
 
 func _ready() -> void:
 	interaction.interaction_function = _interaction
-	stored_materials.max_weight = 360
+	stored_materials.max_weight = 400
 	
 	smoke_particles.emitting = broken
 
@@ -142,5 +142,5 @@ func _interaction() -> void:
 
 
 func _on_upgrade() -> void:
-	stored_materials.max_weight += 200
+	stored_materials.max_weight += 350
 	max_speed += 3.0
