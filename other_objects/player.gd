@@ -4,7 +4,7 @@ static var Instance :Player = null
 const _material_container := preload("res://materials/material_container.gd")
 const ROTATION_SPEED := 6.0
 
-@export var speed :float = 6.0
+@export var speed :float = 8.0
 @export var fall_acceleration = 75
 @export var movement_enabled :bool
 var machines :MachineContainer = MachineContainer.new()
@@ -25,7 +25,7 @@ var input_disabled :bool = false : set = _set_input_disabled
 var riding_on: Motorbike = null
 
 func _init() -> void:
-	materials.max_weight = 40
+	materials.max_weight = 70
 
 func _ready() -> void:
 	if Instance == null:

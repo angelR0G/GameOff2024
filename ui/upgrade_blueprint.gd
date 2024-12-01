@@ -66,8 +66,8 @@ func has_reached_max_level() -> bool:
 # Upgrade functions
 # # # # # #
 func upgrade_player() -> void:
-	Player.Instance.speed += 1.0
-	Player.Instance.materials.max_weight += 40
+	Player.Instance.speed += 1.5
+	Player.Instance.materials.max_weight += 65
 
 
 func upgrade_drill() -> void:

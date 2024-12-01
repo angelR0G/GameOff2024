@@ -15,13 +15,13 @@ var broken:bool = true
 var player_riding :Player = null
 var movement_vector :Vector3 = Vector3.ZERO
 var speed :float = 0
-var max_speed :float = 16.0
+var max_speed :float = 18.0
 var stored_materials := MaterialContainer.new()
 
 
 func _ready() -> void:
 	interaction.interaction_function = _interaction
-	stored_materials.max_weight = 200
+	stored_materials.max_weight = 360
 	
 	smoke_particles.emitting = broken
 
