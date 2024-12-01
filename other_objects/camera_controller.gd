@@ -49,6 +49,13 @@ func update_zoom(delta:float) -> void:
 	# Update audio bus volume
 	var bus_volume := remap(camera.size, MIN_ZOOM, MAX_ZOON, 0.0, -12.0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("World"), bus_volume)
+	
+	if Player.Instance:
+		Player.Instance.update_interaction_icon_size()
+
+
+func get_zoom() -> float:
+	return camera.size
 
 func _unhandled_input(event: InputEvent) -> void:
 	if zoom_enabled:
@@ -65,3 +72,6 @@ func get_camera_rotation() -> float:
 
 func get_camera() -> Camera3D:
 	return camera
+
+func _exit_tree() -> void:
+	Instance = null

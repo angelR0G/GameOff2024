@@ -24,6 +24,8 @@ var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
 var input_disabled :bool = false : set = _set_input_disabled
 var riding_on: Motorbike = null
+var interaction_icon_size := Vector2.ZERO
+var interaction_icon_tween :Tween = null
 
 func _init() -> void:
 	materials.max_weight = 70
@@ -101,8 +103,6 @@ func _unhandled_input(input: InputEvent) -> void:
 	
 	if input.is_action_pressed("interact"):
 		interact()
-	#elif input.is_action_pressed("cheat"):
-	#	toggle_cheats()
 	
 
 func interact() -> void:
@@ -119,16 +119,36 @@ func interact() -> void:
 
 func add_interaction_object(obj:InteractionCollider) -> void:
 	available_interactions.append(obj)
-	interact_message.visible = true
-	var tween = get_tree().create_tween()
-	tween.tween_property(interact_message.mesh, "size", Vector2(1, 1), 0.2)
+	
+	if available_interactions.size() <= 1:
+		update_interaction_icon_size(Vector2.ONE)
 
 func remove_interaction_object(obj:InteractionCollider) -> void:
 	available_interactions.erase(obj)
-	var tween = get_tree().create_tween()
-	tween.tween_property(interact_message.mesh, "size", Vector2(), 0.2)
-	tween.tween_property(interact_message, "visible", false, 0.1)
 	
+	if available_interactions.is_empty():
+		update_interaction_icon_size(Vector2.ZERO)
+
+
+func update_interaction_icon_size(new_size:Vector2 = interaction_icon_size) -> void:
+	interaction_icon_size = new_size
+	
+	# Update size with camera zoom
+	if FollowCamera.Instance:
+		new_size *= FollowCamera.Instance.get_zoom()/FollowCamera.MIN_ZOOM
+	
+	# If a previous tween was being animated, stop it
+	if interaction_icon_tween != null and interaction_icon_tween.is_running():
+		interaction_icon_tween.kill()
+	
+	interaction_icon_tween = get_tree().create_tween()
+	
+	if not interact_message.visible and new_size != Vector2.ZERO:
+		interact_message.visible = true
+	interaction_icon_tween.tween_property(interact_message.mesh, "size", new_size, 0.2)
+	
+	if new_size == Vector2.ZERO:
+		interaction_icon_tween.tween_property(interact_message, "visible", false, 0.2)
 
 
 func enable_collision(new_state:bool) -> void:

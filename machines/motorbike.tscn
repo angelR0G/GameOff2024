@@ -65,6 +65,7 @@ shape = SubResource("BoxShape3D_g4y6t")
 mesh = SubResource("ArrayMesh_dioqw")
 
 [node name="InteractionTrigger" parent="." instance=ExtResource("1_5rwkd")]
+enabled = false
 
 [node name="CollisionShape3D" parent="InteractionTrigger" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

@@ -81,6 +81,7 @@ func upgrade_motorbike() -> void:
 	
 	if current_level == 1:
 		motorbike.broken = false
+		motorbike.interaction.enabled = true
 		motorbike.smoke_particles.emitting = false
 		upgrade_description = "Increases speed and maximum weight."
 	else:
