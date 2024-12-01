@@ -37,7 +37,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0384412, 0, -0.432456)
 mesh = SubResource("ArrayMesh_a1uo3")
 
 [node name="EnergyAreaPlane" type="MeshInstance3D" parent="." index="1"]
-visible = false
 
 [node name="InteractionTrigger" parent="." index="3" instance=ExtResource("3_ue7xm")]
 

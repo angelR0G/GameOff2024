@@ -1,6 +1,6 @@
 class_name EnergyStation extends Machine
 
-const ENERGY_AREA_SHADER = preload("res://shaders/circle_action.gdshader")
+const ENERGY_AREA_SHADER = preload("res://shaders/circle_energy.gdshader")
 
 signal energy_supply_state_change(power:bool)
 
