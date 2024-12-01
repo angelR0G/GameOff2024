@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://0cfxskcwk864"]
+[gd_scene load_steps=10 format=4 uid="uid://0cfxskcwk864"]
 
 [ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_vvoke"]
 [ext_resource type="Script" path="res://machines/energy_station.gd" id="2_nhyuo"]
 [ext_resource type="Material" uid="uid://b8ssbrosfpxd5" path="res://assets/meshes/materials/energy_station.tres" id="3_o1bvj"]
 [ext_resource type="PackedScene" uid="uid://bcsnulyrjoclq" path="res://other_objects/interaction_collider.tscn" id="3_ue7xm"]
-[ext_resource type="Shader" path="res://shaders/circle_action.gdshader" id="4_r4tyh"]
 [ext_resource type="AudioStream" uid="uid://0s6bpa3bi3uk" path="res://assets/sounds/station_working.wav" id="5_xh7p7"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_a1uo3"]
@@ -23,19 +22,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ppmg"]
-render_priority = 0
-shader = ExtResource("4_r4tyh")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/diameter = 1.0
-shader_parameter/thickness = 0.05
-shader_parameter/frequency = 20.0
-shader_parameter/phase = 0.0
-shader_parameter/rad = 1.0
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_ofanj"]
-material = SubResource("ShaderMaterial_7ppmg")
-size = Vector2(1, 1)
+size = Vector2(60, 60)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_avadg"]
 radius = 2.0

@@ -26,6 +26,7 @@ func _ready() -> void:
 	powered = true
 	active = true
 	update_energy_radius()
+	set_energy_area_mesh(true)
 
 
 func _on_upgrade() -> void:
@@ -106,10 +107,12 @@ func disconnect_machine(machine:Machine) -> void:
 	
 	machine.update_power_supply()
 	
-func set_energy_area_mesh(active:bool) -> void:
-	energy_area_plane.visible = active
+func set_energy_area_mesh(act:bool) -> void:
+	energy_area_plane.visible = act
 	var plane_mesh:PlaneMesh =  energy_area_plane.mesh
 	plane_mesh.size = Vector2(radius*2, radius*2)
-	var shader_mine:ShaderMaterial = energy_area_plane.get_active_material(0).duplicate()
-	shader_mine.set_shader_parameter("rad", radius*2)
-	energy_area_plane.set_surface_override_material(0, shader_mine)
+	var shader_rad:Shader =  load("res://shaders/circle_action.gdshader").duplicate()
+	var shader_mat:ShaderMaterial = ShaderMaterial.new()
+	shader_mat.shader = shader_rad
+	shader_mat.set_shader_parameter("rad", radius*2)
+	energy_area_plane.set_surface_override_material(0, shader_mat)

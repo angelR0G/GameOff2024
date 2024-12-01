@@ -49,6 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("BoxShape3D_cjp5m")
 
 [node name="EnergyStation" parent="." instance=ExtResource("3_1oy7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 radius = 60.0
 
 [node name="GameLocation" parent="." instance=ExtResource("4_f3jlf")]

@@ -2,7 +2,7 @@ shader_type spatial;
 
 uniform vec4 color : source_color = vec4(1.0);
 uniform float diameter = 1.0; // Circle Diameter
-uniform float thickness = 0.05; // Outline thickness
+uniform float thickness = 0.2; // Outline thickness
 uniform float frequency = 20.0; // Controls the number of dots
 uniform float phase = 0.0; // Controls the rotation of the circle
 uniform float rad = 1.0;
