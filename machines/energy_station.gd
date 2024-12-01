@@ -1,5 +1,7 @@
 class_name EnergyStation extends Machine
 
+const ENERGY_AREA_SHADER = preload("res://shaders/circle_action.gdshader")
+
 signal energy_supply_state_change(power:bool)
 
 @export var radius: float
@@ -26,13 +28,13 @@ func _ready() -> void:
 	powered = true
 	active = true
 	update_energy_radius()
-	set_energy_area_mesh(true)
 
 
 func _on_upgrade() -> void:
 	radius += 4.0
 	
 	update_energy_radius()
+	set_energy_area_mesh(is_working(), true)
 
 
 func update_energy_radius() -> void:
@@ -46,6 +48,7 @@ func machine_already_connected(new_machine:Machine) -> bool:
 
 func _on_start_working() -> void:
 	super()
+	
 	set_energy_area_mesh(true)
 	update_connected_machines()
 	energy_supply_state_change.emit(true)
@@ -53,6 +56,7 @@ func _on_start_working() -> void:
 
 func _on_stop_working() -> void:
 	super()
+	
 	set_energy_area_mesh(false)
 	update_connected_machines()
 	energy_supply_state_change.emit(false)
@@ -107,12 +111,18 @@ func disconnect_machine(machine:Machine) -> void:
 	
 	machine.update_power_supply()
 	
-func set_energy_area_mesh(act:bool) -> void:
+func set_energy_area_mesh(act:bool, force_update:bool = false) -> void:
+	var size := radius*2
+	
 	energy_area_plane.visible = act
-	var plane_mesh:PlaneMesh =  energy_area_plane.mesh
-	plane_mesh.size = Vector2(radius*2, radius*2)
-	var shader_rad:Shader =  load("res://shaders/circle_action.gdshader").duplicate()
-	var shader_mat:ShaderMaterial = ShaderMaterial.new()
-	shader_mat.shader = shader_rad
-	shader_mat.set_shader_parameter("rad", radius*2)
-	energy_area_plane.set_surface_override_material(0, shader_mat)
+	
+	if (act and energy_area_plane.mesh == null) or force_update:
+		var plane_mesh:PlaneMesh = PlaneMesh.new()
+		plane_mesh.size = Vector2(size, size)
+		
+		var shader_mat:ShaderMaterial = ShaderMaterial.new()
+		shader_mat.shader = ENERGY_AREA_SHADER
+		shader_mat.set_shader_parameter("rad", size)
+		
+		plane_mesh.material = shader_mat
+		energy_area_plane.mesh = plane_mesh

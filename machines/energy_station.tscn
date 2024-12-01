@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://0cfxskcwk864"]
+[gd_scene load_steps=9 format=4 uid="uid://0cfxskcwk864"]
 
 [ext_resource type="PackedScene" uid="uid://dwhsrv7idketp" path="res://machines/machine_base.tscn" id="1_vvoke"]
 [ext_resource type="Script" path="res://machines/energy_station.gd" id="2_nhyuo"]
@@ -22,9 +22,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ofanj"]
-size = Vector2(60, 60)
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_avadg"]
 radius = 2.0
 
@@ -41,7 +38,6 @@ mesh = SubResource("ArrayMesh_a1uo3")
 
 [node name="EnergyAreaPlane" type="MeshInstance3D" parent="." index="1"]
 visible = false
-mesh = SubResource("PlaneMesh_ofanj")
 
 [node name="InteractionTrigger" parent="." index="3" instance=ExtResource("3_ue7xm")]
 

@@ -240,7 +240,7 @@ upgrade_cost = Array[Dictionary]([{
 visible = false
 layout_mode = 2
 upgrade_name = "Energy Station"
-upgrade_description = "Increases effective range."
+upgrade_description = "Increases effective range. Base camp and energy extensors are also affected."
 upgrade_cost = Array[Dictionary]([{
 3: 30,
 4: 20
