@@ -1,5 +1,7 @@
 class_name Motorbike extends CharacterBody3D
 
+signal player_gets_off
+
 const ROTATION_SPEED := 4.0
 const ACCELERATION := 20.0
 const STOP_ACCELERATION := 50.0
@@ -109,6 +111,7 @@ func get_off() -> void:
 	player_riding.global_position = global_position + Vector3.RIGHT.rotated(Vector3.UP, rotation.y) * 2
 	update_player_riding_state(true)
 	player_riding = null
+	player_gets_off.emit()
 
 
 func update_player_riding_state(is_getting_off:bool) -> void:
@@ -116,6 +119,7 @@ func update_player_riding_state(is_getting_off:bool) -> void:
 	player_riding.enable_collision(is_getting_off)
 	player_riding.movement_enabled = is_getting_off
 	FollowCamera.Instance.set_target((Player.Instance as Node3D) if is_getting_off else (self as Node3D))
+	
 	(player_riding.audio_listener if is_getting_off else audio_listener).make_current()
 	audio_player.set_stream(ENGINE_OFF_SOUND if is_getting_off else MOTORBIKE_SOUND)
 	audio_player.play()
@@ -131,6 +135,7 @@ func _interaction() -> void:
 		var player := Player.Instance
 		player_riding = player
 		update_player_riding_state(false)
+		await player_gets_off
 	, broken)
 	interactions_ui.add_interaction("Open Storage", func()-> void:
 		await Player.Instance.container_manager.open_container_manager(stored_materials)
