@@ -30,7 +30,7 @@ func on_target_enter() -> void:
 
 
 func set_target(new_target:GameLocation) -> void:
-	if new_target == null:
+	if new_target == null or not new_target.is_inside_tree():
 		return
 	
 	gl_target.set_target(new_target)
