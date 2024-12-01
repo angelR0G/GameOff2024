@@ -9,6 +9,7 @@ var connected_machines: Array[Machine]
 @onready var energy_collider:CollisionShape3D = $EnergyArea/EnergyCollision
 @onready var debug_mesh: MeshInstance3D = $EnergyArea/DebugMesh
 @onready var interaction := $InteractionTrigger
+@onready var energy_area_plane := $EnergyAreaPlane
 
 func _init() -> void:
 	# Energy station parameters
@@ -44,14 +45,14 @@ func machine_already_connected(new_machine:Machine) -> bool:
 
 func _on_start_working() -> void:
 	super()
-	
+	set_energy_area_mesh(true)
 	update_connected_machines()
 	energy_supply_state_change.emit(true)
 	audio_player.play()
 
 func _on_stop_working() -> void:
 	super()
-	
+	set_energy_area_mesh(false)
 	update_connected_machines()
 	energy_supply_state_change.emit(false)
 	audio_player.stop()
@@ -104,3 +105,11 @@ func disconnect_machine(machine:Machine) -> void:
 	machine.connected_energy_sources.erase(self)
 	
 	machine.update_power_supply()
+	
+func set_energy_area_mesh(active:bool) -> void:
+	energy_area_plane.visible = active
+	var plane_mesh:PlaneMesh =  energy_area_plane.mesh
+	plane_mesh.size = Vector2(radius*2, radius*2)
+	var shader_mine:ShaderMaterial = energy_area_plane.get_active_material(0).duplicate()
+	shader_mine.set_shader_parameter("rad", radius*2)
+	energy_area_plane.set_surface_override_material(0, shader_mine)
