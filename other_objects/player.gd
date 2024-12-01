@@ -18,6 +18,7 @@ var materials :MaterialContainer = MaterialContainer.new()
 @onready var footsteps_audio: AudioStreamPlayer3D = $FootstepsTimer/FootstepsAudio
 @onready var audio_listener: AudioListener3D = $AudioListener3D
 @onready var cheats: CheatMode = $Cheats
+@onready var interact_message: MeshInstance3D = $InteractMessage
 
 var target_velocity := Vector3.ZERO
 var available_interactions :Array[InteractionCollider] = []
@@ -35,6 +36,7 @@ func _ready() -> void:
 	
 	cheats.cheat_callback = toggle_cheats
 	cheats.enabled = true
+	
 
 
 func _process(delta):
@@ -117,9 +119,16 @@ func interact() -> void:
 
 func add_interaction_object(obj:InteractionCollider) -> void:
 	available_interactions.append(obj)
+	interact_message.visible = true
+	var tween = get_tree().create_tween()
+	tween.tween_property(interact_message.mesh, "size", Vector2(1, 1), 0.2)
 
 func remove_interaction_object(obj:InteractionCollider) -> void:
 	available_interactions.erase(obj)
+	var tween = get_tree().create_tween()
+	tween.tween_property(interact_message.mesh, "size", Vector2(), 0.2)
+	tween.tween_property(interact_message, "visible", false, 0.1)
+	
 
 
 func enable_collision(new_state:bool) -> void:

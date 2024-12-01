@@ -54,7 +54,7 @@ func _on_stop_working() -> void:
 	
 	update_connected_machines()
 	energy_supply_state_change.emit(false)
-	audio_player.play()
+	audio_player.stop()
 
 func update_connected_machines() -> void:
 	for machine in connected_machines:

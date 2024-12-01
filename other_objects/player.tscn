@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://baa4tvph24mkf"]
+[gd_scene load_steps=17 format=4 uid="uid://baa4tvph24mkf"]
 
 [ext_resource type="Script" path="res://other_objects/player.gd" id="1_nq4kw"]
 [ext_resource type="PackedScene" uid="uid://bnmugypts2fc8" path="res://ui/interactions_display.tscn" id="2_6mo8e"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://5eveljb5rw8u" path="res://ui/container_manager_ui.tscn" id="5_rnmcg"]
 [ext_resource type="AudioStream" uid="uid://c1a1n154hfg4k" path="res://assets/sounds/step.wav" id="6_hb1nb"]
 [ext_resource type="PackedScene" uid="uid://b4stollre1njj" path="res://other_objects/cheats.tscn" id="7_6w2m4"]
+[ext_resource type="Texture2D" uid="uid://dcl7txrcmqvnt" path="res://assets/sprites/keyicon_e.png" id="8_vspx7"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3ugdk"]
 _surfaces = [{
@@ -84,6 +85,16 @@ _data = {
 "walking": SubResource("Animation_ra4dr")
 }
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xmo3s"]
+render_priority = 2
+transparency = 1
+albedo_texture = ExtResource("8_vspx7")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_2rwqd"]
+material = SubResource("StandardMaterial3D_xmo3s")
+size = Vector2(0, 0)
+
 [node name="Player" type="CharacterBody3D"]
 collision_mask = 3
 script = ExtResource("1_nq4kw")
@@ -128,5 +139,10 @@ attenuation_filter_cutoff_hz = 20500.0
 [node name="Cheats" parent="." instance=ExtResource("7_6w2m4")]
 action_list = Array[StringName]([&"up", &"up", &"down", &"down", &"left", &"right", &"left", &"right"])
 message = "Press SHIFT to change game speed."
+
+[node name="InteractMessage" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.19894, 0)
+visible = false
+mesh = SubResource("QuadMesh_2rwqd")
 
 [connection signal="timeout" from="FootstepsTimer" to="." method="play_footstep"]
